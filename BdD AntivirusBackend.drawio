@@ -20,7 +20,7 @@
     <mxCell id="users_telefono" value="telefono VARCHAR(20)" parent="users" vertex="1">
       <mxGeometry y="150" width="350" height="30" as="geometry" />
     </mxCell>
-    <mxCell id="users_rol" value="rol ENUM(&#39;estudiante&#39;, &#39;administrador&#39;) NOT NULL" parent="users" vertex="1">
+    <mxCell id="users_rol" value="rol ENUM('estudiante', 'administrador') NOT NULL" parent="users" vertex="1">
       <mxGeometry y="180" width="350" height="30" as="geometry" />
     </mxCell>
     <mxCell id="users_fecha_registro" value="fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP" parent="users" vertex="1">
@@ -64,10 +64,10 @@
     <mxCell id="opportunities_descripcion" value="descripcion TEXT" vertex="1" parent="opportunities">
       <mxGeometry y="90" width="390" height="30" as="geometry" />
     </mxCell>
-    <mxCell id="opportunities_tipo" value="tipo ENUM(&#39;beca&#39;, &#39;crédito&#39;, &#39;curso&#39;, &#39;subsidio&#39;, &#39;otro&#39;)" vertex="1" parent="opportunities">
+    <mxCell id="opportunities_tipo" value="tipo ENUM('beca', 'crédito', 'curso', 'subsidio', 'otro')" vertex="1" parent="opportunities">
       <mxGeometry y="120" width="390" height="30" as="geometry" />
     </mxCell>
-    <mxCell id="opportunities_sector" value="sector ENUM(&#39;tecnológico&#39;, &#39;social&#39;, &#39;medio ambiente&#39;, &#39;salud&#39;, &#39;otros&#39;)" vertex="1" parent="opportunities">
+    <mxCell id="opportunities_sector" value="sector ENUM('tecnológico', 'social', 'medio ambiente', 'salud', 'otros')" vertex="1" parent="opportunities">
       <mxGeometry y="150" width="390" height="30" as="geometry" />
     </mxCell>
     <mxCell id="opportunities_ubicacion" value="ubicacion VARCHAR(255)" vertex="1" parent="opportunities">
