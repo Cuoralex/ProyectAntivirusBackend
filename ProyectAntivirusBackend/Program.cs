@@ -1,15 +1,6 @@
-using Supabase;
+
 
 var builder = WebApplication.CreateBuilder(args);
-
-var supabaseUrl = builder.Configuration["Supabase:Url"];
-var supabaseKey = builder.Configuration["Supabase:ApiKey"];
-
-var options = new SupabaseOptions { AutoConnectRealtime = true };
-var supabase = new Client(supabaseUrl, supabaseKey, options);
-
-// Add Supabase
-builder.Services.AddSingleton(supabase);
 
 
 // Add services to the container.
