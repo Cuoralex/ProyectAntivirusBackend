@@ -1,19 +1,13 @@
-using Supabase;
+
 
 var builder = WebApplication.CreateBuilder(args);
-
-var supabaseUrl = builder.Configuration["Supabase:Url"];
-var supabaseKey = builder.Configuration["Supabase:ApiKey"];
-
-var options = new SupabaseOptions { AutoConnectRealtime = true };
-var supabase = new Client(supabaseUrl, supabaseKey, options);
-
-// Add Supabase
-builder.Services.AddSingleton(supabase);
 
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
@@ -32,10 +26,9 @@ app.UseAuthorization();
 
 app.MapStaticAssets();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}")
-    .WithStaticAssets();
+app.MapControllers();
+app.UseSwagger();
+app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Proyecto Antivirus"));
 
 
 app.Run();

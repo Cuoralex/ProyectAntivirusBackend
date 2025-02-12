@@ -96,3 +96,10 @@ D:\Documents\Nodo EAFIT\Profundización\ProyectAntivirusBackend\ProyectAntivirus
 D:\Documents\Nodo EAFIT\Profundización\ProyectAntivirusBackend\ProyectAntivirusBackend\obj\Debug\net9.0\ProyectAntivirusBackend.pdb
 D:\Documents\Nodo EAFIT\Profundización\ProyectAntivirusBackend\ProyectAntivirusBackend\obj\Debug\net9.0\ProyectAntivirusBackend.genruntimeconfig.cache
 D:\Documents\Nodo EAFIT\Profundización\ProyectAntivirusBackend\ProyectAntivirusBackend\obj\Debug\net9.0\ref\ProyectAntivirusBackend.dll
+D:\Documents\Nodo EAFIT\Profundización\ProyectAntivirusBackend\ProyectAntivirusBackend\bin\Debug\net9.0\Microsoft.OpenApi.dll
+D:\Documents\Nodo EAFIT\Profundización\ProyectAntivirusBackend\ProyectAntivirusBackend\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\Documents\Nodo EAFIT\Profundización\ProyectAntivirusBackend\ProyectAntivirusBackend\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\Documents\Nodo EAFIT\Profundización\ProyectAntivirusBackend\ProyectAntivirusBackend\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\Documents\Nodo EAFIT\Profundización\ProyectAntivirusBackend\ProyectAntivirusBackend\obj\Debug\net9.0\ProyectAntivirusBackend.csproj.AssemblyReference.cache
+D:\Documents\Nodo EAFIT\Profundización\ProyectAntivirusBackend\ProyectAntivirusBackend\obj\Debug\net9.0\ProyectAntivirusBackend.MvcApplicationPartsAssemblyInfo.cs
+D:\Documents\Nodo EAFIT\Profundización\ProyectAntivirusBackend\ProyectAntivirusBackend\obj\Debug\net9.0\ProyectA.AF7C8C78.Up2Date
