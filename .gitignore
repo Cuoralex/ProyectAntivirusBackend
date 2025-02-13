@@ -131,3 +131,6 @@ $RECYCLE.BIN/
 .DS_Store
 
 _NCrunch*
+ProyectAntivirusBackend/bin/Debug/net9.0/ProyectAntivirusBackend.dll
+ProyectAntivirusBackend/bin/Debug/net9.0/ProyectAntivirusBackend.pdb
+ProyectAntivirusBackend/bin/Debug/net9.0/ProyectAntivirusBackend.staticwebassets.endpoints.json
