@@ -1,17 +1,17 @@
-
+using Microsoft.EntityFrameworkCore;
+using ProyectAntivirusBackend.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Add services to the container.
 builder.Services.AddControllersWithViews();
-
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Habilitar Swagger en desarrollo (corrige "UserSwagger" a "UseSwagger")
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -20,14 +20,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseRouting();
-
 app.UseAuthorization();
 
 app.MapStaticAssets();
-
 app.MapControllers();
-app.UseSwagger();
-app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Proyecto Antivirus"));
-
 
 app.Run();
