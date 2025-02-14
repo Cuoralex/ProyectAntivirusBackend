@@ -8,7 +8,7 @@ using ProyectAntivirusBackend.Data;
 
 #nullable disable
 
-namespace ProyectAntivirusBackend.ProyectAntivirusBackend.Data.Migrations
+namespace ProyectAntivirusBackend.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
