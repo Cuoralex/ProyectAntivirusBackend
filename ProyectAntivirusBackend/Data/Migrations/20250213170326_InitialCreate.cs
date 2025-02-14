@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace ProyectAntivirusBackend.ProyectAntivirusBackend.Data.Migrations
+namespace ProyectAntivirusBackend.Data.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration

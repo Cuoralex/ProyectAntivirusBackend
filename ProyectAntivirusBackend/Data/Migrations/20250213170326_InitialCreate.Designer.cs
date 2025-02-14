@@ -9,10 +9,10 @@ using ProyectAntivirusBackend.Data;
 
 #nullable disable
 
-namespace ProyectAntivirusBackend.ProyectAntivirusBackend.Data.Migrations
+namespace ProyectAntivirusBackend.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250212211349_InitialCreate")]
+    [Migration("20250213170326_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
