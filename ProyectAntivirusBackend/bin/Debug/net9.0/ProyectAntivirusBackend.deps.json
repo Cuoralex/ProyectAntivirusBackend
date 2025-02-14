@@ -8,21 +8,15 @@
     ".NETCoreApp,Version=v9.0": {
       "ProyectAntivirusBackend/1.0.0": {
         "dependencies": {
-<<<<<<< HEAD
-=======
           "Microsoft.EntityFrameworkCore": "9.0.2",
           "Microsoft.EntityFrameworkCore.Design": "9.0.2",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "9.0.3",
->>>>>>> 81f3d0b4ef2085c7c882d6b10a80097d6c8fd2c2
           "Swashbuckle.AspNetCore": "7.2.0"
         },
         "runtime": {
           "ProyectAntivirusBackend.dll": {}
         }
       },
-<<<<<<< HEAD
-      "Microsoft.Extensions.ApiDescription.Server/6.0.5": {},
-=======
       "Humanizer.Core/2.14.1": {
         "runtime": {
           "lib/net6.0/Humanizer.dll": {
@@ -496,7 +490,6 @@
           }
         }
       },
->>>>>>> 81f3d0b4ef2085c7c882d6b10a80097d6c8fd2c2
       "Microsoft.OpenApi/1.6.22": {
         "runtime": {
           "lib/netstandard2.0/Microsoft.OpenApi.dll": {
@@ -505,8 +498,6 @@
           }
         }
       },
-<<<<<<< HEAD
-=======
       "Mono.TextTemplating/3.0.0": {
         "dependencies": {
           "System.CodeDom": "6.0.0"
@@ -542,7 +533,6 @@
           }
         }
       },
->>>>>>> 81f3d0b4ef2085c7c882d6b10a80097d6c8fd2c2
       "Swashbuckle.AspNetCore/7.2.0": {
         "dependencies": {
           "Microsoft.Extensions.ApiDescription.Server": "6.0.5",
@@ -580,9 +570,6 @@
             "fileVersion": "7.2.0.956"
           }
         }
-<<<<<<< HEAD
-      }
-=======
       },
       "System.CodeDom/6.0.0": {
         "runtime": {
@@ -669,7 +656,6 @@
         }
       },
       "System.Threading.Channels/7.0.0": {}
->>>>>>> 81f3d0b4ef2085c7c882d6b10a80097d6c8fd2c2
     }
   },
   "libraries": {
@@ -678,8 +664,6 @@
       "serviceable": false,
       "sha512": ""
     },
-<<<<<<< HEAD
-=======
     "Humanizer.Core/2.14.1": {
       "type": "package",
       "serviceable": true,
@@ -785,7 +769,6 @@
       "path": "microsoft.entityframeworkcore.relational/9.0.2",
       "hashPath": "microsoft.entityframeworkcore.relational.9.0.2.nupkg.sha512"
     },
->>>>>>> 81f3d0b4ef2085c7c882d6b10a80097d6c8fd2c2
     "Microsoft.Extensions.ApiDescription.Server/6.0.5": {
       "type": "package",
       "serviceable": true,
@@ -793,8 +776,6 @@
       "path": "microsoft.extensions.apidescription.server/6.0.5",
       "hashPath": "microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512"
     },
-<<<<<<< HEAD
-=======
     "Microsoft.Extensions.Caching.Abstractions/9.0.2": {
       "type": "package",
       "serviceable": true,
@@ -865,7 +846,6 @@
       "path": "microsoft.extensions.primitives/9.0.2",
       "hashPath": "microsoft.extensions.primitives.9.0.2.nupkg.sha512"
     },
->>>>>>> 81f3d0b4ef2085c7c882d6b10a80097d6c8fd2c2
     "Microsoft.OpenApi/1.6.22": {
       "type": "package",
       "serviceable": true,
@@ -873,8 +853,6 @@
       "path": "microsoft.openapi/1.6.22",
       "hashPath": "microsoft.openapi.1.6.22.nupkg.sha512"
     },
-<<<<<<< HEAD
-=======
     "Mono.TextTemplating/3.0.0": {
       "type": "package",
       "serviceable": true,
@@ -896,7 +874,6 @@
       "path": "npgsql.entityframeworkcore.postgresql/9.0.3",
       "hashPath": "npgsql.entityframeworkcore.postgresql.9.0.3.nupkg.sha512"
     },
->>>>>>> 81f3d0b4ef2085c7c882d6b10a80097d6c8fd2c2
     "Swashbuckle.AspNetCore/7.2.0": {
       "type": "package",
       "serviceable": true,
@@ -924,8 +901,6 @@
       "sha512": "sha512-hgrXeKzyp5OGN8qVvL7A+vhmU7mDJTfGpiMBRL66IcfLOyna8UTLtn3cC3CghamXpRDufcc9ciklTszUGEQK0w==",
       "path": "swashbuckle.aspnetcore.swaggerui/7.2.0",
       "hashPath": "swashbuckle.aspnetcore.swaggerui.7.2.0.nupkg.sha512"
-<<<<<<< HEAD
-=======
     },
     "System.CodeDom/6.0.0": {
       "type": "package",
@@ -1017,7 +992,6 @@
       "sha512": "sha512-qmeeYNROMsONF6ndEZcIQ+VxR4Q/TX/7uIVLJqtwIWL7dDWeh0l1UIqgo4wYyjG//5lUNhwkLDSFl+pAWO6oiA==",
       "path": "system.threading.channels/7.0.0",
       "hashPath": "system.threading.channels.7.0.0.nupkg.sha512"
->>>>>>> 81f3d0b4ef2085c7c882d6b10a80097d6c8fd2c2
     }
   }
 }

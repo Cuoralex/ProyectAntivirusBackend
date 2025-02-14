@@ -2,8 +2,6 @@
   "version": 3,
   "targets": {
     "net9.0": {
-<<<<<<< HEAD
-=======
       "Humanizer.Core/2.14.1": {
         "type": "package",
         "compile": {
@@ -452,7 +450,6 @@
           }
         }
       },
->>>>>>> 81f3d0b4ef2085c7c882d6b10a80097d6c8fd2c2
       "Microsoft.Extensions.ApiDescription.Server/6.0.5": {
         "type": "package",
         "build": {
@@ -464,8 +461,6 @@
           "buildMultiTargeting/Microsoft.Extensions.ApiDescription.Server.targets": {}
         }
       },
-<<<<<<< HEAD
-=======
       "Microsoft.Extensions.Caching.Abstractions/9.0.2": {
         "type": "package",
         "dependencies": {
@@ -654,7 +649,6 @@
           "buildTransitive/net8.0/_._": {}
         }
       },
->>>>>>> 81f3d0b4ef2085c7c882d6b10a80097d6c8fd2c2
       "Microsoft.OpenApi/1.6.22": {
         "type": "package",
         "compile": {
@@ -668,8 +662,6 @@
           }
         }
       },
-<<<<<<< HEAD
-=======
       "Mono.TextTemplating/3.0.0": {
         "type": "package",
         "dependencies": {
@@ -719,7 +711,6 @@
           }
         }
       },
->>>>>>> 81f3d0b4ef2085c7c882d6b10a80097d6c8fd2c2
       "Swashbuckle.AspNetCore/7.2.0": {
         "type": "package",
         "dependencies": {
@@ -785,8 +776,6 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
-<<<<<<< HEAD
-=======
       },
       "System.CodeDom/6.0.0": {
         "type": "package",
@@ -1012,13 +1001,10 @@
         "build": {
           "buildTransitive/net6.0/_._": {}
         }
->>>>>>> 81f3d0b4ef2085c7c882d6b10a80097d6c8fd2c2
       }
     }
   },
   "libraries": {
-<<<<<<< HEAD
-=======
     "Humanizer.Core/2.14.1": {
       "sha512": "lQKvtaTDOXnoVJ20ibTuSIOf2i0uO0MPbDhd1jm238I+U/2ZnRENj0cktKZhtchBMtCUSRQ5v4xBCUbKNmyVMw==",
       "type": "package",
@@ -2095,7 +2081,6 @@
         "microsoft.entityframeworkcore.relational.nuspec"
       ]
     },
->>>>>>> 81f3d0b4ef2085c7c882d6b10a80097d6c8fd2c2
     "Microsoft.Extensions.ApiDescription.Server/6.0.5": {
       "sha512": "Ckb5EDBUNJdFWyajfXzUIMRkhf52fHZOQuuZg/oiu8y7zDCVwD0iHhew6MnThjHmevanpxL3f5ci2TtHQEN6bw==",
       "type": "package",
@@ -2327,8 +2312,6 @@
         "tools/netcoreapp2.1/System.Diagnostics.DiagnosticSource.dll"
       ]
     },
-<<<<<<< HEAD
-=======
     "Microsoft.Extensions.Caching.Abstractions/9.0.2": {
       "sha512": "a7QhA25n+BzSM5r5d7JznfyluMBGI7z3qyLlFviZ1Eiqv6DdiK27sLZdP/rpYirBM6UYAKxu5TbmfhIy13GN9A==",
       "type": "package",
@@ -2675,7 +2658,6 @@
         "useSharedDesignerContext.txt"
       ]
     },
->>>>>>> 81f3d0b4ef2085c7c882d6b10a80097d6c8fd2c2
     "Microsoft.OpenApi/1.6.22": {
       "sha512": "aBvunmrdu/x+4CaA/UP1Jx4xWGwk4kymhoIRnn2Vp+zi5/KOPQJ9EkSXHRUr01WcGKtYl3Au7XfkPJbU1G2sjQ==",
       "type": "package",
@@ -2691,8 +2673,6 @@
         "microsoft.openapi.nuspec"
       ]
     },
-<<<<<<< HEAD
-=======
     "Mono.TextTemplating/3.0.0": {
       "sha512": "YqueG52R/Xej4VVbKuRIodjiAhV0HR/XVbLbNrJhCZnzjnSjgMJ/dCdV0akQQxavX6hp/LC6rqLGLcXeQYU7XA==",
       "type": "package",
@@ -2742,7 +2722,6 @@
         "postgresql.png"
       ]
     },
->>>>>>> 81f3d0b4ef2085c7c882d6b10a80097d6c8fd2c2
     "Swashbuckle.AspNetCore/7.2.0": {
       "sha512": "vJv19UpWm6OOgnS9QLDnWARNVasXUfj8SFvlG7UVALm4nBnfwRnEky7C0veSDqMUmBeMPC6Ec3d6G1ts/J04Uw==",
       "type": "package",
@@ -2828,8 +2807,6 @@
         "swashbuckle.aspnetcore.swaggerui.7.2.0.nupkg.sha512",
         "swashbuckle.aspnetcore.swaggerui.nuspec"
       ]
-<<<<<<< HEAD
-=======
     },
     "System.CodeDom/6.0.0": {
       "sha512": "CPc6tWO1LAer3IzfZufDBRL+UZQcj5uS207NHALQzP84Vp/z6wF0Aa0YZImOQY8iStY0A2zI/e3ihKNPfUm8XA==",
@@ -3218,49 +3195,30 @@
         "system.threading.channels.nuspec",
         "useSharedDesignerContext.txt"
       ]
->>>>>>> 81f3d0b4ef2085c7c882d6b10a80097d6c8fd2c2
     }
   },
   "projectFileDependencyGroups": {
     "net9.0": [
-<<<<<<< HEAD
-=======
       "Microsoft.EntityFrameworkCore >= 9.0.2",
       "Microsoft.EntityFrameworkCore.Design >= 9.0.2",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 9.0.3",
->>>>>>> 81f3d0b4ef2085c7c882d6b10a80097d6c8fd2c2
       "Swashbuckle.AspNetCore >= 7.2.0"
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
-    "C:\\Users\\Baldur1\\.nuget\\packages\\": {}
-=======
-    "/Users/dianac/.nuget/packages/": {}
->>>>>>> 81f3d0b4ef2085c7c882d6b10a80097d6c8fd2c2
+    "C:\\Users\\User\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
-      "projectUniqueName": "E:\\programacion\\Nodo\\c#\\challenge\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\ProyectAntivirusBackend.csproj",
+      "projectUniqueName": "D:\\Documents\\Nodo EAFIT\\Profundización\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\ProyectAntivirusBackend.csproj",
       "projectName": "ProyectAntivirusBackend",
-      "projectPath": "E:\\programacion\\Nodo\\c#\\challenge\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\ProyectAntivirusBackend.csproj",
-      "packagesPath": "C:\\Users\\Baldur1\\.nuget\\packages\\",
-      "outputPath": "E:\\programacion\\Nodo\\c#\\challenge\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\obj\\",
+      "projectPath": "D:\\Documents\\Nodo EAFIT\\Profundización\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\ProyectAntivirusBackend.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "D:\\Documents\\Nodo EAFIT\\Profundización\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Baldur1\\AppData\\Roaming\\NuGet\\NuGet.Config"
-=======
-      "projectUniqueName": "/Users/dianac/Documents/repos-diana/ProyectAntivirusBackend/ProyectAntivirusBackend/ProyectAntivirusBackend.csproj",
-      "projectName": "ProyectAntivirusBackend",
-      "projectPath": "/Users/dianac/Documents/repos-diana/ProyectAntivirusBackend/ProyectAntivirusBackend/ProyectAntivirusBackend.csproj",
-      "packagesPath": "/Users/dianac/.nuget/packages/",
-      "outputPath": "/Users/dianac/Documents/repos-diana/ProyectAntivirusBackend/ProyectAntivirusBackend/obj/",
-      "projectStyle": "PackageReference",
-      "configFilePaths": [
-        "/Users/dianac/.nuget/NuGet/NuGet.Config"
->>>>>>> 81f3d0b4ef2085c7c882d6b10a80097d6c8fd2c2
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -3290,8 +3248,6 @@
       "net9.0": {
         "targetAlias": "net9.0",
         "dependencies": {
-<<<<<<< HEAD
-=======
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",
             "version": "[9.0.2, )"
@@ -3306,7 +3262,6 @@
             "target": "Package",
             "version": "[9.0.3, )"
           },
->>>>>>> 81f3d0b4ef2085c7c882d6b10a80097d6c8fd2c2
           "Swashbuckle.AspNetCore": {
             "target": "Package",
             "version": "[7.2.0, )"
@@ -3331,8 +3286,16 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.102/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file D:\\Documents\\Nodo EAFIT\\Profundización\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

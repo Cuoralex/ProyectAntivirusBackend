@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-
-
-var builder = WebApplication.CreateBuilder(args);
-
-
-// Add services to the container.
-builder.Services.AddControllersWithViews();
-=======
 using Microsoft.EntityFrameworkCore;
 using ProyectAntivirusBackend.Data;
 
@@ -22,7 +13,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddControllers();
->>>>>>> 81f3d0b4ef2085c7c882d6b10a80097d6c8fd2c2
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -36,22 +26,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-<<<<<<< HEAD
-app.UseHttpsRedirection();
-app.UseRouting();
-
-app.UseAuthorization();
-
-app.MapStaticAssets();
-
-app.MapControllers();
-app.UseSwagger();
-app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Proyecto Antivirus"));
-
-
-app.Run();
-=======
 app.UseHttpsRedirection(); // Corrige "UserHitsRedirection"
 app.MapControllers();
 app.Run();
->>>>>>> 81f3d0b4ef2085c7c882d6b10a80097d6c8fd2c2
