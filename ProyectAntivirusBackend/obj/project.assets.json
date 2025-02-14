@@ -3206,19 +3206,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/dianac/.nuget/packages/": {}
+    "C:\\Users\\User\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/dianac/Documents/repos-diana/ProyectAntivirusBackend/ProyectAntivirusBackend/ProyectAntivirusBackend.csproj",
+      "projectUniqueName": "D:\\Documents\\Nodo EAFIT\\Profundización\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\ProyectAntivirusBackend.csproj",
       "projectName": "ProyectAntivirusBackend",
-      "projectPath": "/Users/dianac/Documents/repos-diana/ProyectAntivirusBackend/ProyectAntivirusBackend/ProyectAntivirusBackend.csproj",
-      "packagesPath": "/Users/dianac/.nuget/packages/",
-      "outputPath": "/Users/dianac/Documents/repos-diana/ProyectAntivirusBackend/ProyectAntivirusBackend/obj/",
+      "projectPath": "D:\\Documents\\Nodo EAFIT\\Profundización\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\ProyectAntivirusBackend.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "D:\\Documents\\Nodo EAFIT\\Profundización\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/dianac/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -3286,7 +3286,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.102/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
