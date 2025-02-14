@@ -14,12 +14,26 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddScoped<IOpportunityTypeRepository, OpportunityTypeRepository>();
 builder.Services.AddScoped<OpportunityTypeService>();
 
-// Add services to the container.
-builder.Services.AddControllers();
+// Configurar PostgreSQL (corrige "UserBgsql" a "UseNpgsql")
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
+);
+
+// Configurar Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddControllers();
+
 var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Home/Error");
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
+}
 
 app.UseHttpsRedirection();
 app.UseRouting();
@@ -33,4 +47,6 @@ app.UseSwagger();
 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Proyecto Antivirus"));
 
 
+app.UseHttpsRedirection(); // Corrige "UserHitsRedirection"
+app.MapControllers();
 app.Run();
