@@ -1,42 +1,31 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< HEAD
-    "E:\\programacion\\Nodo\\c#\\challenge\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\ProyectAntivirusBackend.csproj": {}
+    "C:\\Users\\Userv\\Desktop\\PyProfundización\\DesafioProfBack\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\ProyectAntivirusBackend.csproj": {}
   },
   "projects": {
-    "E:\\programacion\\Nodo\\c#\\challenge\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\ProyectAntivirusBackend.csproj": {
+    "C:\\Users\\Userv\\Desktop\\PyProfundización\\DesafioProfBack\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\ProyectAntivirusBackend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\programacion\\Nodo\\c#\\challenge\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\ProyectAntivirusBackend.csproj",
+        "projectUniqueName": "C:\\Users\\Userv\\Desktop\\PyProfundización\\DesafioProfBack\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\ProyectAntivirusBackend.csproj",
         "projectName": "ProyectAntivirusBackend",
-        "projectPath": "E:\\programacion\\Nodo\\c#\\challenge\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\ProyectAntivirusBackend.csproj",
-        "packagesPath": "C:\\Users\\Baldur1\\.nuget\\packages\\",
-        "outputPath": "E:\\programacion\\Nodo\\c#\\challenge\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\obj\\",
+        "projectPath": "C:\\Users\\Userv\\Desktop\\PyProfundización\\DesafioProfBack\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\ProyectAntivirusBackend.csproj",
+        "packagesPath": "C:\\Users\\Userv\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Userv\\Desktop\\PyProfundización\\DesafioProfBack\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Baldur1\\AppData\\Roaming\\NuGet\\NuGet.Config"
-=======
-    "/Users/dianac/Documents/repos-diana/ProyectAntivirusBackend/ProyectAntivirusBackend/ProyectAntivirusBackend.csproj": {}
-  },
-  "projects": {
-    "/Users/dianac/Documents/repos-diana/ProyectAntivirusBackend/ProyectAntivirusBackend/ProyectAntivirusBackend.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "/Users/dianac/Documents/repos-diana/ProyectAntivirusBackend/ProyectAntivirusBackend/ProyectAntivirusBackend.csproj",
-        "projectName": "ProyectAntivirusBackend",
-        "projectPath": "/Users/dianac/Documents/repos-diana/ProyectAntivirusBackend/ProyectAntivirusBackend/ProyectAntivirusBackend.csproj",
-        "packagesPath": "/Users/dianac/.nuget/packages/",
-        "outputPath": "/Users/dianac/Documents/repos-diana/ProyectAntivirusBackend/ProyectAntivirusBackend/obj/",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "/Users/dianac/.nuget/NuGet/NuGet.Config"
->>>>>>> 81f3d0b4ef2085c7c882d6b10a80097d6c8fd2c2
+          "C:\\Users\\Userv\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -55,14 +44,12 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.100"
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
-<<<<<<< HEAD
-=======
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[9.0.2, )"
@@ -77,7 +64,10 @@
               "target": "Package",
               "version": "[9.0.3, )"
             },
->>>>>>> 81f3d0b4ef2085c7c882d6b10a80097d6c8fd2c2
+            "Supabase": {
+              "target": "Package",
+              "version": "[1.1.1, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[7.2.0, )"
@@ -102,7 +92,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.102/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
