@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using ProyectAntivirusBackend.Data;
 using ProyectAntivirusBackend.Repositories;
 using ProyectAntivirusBackend.Services;
@@ -24,7 +25,11 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 // Configurar Swagger
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "ProyectAntivirusBackend API", Version = "v1" });
+    c.EnableAnnotations();
+});
 
 builder.Services.AddControllers();
 
