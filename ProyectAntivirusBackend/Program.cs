@@ -13,6 +13,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 // Registrar Repositorios y Servicios
 builder.Services.AddScoped<IOpportunityTypeRepository, OpportunityTypeRepository>();
 builder.Services.AddScoped<OpportunityTypeService>();
+builder.Services.AddScoped<IRequestService, RequestService>();
+builder.Services.AddScoped<IRequestRepository, RequestRepository>();
+
 
 // Configurar PostgreSQL (corrige "UserBgsql" a "UseNpgsql")
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -44,7 +47,7 @@ app.MapStaticAssets();
 
 app.MapControllers();
 app.UseSwagger();
-app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Proyecto Antivirus"));
+app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Proyecto Antivirus V1.0"));
 
 
 app.UseHttpsRedirection(); // Corrige "UserHitsRedirection"
