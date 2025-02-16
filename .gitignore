@@ -6,6 +6,16 @@
 *.user
 *.sln.docstates
 
+# Ignorar archivos de compilación de .NET
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+*.cache
+*.sourcelink.json
+*.staticwebassets.json
+
 # Build results
 
 [Dd]ebug/

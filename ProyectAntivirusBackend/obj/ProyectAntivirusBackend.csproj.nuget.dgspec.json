@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "E:\\programacion\\Nodo\\c#\\challenge\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\ProyectAntivirusBackend.csproj": {}
   },
   "projects": {
@@ -15,6 +16,22 @@
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Baldur1\\AppData\\Roaming\\NuGet\\NuGet.Config"
+=======
+    "D:\\Documents\\Nodo EAFIT\\Profundización\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\ProyectAntivirusBackend.csproj": {}
+  },
+  "projects": {
+    "D:\\Documents\\Nodo EAFIT\\Profundización\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\ProyectAntivirusBackend.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Documents\\Nodo EAFIT\\Profundización\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\ProyectAntivirusBackend.csproj",
+        "projectName": "ProyectAntivirusBackend",
+        "projectPath": "D:\\Documents\\Nodo EAFIT\\Profundización\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\ProyectAntivirusBackend.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "D:\\Documents\\Nodo EAFIT\\Profundización\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
+>>>>>>> origin/DevCuoralex
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -48,7 +65,11 @@
               "target": "Package",
               "version": "[9.0.2, )"
             },
-            "Microsoft.EntityFrameworkCore.Design": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[9.0.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
@@ -59,6 +80,10 @@
               "version": "[9.0.3, )"
             },
             "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[7.2.0, )"
+            },
+            "Swashbuckle.AspNetCore.Annotations": {
               "target": "Package",
               "version": "[7.2.0, )"
             }
