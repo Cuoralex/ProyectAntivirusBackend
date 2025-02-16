@@ -4,6 +4,7 @@
     "net9.0": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
       "Azure.Core/1.38.0": {
         "type": "package",
@@ -19,15 +20,29 @@
         },
         "compile": {
           "lib/net6.0/Azure.Core.dll": {
+=======
+      "AutoMapper/12.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.CSharp": "4.7.0"
+        },
+        "compile": {
+          "lib/netstandard2.1/AutoMapper.dll": {
+>>>>>>> origin/DevGeny
             "related": ".xml"
           }
         },
         "runtime": {
+<<<<<<< HEAD
           "lib/net6.0/Azure.Core.dll": {
+=======
+          "lib/netstandard2.1/AutoMapper.dll": {
+>>>>>>> origin/DevGeny
             "related": ".xml"
           }
         }
       },
+<<<<<<< HEAD
       "Azure.Identity/1.11.4": {
         "type": "package",
         "dependencies": {
@@ -53,6 +68,21 @@
 >>>>>>> origin/DevCuoralex
 =======
 >>>>>>> origin/DevDavalejo
+=======
+      "AutoMapper.Extensions.Microsoft.DependencyInjection/12.0.1": {
+        "type": "package",
+        "dependencies": {
+          "AutoMapper": "[12.0.1]",
+          "Microsoft.Extensions.Options": "6.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.1/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
+        }
+      },
+>>>>>>> origin/DevGeny
       "Humanizer.Core/2.14.1": {
         "type": "package",
         "compile": {
@@ -413,7 +443,11 @@
           }
         }
       },
+<<<<<<< HEAD
       "Microsoft.CSharp/4.5.0": {
+=======
+      "Microsoft.CSharp/4.7.0": {
+>>>>>>> origin/DevGeny
         "type": "package",
         "compile": {
           "ref/netcoreapp2.0/_._": {}
@@ -422,6 +456,7 @@
           "lib/netcoreapp2.0/_._": {}
         }
       },
+<<<<<<< HEAD
       "Microsoft.Data.SqlClient/5.1.6": {
         "type": "package",
         "dependencies": {
@@ -481,6 +516,8 @@
           }
         }
       },
+=======
+>>>>>>> origin/DevGeny
       "Microsoft.EntityFrameworkCore/9.0.2": {
         "type": "package",
         "dependencies": {
@@ -571,6 +608,7 @@
       },
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
       "Microsoft.EntityFrameworkCore.SqlServer/9.0.2": {
         "type": "package",
@@ -603,6 +641,8 @@
 >>>>>>> origin/DevCuoralex
 =======
 >>>>>>> origin/DevDavalejo
+=======
+>>>>>>> origin/DevGeny
       "Microsoft.Extensions.ApiDescription.Server/6.0.5": {
         "type": "package",
         "build": {
@@ -802,6 +842,7 @@
           "buildTransitive/net8.0/_._": {}
         }
       },
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -1028,6 +1069,8 @@
         }
       },
 >>>>>>> origin/DevDavalejo
+=======
+>>>>>>> origin/DevGeny
       "Microsoft.OpenApi/1.6.22": {
         "type": "package",
         "compile": {
@@ -1041,6 +1084,7 @@
           }
         }
       },
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -1094,6 +1138,8 @@
         }
       },
 >>>>>>> origin/DevDavalejo
+=======
+>>>>>>> origin/DevGeny
       "Mono.TextTemplating/3.0.0": {
         "type": "package",
         "dependencies": {
@@ -1156,6 +1202,7 @@
           }
         }
       },
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
       "Supabase/1.1.1": {
@@ -1283,6 +1330,8 @@
         }
       },
 >>>>>>> origin/DevDavalejo
+=======
+>>>>>>> origin/DevGeny
       "Swashbuckle.AspNetCore/7.2.0": {
         "type": "package",
         "dependencies": {
@@ -1364,6 +1413,7 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
+<<<<<<< HEAD
       },
       "System.ClientModel/1.0.0": {
         "type": "package",
@@ -1382,6 +1432,8 @@
           }
         }
 >>>>>>> origin/DevCuoralex
+=======
+>>>>>>> origin/DevGeny
       },
       "System.CodeDom/6.0.0": {
         "type": "package",
@@ -1985,6 +2037,7 @@
         }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
       },
       "System.Threading.Tasks.Extensions/4.5.4": {
@@ -2038,10 +2091,13 @@
           }
         }
 >>>>>>> origin/DevDavalejo
+=======
+>>>>>>> origin/DevGeny
       }
     }
   },
   "libraries": {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -2086,6 +2142,37 @@
 >>>>>>> origin/DevCuoralex
 =======
 >>>>>>> origin/DevDavalejo
+=======
+    "AutoMapper/12.0.1": {
+      "sha512": "hvV62vl6Hp/WfQ24yzo3Co9+OPl8wH8hApwVtgWpiAynVJkUcs7xvehnSftawL8Pe8FrPffBRM3hwzLQqWDNjA==",
+      "type": "package",
+      "path": "automapper/12.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "automapper.12.0.1.nupkg.sha512",
+        "automapper.nuspec",
+        "icon.png",
+        "lib/netstandard2.1/AutoMapper.dll",
+        "lib/netstandard2.1/AutoMapper.xml"
+      ]
+    },
+    "AutoMapper.Extensions.Microsoft.DependencyInjection/12.0.1": {
+      "sha512": "+g/K+Vpe3gGMKGzjslMOdqNlkikScDjWfVvmWTayrDHaG/n2pPmFBMa+jKX1r/h6BDGFdkyRjAuhFE3ykW+r1g==",
+      "type": "package",
+      "path": "automapper.extensions.microsoft.dependencyinjection/12.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
+        "automapper.extensions.microsoft.dependencyinjection.nuspec",
+        "icon.png",
+        "lib/netstandard2.1/AutoMapper.Extensions.Microsoft.DependencyInjection.dll"
+      ]
+    },
+>>>>>>> origin/DevGeny
     "Humanizer.Core/2.14.1": {
       "sha512": "lQKvtaTDOXnoVJ20ibTuSIOf2i0uO0MPbDhd1jm238I+U/2ZnRENj0cktKZhtchBMtCUSRQ5v4xBCUbKNmyVMw==",
       "type": "package",
@@ -3086,10 +3173,17 @@
         "microsoft.codeanalysis.workspaces.msbuild.nuspec"
       ]
     },
+<<<<<<< HEAD
     "Microsoft.CSharp/4.5.0": {
       "sha512": "kaj6Wb4qoMuH3HySFJhxwQfe8R/sJsNJnANrvv8WdFPMoNbKY5htfNscv+LHCu5ipz+49m2e+WQXpLXr9XYemQ==",
       "type": "package",
       "path": "microsoft.csharp/4.5.0",
+=======
+    "Microsoft.CSharp/4.7.0": {
+      "sha512": "pTj+D3uJWyN3My70i2Hqo+OXixq3Os2D1nJ2x92FFo6sk8fYS1m1WLNTs0Dc1uPaViH0YvEEwvzddQ7y4rhXmA==",
+      "type": "package",
+      "path": "microsoft.csharp/4.7.0",
+>>>>>>> origin/DevGeny
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -3102,6 +3196,10 @@
         "lib/netcoreapp2.0/_._",
         "lib/netstandard1.3/Microsoft.CSharp.dll",
         "lib/netstandard2.0/Microsoft.CSharp.dll",
+<<<<<<< HEAD
+=======
+        "lib/netstandard2.0/Microsoft.CSharp.xml",
+>>>>>>> origin/DevGeny
         "lib/portable-net45+win8+wp8+wpa81/_._",
         "lib/uap10.0.16299/_._",
         "lib/win8/_._",
@@ -3111,7 +3209,11 @@
         "lib/xamarinmac20/_._",
         "lib/xamarintvos10/_._",
         "lib/xamarinwatchos10/_._",
+<<<<<<< HEAD
         "microsoft.csharp.4.5.0.nupkg.sha512",
+=======
+        "microsoft.csharp.4.7.0.nupkg.sha512",
+>>>>>>> origin/DevGeny
         "microsoft.csharp.nuspec",
         "ref/MonoAndroid10/_._",
         "ref/MonoTouch10/_._",
@@ -3154,6 +3256,7 @@
         "version.txt"
       ]
     },
+<<<<<<< HEAD
     "Microsoft.Data.SqlClient/5.1.6": {
       "sha512": "+pz7gIPh5ydsBcQvivt4R98PwJXer86fyQBBToIBLxZ5kuhW4N13Ijz87s9WpuPtF1vh4JesYCgpDPAOgkMhdg==",
       "type": "package",
@@ -3231,6 +3334,8 @@
         "runtimes/win-x86/native/Microsoft.Data.SqlClient.SNI.dll"
       ]
     },
+=======
+>>>>>>> origin/DevGeny
     "Microsoft.EntityFrameworkCore/9.0.2": {
       "sha512": "P90ZuybgcpW32y985eOYxSoZ9IiL0UTYQlY0y1Pt1iHAnpZj/dQHREpSpry1RNvk8YjAeoAkWFdem5conqB9zQ==",
       "type": "package",
@@ -3309,6 +3414,7 @@
     },
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     "Microsoft.EntityFrameworkCore.SqlServer/9.0.2": {
       "sha512": "PN65soRvSajLqr1kVRvpUwqI/rmab4x/6TxcYzyUVvg52DMPxx4Y760EZ6OzFhJnilP/WFEEzdftHsTsHQ64IQ==",
@@ -3353,6 +3459,8 @@
 >>>>>>> origin/DevCuoralex
 =======
 >>>>>>> origin/DevDavalejo
+=======
+>>>>>>> origin/DevGeny
     "Microsoft.Extensions.ApiDescription.Server/6.0.5": {
       "sha512": "Ckb5EDBUNJdFWyajfXzUIMRkhf52fHZOQuuZg/oiu8y7zDCVwD0iHhew6MnThjHmevanpxL3f5ci2TtHQEN6bw==",
       "type": "package",
@@ -3932,6 +4040,7 @@
     },
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     "Microsoft.Identity.Client/4.61.3": {
       "sha512": "naJo/Qm35Caaoxp5utcw+R8eU8ZtLz2ALh8S+gkekOYQ1oazfCQMWVT4NJ/FnHzdIJlm8dMz0oMpMGCabx5odA==",
@@ -4231,6 +4340,8 @@
       ]
     },
 >>>>>>> origin/DevDavalejo
+=======
+>>>>>>> origin/DevGeny
     "Microsoft.OpenApi/1.6.22": {
       "sha512": "aBvunmrdu/x+4CaA/UP1Jx4xWGwk4kymhoIRnn2Vp+zi5/KOPQJ9EkSXHRUr01WcGKtYl3Au7XfkPJbU1G2sjQ==",
       "type": "package",
@@ -4246,6 +4357,7 @@
         "microsoft.openapi.nuspec"
       ]
     },
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -4315,6 +4427,8 @@
       ]
     },
 >>>>>>> origin/DevDavalejo
+=======
+>>>>>>> origin/DevGeny
     "Mono.TextTemplating/3.0.0": {
       "sha512": "YqueG52R/Xej4VVbKuRIodjiAhV0HR/XVbLbNrJhCZnzjnSjgMJ/dCdV0akQQxavX6hp/LC6rqLGLcXeQYU7XA==",
       "type": "package",
@@ -4394,6 +4508,7 @@
         "postgresql.png"
       ]
     },
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
     "Supabase/1.1.1": {
@@ -4504,6 +4619,8 @@
       ]
     },
 >>>>>>> origin/DevDavalejo
+=======
+>>>>>>> origin/DevGeny
     "Swashbuckle.AspNetCore/7.2.0": {
       "sha512": "vJv19UpWm6OOgnS9QLDnWARNVasXUfj8SFvlG7UVALm4nBnfwRnEky7C0veSDqMUmBeMPC6Ec3d6G1ts/J04Uw==",
       "type": "package",
@@ -4613,6 +4730,7 @@
         "swashbuckle.aspnetcore.swaggerui.7.2.0.nupkg.sha512",
         "swashbuckle.aspnetcore.swaggerui.nuspec"
       ]
+<<<<<<< HEAD
     },
     "System.ClientModel/1.0.0": {
       "sha512": "I3CVkvxeqFYjIVEP59DnjbeoGNfo/+SZrCLpRz2v/g0gpCHaEMPtWSY0s9k/7jR1rAsLNg2z2u1JRB76tPjnIw==",
@@ -4632,6 +4750,8 @@
         "system.clientmodel.nuspec"
       ]
 >>>>>>> origin/DevCuoralex
+=======
+>>>>>>> origin/DevGeny
     },
     "System.CodeDom/6.0.0": {
       "sha512": "CPc6tWO1LAer3IzfZufDBRL+UZQcj5uS207NHALQzP84Vp/z6wF0Aa0YZImOQY8iStY0A2zI/e3ihKNPfUm8XA==",
@@ -5792,6 +5912,7 @@
       ]
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     },
     "System.Threading.Tasks.Extensions/4.5.4": {
@@ -5878,10 +5999,13 @@
         "websocket.client.nuspec"
       ]
 >>>>>>> origin/DevDavalejo
+=======
+>>>>>>> origin/DevGeny
     }
   },
   "projectFileDependencyGroups": {
     "net9.0": [
+<<<<<<< HEAD
       "Microsoft.EntityFrameworkCore >= 9.0.2",
       "Microsoft.EntityFrameworkCore.SqlServer >= 9.0.2",
       "Microsoft.EntityFrameworkCore.Tools >= 9.0.2",
@@ -5891,10 +6015,17 @@
 =======
       "Supabase >= 1.1.1",
 >>>>>>> origin/DevDavalejo
+=======
+      "AutoMapper.Extensions.Microsoft.DependencyInjection >= 12.0.1",
+      "Microsoft.EntityFrameworkCore >= 9.0.2",
+      "Microsoft.EntityFrameworkCore.Design >= 9.0.2",
+      "Npgsql.EntityFrameworkCore.PostgreSQL >= 9.0.3",
+>>>>>>> origin/DevGeny
       "Swashbuckle.AspNetCore >= 7.2.0"
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
 <<<<<<< HEAD
     "C:\\Users\\Baldur1\\.nuget\\packages\\": {}
 =======
@@ -5909,20 +6040,32 @@
     "C:\\Users\\Userv\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
 >>>>>>> origin/DevDavalejo
+=======
+    "C:\\Users\\Geny\\.nuget\\packages\\": {}
+>>>>>>> origin/DevGeny
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\Userv\\Desktop\\PyProfundización\\DesafioProfBack\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\ProyectAntivirusBackend.csproj",
       "projectName": "ProyectAntivirusBackend",
       "projectPath": "C:\\Users\\Userv\\Desktop\\PyProfundización\\DesafioProfBack\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\ProyectAntivirusBackend.csproj",
       "packagesPath": "C:\\Users\\Userv\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Userv\\Desktop\\PyProfundización\\DesafioProfBack\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\obj\\",
+=======
+      "projectUniqueName": "C:\\Users\\Geny\\Documents\\NODO\\Profundizacion\\Desafio\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\ProyectAntivirusBackend.csproj",
+      "projectName": "ProyectAntivirusBackend",
+      "projectPath": "C:\\Users\\Geny\\Documents\\NODO\\Profundizacion\\Desafio\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\ProyectAntivirusBackend.csproj",
+      "packagesPath": "C:\\Users\\Geny\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Geny\\Documents\\NODO\\Profundizacion\\Desafio\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\obj\\",
+>>>>>>> origin/DevGeny
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
+<<<<<<< HEAD
 <<<<<<< HEAD
         "C:\\Users\\Baldur1\\AppData\\Roaming\\NuGet\\NuGet.Config"
 =======
@@ -5940,6 +6083,9 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
 >>>>>>> origin/DevDavalejo
+=======
+        "C:\\Users\\Geny\\AppData\\Roaming\\NuGet\\NuGet.Config"
+>>>>>>> origin/DevGeny
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -5970,6 +6116,13 @@
       "net9.0": {
         "targetAlias": "net9.0",
         "dependencies": {
+<<<<<<< HEAD
+=======
+          "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+            "target": "Package",
+            "version": "[12.0.1, )"
+          },
+>>>>>>> origin/DevGeny
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",
             "version": "[9.0.2, )"
@@ -5989,12 +6142,15 @@
             "version": "[9.0.3, )"
           },
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
           "Supabase": {
             "target": "Package",
             "version": "[1.1.1, )"
           },
 >>>>>>> origin/DevDavalejo
+=======
+>>>>>>> origin/DevGeny
           "Swashbuckle.AspNetCore": {
             "target": "Package",
             "version": "[7.2.0, )"
@@ -6024,10 +6180,14 @@
           }
         },
 <<<<<<< HEAD
+<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
 =======
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
 >>>>>>> origin/DevDavalejo
+=======
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+>>>>>>> origin/DevGeny
       }
     }
   }

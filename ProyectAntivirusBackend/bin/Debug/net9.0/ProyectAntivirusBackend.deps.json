@@ -8,16 +8,49 @@
     ".NETCoreApp,Version=v9.0": {
       "ProyectAntivirusBackend/1.0.0": {
         "dependencies": {
+<<<<<<< HEAD
           "Microsoft.EntityFrameworkCore": "9.0.2",
           "Microsoft.EntityFrameworkCore.Design": "9.0.2",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "9.0.3",
           "Supabase": "1.1.1",
+=======
+          "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
+          "Microsoft.EntityFrameworkCore": "9.0.2",
+          "Microsoft.EntityFrameworkCore.Design": "9.0.2",
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "9.0.3",
+>>>>>>> origin/DevGeny
           "Swashbuckle.AspNetCore": "7.2.0"
         },
         "runtime": {
           "ProyectAntivirusBackend.dll": {}
         }
       },
+<<<<<<< HEAD
+=======
+      "AutoMapper/12.0.1": {
+        "dependencies": {
+          "Microsoft.CSharp": "4.7.0"
+        },
+        "runtime": {
+          "lib/netstandard2.1/AutoMapper.dll": {
+            "assemblyVersion": "12.0.0.0",
+            "fileVersion": "12.0.1.0"
+          }
+        }
+      },
+      "AutoMapper.Extensions.Microsoft.DependencyInjection/12.0.1": {
+        "dependencies": {
+          "AutoMapper": "12.0.1",
+          "Microsoft.Extensions.Options": "9.0.2"
+        },
+        "runtime": {
+          "lib/netstandard2.1/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {
+            "assemblyVersion": "12.0.0.0",
+            "fileVersion": "12.0.1.0"
+          }
+        }
+      },
+>>>>>>> origin/DevGeny
       "Humanizer.Core/2.14.1": {
         "runtime": {
           "lib/net6.0/Humanizer.dll": {
@@ -322,6 +355,7 @@
           }
         }
       },
+      "Microsoft.CSharp/4.7.0": {},
       "Microsoft.EntityFrameworkCore/9.0.2": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Abstractions": "9.0.2",
@@ -432,6 +466,7 @@
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.2",
           "Microsoft.Extensions.Primitives": "9.0.2"
+<<<<<<< HEAD
         }
       },
       "Microsoft.Extensions.Primitives/9.0.2": {},
@@ -484,6 +519,11 @@
           }
         }
       },
+=======
+        }
+      },
+      "Microsoft.Extensions.Primitives/9.0.2": {},
+>>>>>>> origin/DevGeny
       "Microsoft.OpenApi/1.6.22": {
         "runtime": {
           "lib/netstandard2.0/Microsoft.OpenApi.dll": {
@@ -492,6 +532,7 @@
           }
         }
       },
+<<<<<<< HEAD
       "MimeMapping/3.0.1": {
         "runtime": {
           "lib/netstandard2.0/MimeMapping.dll": {
@@ -500,6 +541,8 @@
           }
         }
       },
+=======
+>>>>>>> origin/DevGeny
       "Mono.TextTemplating/3.0.0": {
         "dependencies": {
           "System.CodeDom": "6.0.0"
@@ -543,6 +586,7 @@
           }
         }
       },
+<<<<<<< HEAD
       "Supabase/1.1.1": {
         "dependencies": {
           "Newtonsoft.Json": "13.0.3",
@@ -632,6 +676,8 @@
           }
         }
       },
+=======
+>>>>>>> origin/DevGeny
       "Swashbuckle.AspNetCore/7.2.0": {
         "dependencies": {
           "Microsoft.Extensions.ApiDescription.Server": "6.0.5",
@@ -767,6 +813,7 @@
       },
       "System.Runtime.CompilerServices.Unsafe/6.0.0": {},
       "System.Text.Json/9.0.2": {},
+<<<<<<< HEAD
       "System.Threading.Channels/8.0.0": {},
       "Websocket.Client/5.1.1": {
         "dependencies": {
@@ -782,6 +829,9 @@
           }
         }
       }
+=======
+      "System.Threading.Channels/7.0.0": {}
+>>>>>>> origin/DevGeny
     }
   },
   "libraries": {
@@ -790,6 +840,23 @@
       "serviceable": false,
       "sha512": ""
     },
+<<<<<<< HEAD
+=======
+    "AutoMapper/12.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-hvV62vl6Hp/WfQ24yzo3Co9+OPl8wH8hApwVtgWpiAynVJkUcs7xvehnSftawL8Pe8FrPffBRM3hwzLQqWDNjA==",
+      "path": "automapper/12.0.1",
+      "hashPath": "automapper.12.0.1.nupkg.sha512"
+    },
+    "AutoMapper.Extensions.Microsoft.DependencyInjection/12.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+g/K+Vpe3gGMKGzjslMOdqNlkikScDjWfVvmWTayrDHaG/n2pPmFBMa+jKX1r/h6BDGFdkyRjAuhFE3ykW+r1g==",
+      "path": "automapper.extensions.microsoft.dependencyinjection/12.0.1",
+      "hashPath": "automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512"
+    },
+>>>>>>> origin/DevGeny
     "Humanizer.Core/2.14.1": {
       "type": "package",
       "serviceable": true,
@@ -859,6 +926,13 @@
       "sha512": "sha512-IEYreI82QZKklp54yPHxZNG9EKSK6nHEkeuf+0Asie9llgS1gp0V1hw7ODG+QyoB7MuAnNQHmeV1Per/ECpv6A==",
       "path": "microsoft.codeanalysis.workspaces.msbuild/4.8.0",
       "hashPath": "microsoft.codeanalysis.workspaces.msbuild.4.8.0.nupkg.sha512"
+    },
+    "Microsoft.CSharp/4.7.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-pTj+D3uJWyN3My70i2Hqo+OXixq3Os2D1nJ2x92FFo6sk8fYS1m1WLNTs0Dc1uPaViH0YvEEwvzddQ7y4rhXmA==",
+      "path": "microsoft.csharp/4.7.0",
+      "hashPath": "microsoft.csharp.4.7.0.nupkg.sha512"
     },
     "Microsoft.EntityFrameworkCore/9.0.2": {
       "type": "package",
@@ -972,6 +1046,7 @@
       "path": "microsoft.extensions.primitives/9.0.2",
       "hashPath": "microsoft.extensions.primitives.9.0.2.nupkg.sha512"
     },
+<<<<<<< HEAD
     "Microsoft.IdentityModel.Abstractions/7.5.1": {
       "type": "package",
       "serviceable": true,
@@ -1007,6 +1082,8 @@
       "path": "microsoft.io.recyclablememorystream/3.0.0",
       "hashPath": "microsoft.io.recyclablememorystream.3.0.0.nupkg.sha512"
     },
+=======
+>>>>>>> origin/DevGeny
     "Microsoft.OpenApi/1.6.22": {
       "type": "package",
       "serviceable": true,
@@ -1014,6 +1091,7 @@
       "path": "microsoft.openapi/1.6.22",
       "hashPath": "microsoft.openapi.1.6.22.nupkg.sha512"
     },
+<<<<<<< HEAD
     "MimeMapping/3.0.1": {
       "type": "package",
       "serviceable": true,
@@ -1021,6 +1099,8 @@
       "path": "mimemapping/3.0.1",
       "hashPath": "mimemapping.3.0.1.nupkg.sha512"
     },
+=======
+>>>>>>> origin/DevGeny
     "Mono.TextTemplating/3.0.0": {
       "type": "package",
       "serviceable": true,
@@ -1049,6 +1129,7 @@
       "path": "npgsql.entityframeworkcore.postgresql/9.0.3",
       "hashPath": "npgsql.entityframeworkcore.postgresql.9.0.3.nupkg.sha512"
     },
+<<<<<<< HEAD
     "Supabase/1.1.1": {
       "type": "package",
       "serviceable": true,
@@ -1098,6 +1179,8 @@
       "path": "supabase.storage/2.0.2",
       "hashPath": "supabase.storage.2.0.2.nupkg.sha512"
     },
+=======
+>>>>>>> origin/DevGeny
     "Swashbuckle.AspNetCore/7.2.0": {
       "type": "package",
       "serviceable": true,
@@ -1227,6 +1310,7 @@
     "System.Threading.Channels/8.0.0": {
       "type": "package",
       "serviceable": true,
+<<<<<<< HEAD
       "sha512": "sha512-CMaFr7v+57RW7uZfZkPExsPB6ljwzhjACWW1gfU35Y56rk72B/Wu+sTqxVmGSk4SFUlPc3cjeKND0zktziyjBA==",
       "path": "system.threading.channels/8.0.0",
       "hashPath": "system.threading.channels.8.0.0.nupkg.sha512"
@@ -1237,6 +1321,11 @@
       "sha512": "sha512-VpQV6b8HRnw6bFFIPTOOMtOxba3/viH9K2U2LdOYNjQ2b2HrLHxjodmJr3nPwyNSrtrRPr1RDwOMJ5qqlPnCVg==",
       "path": "websocket.client/5.1.1",
       "hashPath": "websocket.client.5.1.1.nupkg.sha512"
+=======
+      "sha512": "sha512-qmeeYNROMsONF6ndEZcIQ+VxR4Q/TX/7uIVLJqtwIWL7dDWeh0l1UIqgo4wYyjG//5lUNhwkLDSFl+pAWO6oiA==",
+      "path": "system.threading.channels/7.0.0",
+      "hashPath": "system.threading.channels.7.0.0.nupkg.sha512"
+>>>>>>> origin/DevGeny
     }
   }
 }

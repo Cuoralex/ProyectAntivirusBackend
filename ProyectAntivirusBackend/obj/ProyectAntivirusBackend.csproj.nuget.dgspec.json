@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "C:\\Users\\Userv\\Desktop\\PyProfundización\\DesafioProfBack\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\ProyectAntivirusBackend.csproj": {}
   },
   "projects": {
@@ -12,11 +13,25 @@
         "projectPath": "C:\\Users\\Userv\\Desktop\\PyProfundización\\DesafioProfBack\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\ProyectAntivirusBackend.csproj",
         "packagesPath": "C:\\Users\\Userv\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Userv\\Desktop\\PyProfundización\\DesafioProfBack\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\obj\\",
+=======
+    "C:\\Users\\Geny\\Documents\\NODO\\Profundizacion\\Desafio\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\ProyectAntivirusBackend.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Geny\\Documents\\NODO\\Profundizacion\\Desafio\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\ProyectAntivirusBackend.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Geny\\Documents\\NODO\\Profundizacion\\Desafio\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\ProyectAntivirusBackend.csproj",
+        "projectName": "ProyectAntivirusBackend",
+        "projectPath": "C:\\Users\\Geny\\Documents\\NODO\\Profundizacion\\Desafio\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\ProyectAntivirusBackend.csproj",
+        "packagesPath": "C:\\Users\\Geny\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Geny\\Documents\\NODO\\Profundizacion\\Desafio\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\obj\\",
+>>>>>>> origin/DevGeny
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+<<<<<<< HEAD
 <<<<<<< HEAD
           "C:\\Users\\Baldur1\\AppData\\Roaming\\NuGet\\NuGet.Config"
 =======
@@ -40,6 +55,9 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
 >>>>>>> origin/DevDavalejo
+=======
+          "C:\\Users\\Geny\\AppData\\Roaming\\NuGet\\NuGet.Config"
+>>>>>>> origin/DevGeny
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -70,6 +88,13 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+<<<<<<< HEAD
+=======
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+>>>>>>> origin/DevGeny
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[9.0.2, )"
@@ -89,12 +114,15 @@
               "version": "[9.0.3, )"
             },
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             "Supabase": {
               "target": "Package",
               "version": "[1.1.1, )"
             },
 >>>>>>> origin/DevDavalejo
+=======
+>>>>>>> origin/DevGeny
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[7.2.0, )"
@@ -124,10 +152,14 @@
             }
           },
 <<<<<<< HEAD
+<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
 =======
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
 >>>>>>> origin/DevDavalejo
+=======
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+>>>>>>> origin/DevGeny
         }
       }
     }

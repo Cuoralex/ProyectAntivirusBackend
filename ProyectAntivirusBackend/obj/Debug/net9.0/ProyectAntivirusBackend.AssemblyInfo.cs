@@ -15,6 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d6dcb56208a4cf81f38634d669c0c2502c887b9e")]
 =======
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c0828e6fc2182c03309bd88710f690e1b3f105e7")]
@@ -22,6 +23,9 @@ using System.Reflection;
 =======
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3de6f973b9ce0c9832e91074fd7adaba591e75e9")]
 >>>>>>> origin/DevDavalejo
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3de6f973b9ce0c9832e91074fd7adaba591e75e9")]
+>>>>>>> origin/DevGeny
 [assembly: System.Reflection.AssemblyProductAttribute("ProyectAntivirusBackend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ProyectAntivirusBackend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

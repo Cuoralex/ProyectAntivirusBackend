@@ -1,11 +1,17 @@
+<<<<<<< HEAD
+=======
+using AutoMapper;
+>>>>>>> origin/DevGeny
 using Microsoft.EntityFrameworkCore;
 using ProyectAntivirusBackend.Data;
 <<<<<<< HEAD
 using ProyectAntivirusBackend.Repositories;
 using ProyectAntivirusBackend.Services;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -13,6 +19,22 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddControllersWithViews();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+=======
+// Configurar AutoMapper
+builder.Services.AddAutoMapper(typeof(Program));
+
+
+// Configurar PostgreSQL (corrige "UserBgsql" a "UseNpgsql")
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
+);
+
+// Configurar Swagger
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+builder.Services.AddControllers();
+>>>>>>> origin/DevGeny
 
 var app = builder.Build();
 
@@ -86,6 +108,7 @@ if (app.Environment.IsDevelopment())
 >>>>>>> origin/DevDavalejo
 }
 
+<<<<<<< HEAD
 app.UseHttpsRedirection();
 app.UseRouting();
 app.UseAuthorization();
@@ -116,3 +139,8 @@ internal class SupabaseConfiguration
     public required string Key { get; set; }
 }
 >>>>>>> origin/DevDavalejo
+=======
+app.UseHttpsRedirection(); // Corrige "UserHitsRedirection"
+app.MapControllers();
+app.Run();
+>>>>>>> origin/DevGeny

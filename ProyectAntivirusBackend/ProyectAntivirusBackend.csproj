@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+<<<<<<< HEAD
+=======
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+>>>>>>> origin/DevGeny
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.2" />
     <PackageReference
       Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.2" />
@@ -15,12 +19,17 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+<<<<<<< HEAD
     <PackageReference
       Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.3" /> >>>>>>>
     81f3d0b4ef2085c7c882d6b10a80097d6c8fd2c2 <PackageReference Include="Swashbuckle.AspNetCore"
       Version="7.2.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.Annotations"
       Version="7.2.0" />
+=======
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
+>>>>>>> origin/DevGeny
   </ItemGroup>
 
 </Project>

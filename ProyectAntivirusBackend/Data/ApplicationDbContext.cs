@@ -17,6 +17,7 @@ namespace ProyectAntivirusBackend.Data
             : base(options) { }
 
         public DbSet<User> Users { get; set; }
+<<<<<<< HEAD
         public DbSet<OpportunityType> OpportunityTypes { get; set; }
         public DbSet<Request> Requests { get; set; }
 
@@ -48,3 +49,19 @@ namespace ProyectAntivirusBackend.Data
 >>>>>>> origin/DevDavalejo
     }
 }
+=======
+        public DbSet<Profile> Profiles { get; set; } // Nueva línea
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // Relación uno a uno entre User y Profile
+            modelBuilder.Entity<User>()
+                .HasOne(u => u.Profile)
+                .WithOne(p => p.User)
+                .HasForeignKey<Profile>(p => p.UserId);
+
+            // ... otras configuraciones ...
+        }
+    }
+}
+>>>>>>> origin/DevGeny
