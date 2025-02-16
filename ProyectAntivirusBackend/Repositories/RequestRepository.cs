@@ -32,26 +32,27 @@ namespace ProyectAntivirusBackend.Repositories
             return request;
         }
 
-        public async Task<Request?> UpdateAsync(Request request)
+        public async Task<Request?> UpdateAsync(int id, Request request)
         {
-            var existingRequest = await _context.Requests.FindAsync(request.Id);
+            var existingRequest = await _context.Requests.FindAsync(id);
             if (existingRequest == null)
+            {
                 return null;
+            }
 
             _context.Entry(existingRequest).CurrentValues.SetValues(request);
             await _context.SaveChangesAsync();
             return existingRequest;
         }
 
-        public async Task<bool> DeleteAsync(int id)
+        public Task<bool> DeleteAsync(int id)
         {
-            var request = await _context.Requests.FindAsync(id);
-            if (request == null)
-                return false;
+            throw new NotImplementedException();
+        }
 
-            _context.Requests.Remove(request);
-            await _context.SaveChangesAsync();
-            return true;
+        public Task UpdateAsync(Request request)
+        {
+            throw new NotImplementedException();
         }
     }
 }

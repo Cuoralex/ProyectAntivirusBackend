@@ -22,40 +22,6 @@ namespace ProyectAntivirusBackend.Data.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("ProyectAntivirusBackend.Models.Profile", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid")
-                        .HasColumnName("id");
-
-                    b.Property<string>("Biography")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("biografia");
-
-                    b.Property<string>("Preferences")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("preferencias");
-
-                    b.Property<string>("ProfilePicture")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("foto_perfil");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("usuario_id");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
-
-                    b.ToTable("profiles");
-                });
-
             modelBuilder.Entity("ProyectAntivirusBackend.Models.User", b =>
                 {
                     b.Property<Guid>("Id")
@@ -93,22 +59,6 @@ namespace ProyectAntivirusBackend.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("users");
-                });
-
-            modelBuilder.Entity("ProyectAntivirusBackend.Models.Profile", b =>
-                {
-                    b.HasOne("ProyectAntivirusBackend.Models.User", "User")
-                        .WithOne("Profile")
-                        .HasForeignKey("ProyectAntivirusBackend.Models.Profile", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("ProyectAntivirusBackend.Models.User", b =>
-                {
-                    b.Navigation("Profile");
                 });
 #pragma warning restore 612, 618
         }
