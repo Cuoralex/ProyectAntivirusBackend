@@ -1,7 +1,13 @@
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using ProyectAntivirusBackend.Data;
 
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Configurar AutoMapper
+builder.Services.AddAutoMapper(typeof(Program));
+
 
 // Configurar PostgreSQL (corrige "UserBgsql" a "UseNpgsql")
 builder.Services.AddDbContext<ApplicationDbContext>(options =>

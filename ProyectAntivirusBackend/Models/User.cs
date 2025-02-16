@@ -9,22 +9,25 @@ namespace ProyectAntivirusBackend.Models
         [Column("id")]
         public Guid Id { get; set; } = Guid.NewGuid();
 
-        [Column("nombre")]
+        [Column("name")]
         public string Name { get; set; } = string.Empty;
 
-        [Column("correo")]
+        [Column("email")]
         public string Email { get; set; } = string.Empty;
 
-        [Column("telefono")]
+        [Column("phone")]
         public string? Phone { get; set; }
 
-        [Column("rol")]
-        public string Role { get; set; } = "estudiante"; // Valor por defecto
+        [Column("role")]
+        public string Role { get; set; } = "study"; // Valor por defecto
 
-        [Column("fecha_registro")]
+        [Column("Registration_Date")]
         public DateTime RegistrationDate { get; set; } = DateTime.UtcNow;
 
-        [Column("activo")]
+        [Column("Isactive")]
         public bool IsActive { get; set; } = true;
+
+        // Relación con auth_users
+        public AuthUser AuthUser { get; set; }
     }
 }
