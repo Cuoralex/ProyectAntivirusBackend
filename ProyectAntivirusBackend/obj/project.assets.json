@@ -5302,19 +5302,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Baldur1\\.nuget\\packages\\": {}
+    "C:\\Users\\User\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\programacion\\Nodo\\c#\\challenge\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\ProyectAntivirusBackend.csproj",
+      "projectUniqueName": "D:\\Documents\\Nodo EAFIT\\Profundización\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\ProyectAntivirusBackend.csproj",
       "projectName": "ProyectAntivirusBackend",
-      "projectPath": "E:\\programacion\\Nodo\\c#\\challenge\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\ProyectAntivirusBackend.csproj",
-      "packagesPath": "C:\\Users\\Baldur1\\.nuget\\packages\\",
-      "outputPath": "E:\\programacion\\Nodo\\c#\\challenge\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\obj\\",
+      "projectPath": "D:\\Documents\\Nodo EAFIT\\Profundización\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\ProyectAntivirusBackend.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "D:\\Documents\\Nodo EAFIT\\Profundización\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Baldur1\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
