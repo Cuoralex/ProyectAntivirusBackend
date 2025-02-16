@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ProyectAntivirusBackend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+aedac83cd2de51b5ac3ca8f60871c8ee053d409d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d6dcb56208a4cf81f38634d669c0c2502c887b9e")]
 [assembly: System.Reflection.AssemblyProductAttribute("ProyectAntivirusBackend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ProyectAntivirusBackend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
