@@ -1,34 +1,41 @@
-using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using ProyectAntivirusBackend.Data;
-
+using ProyectAntivirusBackend.Repositories;
+using ProyectAntivirusBackend.Services;
+using AutoMapper; // 🔹 Importa AutoMapper
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configurar AutoMapper
-builder.Services.AddAutoMapper(typeof(Program));
-
-
-// Configurar PostgreSQL (corrige "UserBgsql" a "UseNpgsql")
+// Agregar servicios al contenedor
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
-);
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Configurar Swagger
+builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddScoped<IRequestRepository, RequestRepository>();
+builder.Services.AddScoped<IRequestService, RequestService>();
+
+
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddControllers();
-
 var app = builder.Build();
 
-// Habilitar Swagger en desarrollo (corrige "UserSwagger" a "UseSwagger")
+// Configurar Swagger solo en desarrollo
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+else
+{
+    app.UseExceptionHandler("/Home/Error");
+    app.UseHsts();
+}
 
-app.UseHttpsRedirection(); // Corrige "UserHitsRedirection"
+app.UseHttpsRedirection();
+app.UseRouting();
+app.UseAuthorization();
 app.MapControllers();
+
 app.Run();
