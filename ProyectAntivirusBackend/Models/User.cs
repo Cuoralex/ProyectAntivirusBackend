@@ -3,31 +3,33 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProyectAntivirusBackend.Models
 {
-    [Table("users")]
+    [Table("users")] // Nombre de la tabla en PostgreSQL
     public class User
     {
-        [Key]
         [Column("id")]
         public Guid Id { get; set; } = Guid.NewGuid();
-        [Column("nombre")]
+
+        [Column("name")]
         public string Name { get; set; } = string.Empty;
 
-        [Column("correo")]
+        [Column("email")]
         public string Email { get; set; } = string.Empty;
 
-        [Column("telefono")]
+        [Column("phone")]
         public string? Phone { get; set; }
 
-        [Column("rol")]
-        public string Role { get; set; } = "estudiante";
+        [Column("role")]
+        public string Role { get; set; } = "study"; // Valor por defecto
 
-        [Column("fecha_registro")]
+        [Column("Registration_Date")]
         public DateTime RegistrationDate { get; set; } = DateTime.UtcNow;
 
-        [Column("activo")]
+        [Column("Isactive")]
         public bool IsActive { get; set; } = true;
 
-        // Relación uno a uno con Profile
-        public virtual Profile? Profile { get; set; }
+        // Relación con auth_users
+        public AuthUser AuthUser { get; set; }
+        
+        public Profile Profile { get; set; } = null!;  
     }
 }

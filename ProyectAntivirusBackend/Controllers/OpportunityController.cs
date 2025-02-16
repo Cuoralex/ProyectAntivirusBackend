@@ -9,12 +9,12 @@ namespace ProyectAntivirusBackend.Controllers
 {
     [Route("api/v1/opportunity")]
     [ApiController]
-    public class OpportunitiesController : ControllerBase
+    public class OpportunityController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
         private readonly IMapper _mapper;
 
-        public OpportunitiesController(ApplicationDbContext context, IMapper mapper)
+        public OpportunityController(ApplicationDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
@@ -22,10 +22,10 @@ namespace ProyectAntivirusBackend.Controllers
 
         // GET: api/v1/opportunity
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<OpportunityDTO>>> GetOpportunities()
+        public async Task<ActionResult<IEnumerable<OpportunityDTO>>> GetOpportunity()
         {
-            var opportunities = await _context.Opportunities.ToListAsync();
-            var opportunityDTOs = _mapper.Map<IEnumerable<OpportunityDTO>>(opportunities);
+            var Opportunity = await _context.Opportunity.ToListAsync();
+            var opportunityDTOs = _mapper.Map<IEnumerable<OpportunityDTO>>(Opportunity);
             return Ok(opportunityDTOs);
         }
 
@@ -33,7 +33,7 @@ namespace ProyectAntivirusBackend.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<OpportunityDTO>> GetOpportunity(Guid id)
         {
-            var opportunity = await _context.Opportunities.FindAsync(id);
+            var opportunity = await _context.Opportunity.FindAsync(id);
             if (opportunity == null) return NotFound();
 
             var opportunityDTO = _mapper.Map<OpportunityDTO>(opportunity);
@@ -47,7 +47,7 @@ namespace ProyectAntivirusBackend.Controllers
             var opportunity = _mapper.Map<Opportunity>(createOpportunityDTO);
             opportunity.PublicationDate = DateTime.UtcNow;
 
-            _context.Opportunities.Add(opportunity);
+            _context.Opportunity.Add(opportunity);
             await _context.SaveChangesAsync();
 
             var opportunityDTO = _mapper.Map<OpportunityDTO>(opportunity);
@@ -58,7 +58,7 @@ namespace ProyectAntivirusBackend.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutOpportunity(Guid id, CreateOpportunityDTO createOpportunityDTO)
         {
-            var opportunity = await _context.Opportunities.FindAsync(id);
+            var opportunity = await _context.Opportunity.FindAsync(id);
             if (opportunity == null) return NotFound();
 
             _mapper.Map(createOpportunityDTO, opportunity);
@@ -72,10 +72,10 @@ namespace ProyectAntivirusBackend.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteOpportunity(Guid id)
         {
-            var opportunity = await _context.Opportunities.FindAsync(id);
+            var opportunity = await _context.Opportunity.FindAsync(id);
             if (opportunity == null) return NotFound();
 
-            _context.Opportunities.Remove(opportunity);
+            _context.Opportunity.Remove(opportunity);
             await _context.SaveChangesAsync();
             return NoContent();
         }
