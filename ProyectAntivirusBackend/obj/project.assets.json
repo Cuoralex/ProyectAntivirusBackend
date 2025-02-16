@@ -2,10 +2,35 @@
   "version": 3,
   "targets": {
     "net9.0": {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
+      "AutoMapper/12.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.CSharp": "4.7.0"
+        },
+        "compile": {
+          "lib/netstandard2.1/AutoMapper.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/AutoMapper.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "AutoMapper.Extensions.Microsoft.DependencyInjection/12.0.1": {
+        "type": "package",
+        "dependencies": {
+          "AutoMapper": "[12.0.1]",
+          "Microsoft.Extensions.Options": "6.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.1/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
+        }
+      },
       "Azure.Core/1.38.0": {
         "type": "package",
         "dependencies": {
@@ -20,29 +45,15 @@
         },
         "compile": {
           "lib/net6.0/Azure.Core.dll": {
-=======
-      "AutoMapper/12.0.1": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.CSharp": "4.7.0"
-        },
-        "compile": {
-          "lib/netstandard2.1/AutoMapper.dll": {
->>>>>>> origin/DevGeny
             "related": ".xml"
           }
         },
         "runtime": {
-<<<<<<< HEAD
           "lib/net6.0/Azure.Core.dll": {
-=======
-          "lib/netstandard2.1/AutoMapper.dll": {
->>>>>>> origin/DevGeny
             "related": ".xml"
           }
         }
       },
-<<<<<<< HEAD
       "Azure.Identity/1.11.4": {
         "type": "package",
         "dependencies": {
@@ -65,24 +76,6 @@
           }
         }
       },
->>>>>>> origin/DevCuoralex
-=======
->>>>>>> origin/DevDavalejo
-=======
-      "AutoMapper.Extensions.Microsoft.DependencyInjection/12.0.1": {
-        "type": "package",
-        "dependencies": {
-          "AutoMapper": "[12.0.1]",
-          "Microsoft.Extensions.Options": "6.0.0"
-        },
-        "compile": {
-          "lib/netstandard2.1/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.1/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
-        }
-      },
->>>>>>> origin/DevGeny
       "Humanizer.Core/2.14.1": {
         "type": "package",
         "compile": {
@@ -443,11 +436,7 @@
           }
         }
       },
-<<<<<<< HEAD
-      "Microsoft.CSharp/4.5.0": {
-=======
       "Microsoft.CSharp/4.7.0": {
->>>>>>> origin/DevGeny
         "type": "package",
         "compile": {
           "ref/netcoreapp2.0/_._": {}
@@ -456,7 +445,6 @@
           "lib/netcoreapp2.0/_._": {}
         }
       },
-<<<<<<< HEAD
       "Microsoft.Data.SqlClient/5.1.6": {
         "type": "package",
         "dependencies": {
@@ -516,8 +504,6 @@
           }
         }
       },
-=======
->>>>>>> origin/DevGeny
       "Microsoft.EntityFrameworkCore/9.0.2": {
         "type": "package",
         "dependencies": {
@@ -606,10 +592,6 @@
           }
         }
       },
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
       "Microsoft.EntityFrameworkCore.SqlServer/9.0.2": {
         "type": "package",
         "dependencies": {
@@ -638,11 +620,6 @@
           "Microsoft.EntityFrameworkCore.Design": "9.0.2"
         }
       },
->>>>>>> origin/DevCuoralex
-=======
->>>>>>> origin/DevDavalejo
-=======
->>>>>>> origin/DevGeny
       "Microsoft.Extensions.ApiDescription.Server/6.0.5": {
         "type": "package",
         "build": {
@@ -842,10 +819,6 @@
           "buildTransitive/net8.0/_._": {}
         }
       },
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
       "Microsoft.Identity.Client/4.61.3": {
         "type": "package",
         "dependencies": {
@@ -854,42 +827,15 @@
         },
         "compile": {
           "lib/net6.0/Microsoft.Identity.Client.dll": {
-=======
-      "Microsoft.IdentityModel.Abstractions/7.5.1": {
-        "type": "package",
-        "compile": {
-          "lib/net8.0/Microsoft.IdentityModel.Abstractions.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net8.0/Microsoft.IdentityModel.Abstractions.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "Microsoft.IdentityModel.JsonWebTokens/7.5.1": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.IdentityModel.Tokens": "7.5.1"
-        },
-        "compile": {
-          "lib/net8.0/Microsoft.IdentityModel.JsonWebTokens.dll": {
->>>>>>> origin/DevDavalejo
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-<<<<<<< HEAD
           "lib/net6.0/Microsoft.Identity.Client.dll": {
-=======
-          "lib/net8.0/Microsoft.IdentityModel.JsonWebTokens.dll": {
->>>>>>> origin/DevDavalejo
             "related": ".xml"
           }
         }
       },
-<<<<<<< HEAD
       "Microsoft.Identity.Client.Extensions.Msal/4.61.3": {
         "type": "package",
         "dependencies": {
@@ -898,29 +844,15 @@
         },
         "compile": {
           "lib/net6.0/Microsoft.Identity.Client.Extensions.Msal.dll": {
-=======
-      "Microsoft.IdentityModel.Logging/7.5.1": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.IdentityModel.Abstractions": "7.5.1"
-        },
-        "compile": {
-          "lib/net8.0/Microsoft.IdentityModel.Logging.dll": {
->>>>>>> origin/DevDavalejo
             "related": ".xml"
           }
         },
         "runtime": {
-<<<<<<< HEAD
           "lib/net6.0/Microsoft.Identity.Client.Extensions.Msal.dll": {
-=======
-          "lib/net8.0/Microsoft.IdentityModel.Logging.dll": {
->>>>>>> origin/DevDavalejo
             "related": ".xml"
           }
         }
       },
-<<<<<<< HEAD
       "Microsoft.IdentityModel.Abstractions/6.35.0": {
         "type": "package",
         "compile": {
@@ -944,29 +876,15 @@
         },
         "compile": {
           "lib/net6.0/Microsoft.IdentityModel.JsonWebTokens.dll": {
-=======
-      "Microsoft.IdentityModel.Tokens/7.5.1": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.IdentityModel.Logging": "7.5.1"
-        },
-        "compile": {
-          "lib/net8.0/Microsoft.IdentityModel.Tokens.dll": {
->>>>>>> origin/DevDavalejo
             "related": ".xml"
           }
         },
         "runtime": {
-<<<<<<< HEAD
           "lib/net6.0/Microsoft.IdentityModel.JsonWebTokens.dll": {
-=======
-          "lib/net8.0/Microsoft.IdentityModel.Tokens.dll": {
->>>>>>> origin/DevDavalejo
             "related": ".xml"
           }
         }
       },
-<<<<<<< HEAD
       "Microsoft.IdentityModel.Logging/6.35.0": {
         "type": "package",
         "dependencies": {
@@ -1053,24 +971,6 @@
           "lib/netstandard1.0/_._": {}
         }
       },
->>>>>>> origin/DevCuoralex
-=======
-      "Microsoft.IO.RecyclableMemoryStream/3.0.0": {
-        "type": "package",
-        "compile": {
-          "lib/net6.0/Microsoft.IO.RecyclableMemoryStream.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net6.0/Microsoft.IO.RecyclableMemoryStream.dll": {
-            "related": ".xml"
-          }
-        }
-      },
->>>>>>> origin/DevDavalejo
-=======
->>>>>>> origin/DevGeny
       "Microsoft.OpenApi/1.6.22": {
         "type": "package",
         "compile": {
@@ -1084,10 +984,6 @@
           }
         }
       },
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
       "Microsoft.SqlServer.Server/1.0.0": {
         "type": "package",
         "compile": {
@@ -1105,17 +1001,10 @@
         "type": "package",
         "compile": {
           "lib/net6.0/_._": {
-=======
-      "MimeMapping/3.0.1": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard2.0/MimeMapping.dll": {
->>>>>>> origin/DevDavalejo
             "related": ".xml"
           }
         },
         "runtime": {
-<<<<<<< HEAD
           "lib/net6.0/Microsoft.Win32.SystemEvents.dll": {
             "related": ".xml"
           }
@@ -1130,16 +1019,6 @@
           }
         }
       },
->>>>>>> origin/DevCuoralex
-=======
-          "lib/netstandard2.0/MimeMapping.dll": {
-            "related": ".xml"
-          }
-        }
-      },
->>>>>>> origin/DevDavalejo
-=======
->>>>>>> origin/DevGeny
       "Mono.TextTemplating/3.0.0": {
         "type": "package",
         "dependencies": {
@@ -1153,19 +1032,6 @@
         },
         "build": {
           "buildTransitive/Mono.TextTemplating.targets": {}
-        }
-      },
-      "Newtonsoft.Json/13.0.3": {
-        "type": "package",
-        "compile": {
-          "lib/net6.0/Newtonsoft.Json.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net6.0/Newtonsoft.Json.dll": {
-            "related": ".xml"
-          }
         }
       },
       "Npgsql/9.0.2": {
@@ -1202,136 +1068,6 @@
           }
         }
       },
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "Supabase/1.1.1": {
-        "type": "package",
-        "dependencies": {
-          "Newtonsoft.Json": "13.0.3",
-          "Supabase.Core": "1.0.0",
-          "Supabase.Functions": "2.0.0",
-          "Supabase.Gotrue": "6.0.3",
-          "Supabase.Postgrest": "4.0.3",
-          "Supabase.Realtime": "7.0.2",
-          "Supabase.Storage": "2.0.2"
-        },
-        "compile": {
-          "lib/netstandard2.1/Supabase.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard2.1/Supabase.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "Supabase.Core/1.0.0": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard2.0/Supabase.Core.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard2.0/Supabase.Core.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "Supabase.Functions/2.0.0": {
-        "type": "package",
-        "dependencies": {
-          "Newtonsoft.Json": "13.0.3",
-          "Supabase.Core": "1.0.0"
-        },
-        "compile": {
-          "lib/netstandard2.0/Supabase.Functions.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard2.0/Supabase.Functions.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "Supabase.Gotrue/6.0.3": {
-        "type": "package",
-        "dependencies": {
-          "Newtonsoft.Json": "13.0.3",
-          "Supabase.Core": "1.0.0",
-          "System.IdentityModel.Tokens.Jwt": "7.5.1"
-        },
-        "compile": {
-          "lib/netstandard2.1/Supabase.Gotrue.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard2.1/Supabase.Gotrue.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "Supabase.Postgrest/4.0.3": {
-        "type": "package",
-        "dependencies": {
-          "Newtonsoft.Json": "13.0.3",
-          "Supabase.Core": "1.0.0"
-        },
-        "compile": {
-          "lib/netstandard2.0/Supabase.Postgrest.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard2.0/Supabase.Postgrest.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "Supabase.Realtime/7.0.2": {
-        "type": "package",
-        "dependencies": {
-          "Newtonsoft.Json": "13.0.3",
-          "Supabase.Core": "1.0.0",
-          "Supabase.Postgrest": "4.0.3",
-          "Websocket.Client": "5.1.1"
-        },
-        "compile": {
-          "lib/netstandard2.1/Supabase.Realtime.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard2.1/Supabase.Realtime.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "Supabase.Storage/2.0.2": {
-        "type": "package",
-        "dependencies": {
-          "MimeMapping": "3.0.1",
-          "Newtonsoft.Json": "13.0.3",
-          "Supabase.Core": "1.0.0"
-        },
-        "compile": {
-          "lib/netstandard2.0/Supabase.Storage.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard2.0/Supabase.Storage.dll": {
-            "related": ".xml"
-          }
-        }
-      },
->>>>>>> origin/DevDavalejo
-=======
->>>>>>> origin/DevGeny
       "Swashbuckle.AspNetCore/7.2.0": {
         "type": "package",
         "dependencies": {
@@ -1413,7 +1149,6 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
-<<<<<<< HEAD
       },
       "System.ClientModel/1.0.0": {
         "type": "package",
@@ -1431,9 +1166,6 @@
             "related": ".xml"
           }
         }
->>>>>>> origin/DevCuoralex
-=======
->>>>>>> origin/DevGeny
       },
       "System.CodeDom/6.0.0": {
         "type": "package",
@@ -1577,7 +1309,6 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
-<<<<<<< HEAD
       "System.Configuration.ConfigurationManager/6.0.1": {
         "type": "package",
         "dependencies": {
@@ -1586,21 +1317,10 @@
         },
         "compile": {
           "lib/net6.0/_._": {
-=======
-      "System.IdentityModel.Tokens.Jwt/7.5.1": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.IdentityModel.JsonWebTokens": "7.5.1",
-          "Microsoft.IdentityModel.Tokens": "7.5.1"
-        },
-        "compile": {
-          "lib/net8.0/System.IdentityModel.Tokens.Jwt.dll": {
->>>>>>> origin/DevDavalejo
             "related": ".xml"
           }
         },
         "runtime": {
-<<<<<<< HEAD
           "lib/net6.0/System.Configuration.ConfigurationManager.dll": {
             "related": ".xml"
           }
@@ -1686,9 +1406,6 @@
         },
         "runtime": {
           "lib/net6.0/System.IdentityModel.Tokens.Jwt.dll": {
-=======
-          "lib/net8.0/System.IdentityModel.Tokens.Jwt.dll": {
->>>>>>> origin/DevDavalejo
             "related": ".xml"
           }
         }
@@ -1709,7 +1426,6 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
-<<<<<<< HEAD
       "System.Memory/4.5.4": {
         "type": "package",
         "compile": {
@@ -1727,17 +1443,10 @@
         },
         "compile": {
           "lib/netstandard2.0/System.Memory.Data.dll": {
-=======
-      "System.Reactive/6.0.0": {
-        "type": "package",
-        "compile": {
-          "lib/net6.0/System.Reactive.dll": {
->>>>>>> origin/DevDavalejo
             "related": ".xml"
           }
         },
         "runtime": {
-<<<<<<< HEAD
           "lib/netstandard2.0/System.Memory.Data.dll": {
             "related": ".xml"
           }
@@ -1750,14 +1459,6 @@
         },
         "runtime": {
           "lib/netcoreapp2.0/_._": {}
-=======
-          "lib/net6.0/System.Reactive.dll": {
-            "related": ".xml"
-          }
-        },
-        "build": {
-          "buildTransitive/net6.0/_._": {}
->>>>>>> origin/DevDavalejo
         }
       },
       "System.Reflection.Metadata/7.0.0": {
@@ -2020,25 +1721,21 @@
           "buildTransitive/net8.0/System.Text.Json.targets": {}
         }
       },
-      "System.Threading.Channels/8.0.0": {
+      "System.Threading.Channels/7.0.0": {
         "type": "package",
         "compile": {
-          "lib/net8.0/System.Threading.Channels.dll": {
+          "lib/net7.0/_._": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net8.0/System.Threading.Channels.dll": {
+          "lib/net7.0/System.Threading.Channels.dll": {
             "related": ".xml"
           }
         },
         "build": {
           "buildTransitive/net6.0/_._": {}
         }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
       },
       "System.Threading.Tasks.Extensions/4.5.4": {
         "type": "package",
@@ -2056,24 +1753,10 @@
         },
         "compile": {
           "lib/net6.0/_._": {
-=======
-      },
-      "Websocket.Client/5.1.1": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Extensions.Logging.Abstractions": "8.0.0",
-          "Microsoft.IO.RecyclableMemoryStream": "3.0.0",
-          "System.Reactive": "6.0.0",
-          "System.Threading.Channels": "8.0.0"
-        },
-        "compile": {
-          "lib/net8.0/Websocket.Client.dll": {
->>>>>>> origin/DevDavalejo
             "related": ".xml"
           }
         },
         "runtime": {
-<<<<<<< HEAD
           "lib/net6.0/System.Windows.Extensions.dll": {
             "related": ".xml"
           }
@@ -2084,23 +1767,39 @@
             "rid": "win"
           }
         }
->>>>>>> origin/DevCuoralex
-=======
-          "lib/net8.0/Websocket.Client.dll": {
-            "related": ".xml"
-          }
-        }
->>>>>>> origin/DevDavalejo
-=======
->>>>>>> origin/DevGeny
       }
     }
   },
   "libraries": {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
+    "AutoMapper/12.0.1": {
+      "sha512": "hvV62vl6Hp/WfQ24yzo3Co9+OPl8wH8hApwVtgWpiAynVJkUcs7xvehnSftawL8Pe8FrPffBRM3hwzLQqWDNjA==",
+      "type": "package",
+      "path": "automapper/12.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "automapper.12.0.1.nupkg.sha512",
+        "automapper.nuspec",
+        "icon.png",
+        "lib/netstandard2.1/AutoMapper.dll",
+        "lib/netstandard2.1/AutoMapper.xml"
+      ]
+    },
+    "AutoMapper.Extensions.Microsoft.DependencyInjection/12.0.1": {
+      "sha512": "+g/K+Vpe3gGMKGzjslMOdqNlkikScDjWfVvmWTayrDHaG/n2pPmFBMa+jKX1r/h6BDGFdkyRjAuhFE3ykW+r1g==",
+      "type": "package",
+      "path": "automapper.extensions.microsoft.dependencyinjection/12.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
+        "automapper.extensions.microsoft.dependencyinjection.nuspec",
+        "icon.png",
+        "lib/netstandard2.1/AutoMapper.Extensions.Microsoft.DependencyInjection.dll"
+      ]
+    },
     "Azure.Core/1.38.0": {
       "sha512": "IuEgCoVA0ef7E4pQtpC3+TkPbzaoQfa77HlfJDmfuaJUCVJmn7fT0izamZiryW5sYUFKizsftIxMkXKbgIcPMQ==",
       "type": "package",
@@ -2139,40 +1838,6 @@
         "lib/netstandard2.0/Azure.Identity.xml"
       ]
     },
->>>>>>> origin/DevCuoralex
-=======
->>>>>>> origin/DevDavalejo
-=======
-    "AutoMapper/12.0.1": {
-      "sha512": "hvV62vl6Hp/WfQ24yzo3Co9+OPl8wH8hApwVtgWpiAynVJkUcs7xvehnSftawL8Pe8FrPffBRM3hwzLQqWDNjA==",
-      "type": "package",
-      "path": "automapper/12.0.1",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "README.md",
-        "automapper.12.0.1.nupkg.sha512",
-        "automapper.nuspec",
-        "icon.png",
-        "lib/netstandard2.1/AutoMapper.dll",
-        "lib/netstandard2.1/AutoMapper.xml"
-      ]
-    },
-    "AutoMapper.Extensions.Microsoft.DependencyInjection/12.0.1": {
-      "sha512": "+g/K+Vpe3gGMKGzjslMOdqNlkikScDjWfVvmWTayrDHaG/n2pPmFBMa+jKX1r/h6BDGFdkyRjAuhFE3ykW+r1g==",
-      "type": "package",
-      "path": "automapper.extensions.microsoft.dependencyinjection/12.0.1",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "README.md",
-        "automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
-        "automapper.extensions.microsoft.dependencyinjection.nuspec",
-        "icon.png",
-        "lib/netstandard2.1/AutoMapper.Extensions.Microsoft.DependencyInjection.dll"
-      ]
-    },
->>>>>>> origin/DevGeny
     "Humanizer.Core/2.14.1": {
       "sha512": "lQKvtaTDOXnoVJ20ibTuSIOf2i0uO0MPbDhd1jm238I+U/2ZnRENj0cktKZhtchBMtCUSRQ5v4xBCUbKNmyVMw==",
       "type": "package",
@@ -3173,17 +2838,10 @@
         "microsoft.codeanalysis.workspaces.msbuild.nuspec"
       ]
     },
-<<<<<<< HEAD
-    "Microsoft.CSharp/4.5.0": {
-      "sha512": "kaj6Wb4qoMuH3HySFJhxwQfe8R/sJsNJnANrvv8WdFPMoNbKY5htfNscv+LHCu5ipz+49m2e+WQXpLXr9XYemQ==",
-      "type": "package",
-      "path": "microsoft.csharp/4.5.0",
-=======
     "Microsoft.CSharp/4.7.0": {
       "sha512": "pTj+D3uJWyN3My70i2Hqo+OXixq3Os2D1nJ2x92FFo6sk8fYS1m1WLNTs0Dc1uPaViH0YvEEwvzddQ7y4rhXmA==",
       "type": "package",
       "path": "microsoft.csharp/4.7.0",
->>>>>>> origin/DevGeny
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -3196,10 +2854,7 @@
         "lib/netcoreapp2.0/_._",
         "lib/netstandard1.3/Microsoft.CSharp.dll",
         "lib/netstandard2.0/Microsoft.CSharp.dll",
-<<<<<<< HEAD
-=======
         "lib/netstandard2.0/Microsoft.CSharp.xml",
->>>>>>> origin/DevGeny
         "lib/portable-net45+win8+wp8+wpa81/_._",
         "lib/uap10.0.16299/_._",
         "lib/win8/_._",
@@ -3209,11 +2864,7 @@
         "lib/xamarinmac20/_._",
         "lib/xamarintvos10/_._",
         "lib/xamarinwatchos10/_._",
-<<<<<<< HEAD
-        "microsoft.csharp.4.5.0.nupkg.sha512",
-=======
         "microsoft.csharp.4.7.0.nupkg.sha512",
->>>>>>> origin/DevGeny
         "microsoft.csharp.nuspec",
         "ref/MonoAndroid10/_._",
         "ref/MonoTouch10/_._",
@@ -3256,7 +2907,6 @@
         "version.txt"
       ]
     },
-<<<<<<< HEAD
     "Microsoft.Data.SqlClient/5.1.6": {
       "sha512": "+pz7gIPh5ydsBcQvivt4R98PwJXer86fyQBBToIBLxZ5kuhW4N13Ijz87s9WpuPtF1vh4JesYCgpDPAOgkMhdg==",
       "type": "package",
@@ -3334,8 +2984,6 @@
         "runtimes/win-x86/native/Microsoft.Data.SqlClient.SNI.dll"
       ]
     },
-=======
->>>>>>> origin/DevGeny
     "Microsoft.EntityFrameworkCore/9.0.2": {
       "sha512": "P90ZuybgcpW32y985eOYxSoZ9IiL0UTYQlY0y1Pt1iHAnpZj/dQHREpSpry1RNvk8YjAeoAkWFdem5conqB9zQ==",
       "type": "package",
@@ -3412,10 +3060,6 @@
         "microsoft.entityframeworkcore.relational.nuspec"
       ]
     },
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
     "Microsoft.EntityFrameworkCore.SqlServer/9.0.2": {
       "sha512": "PN65soRvSajLqr1kVRvpUwqI/rmab4x/6TxcYzyUVvg52DMPxx4Y760EZ6OzFhJnilP/WFEEzdftHsTsHQ64IQ==",
       "type": "package",
@@ -3456,11 +3100,6 @@
         "tools/netcoreapp2.0/any/ef.runtimeconfig.json"
       ]
     },
->>>>>>> origin/DevCuoralex
-=======
->>>>>>> origin/DevDavalejo
-=======
->>>>>>> origin/DevGeny
     "Microsoft.Extensions.ApiDescription.Server/6.0.5": {
       "sha512": "Ckb5EDBUNJdFWyajfXzUIMRkhf52fHZOQuuZg/oiu8y7zDCVwD0iHhew6MnThjHmevanpxL3f5ci2TtHQEN6bw==",
       "type": "package",
@@ -4038,10 +3677,6 @@
         "useSharedDesignerContext.txt"
       ]
     },
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
     "Microsoft.Identity.Client/4.61.3": {
       "sha512": "naJo/Qm35Caaoxp5utcw+R8eU8ZtLz2ALh8S+gkekOYQ1oazfCQMWVT4NJ/FnHzdIJlm8dMz0oMpMGCabx5odA==",
       "type": "package",
@@ -4088,15 +3723,6 @@
         ".signature.p7s",
         "lib/net45/Microsoft.IdentityModel.Abstractions.dll",
         "lib/net45/Microsoft.IdentityModel.Abstractions.xml",
-=======
-    "Microsoft.IdentityModel.Abstractions/7.5.1": {
-      "sha512": "PT16ZFbPIiMsYv07oy3zOjqUOJ7xutGBkJTOX0+IbNyU6+O6X7aIxjq9EaSSRLWbekRgamgtmfg8Xjw6A6Ua9g==",
-      "type": "package",
-      "path": "microsoft.identitymodel.abstractions/7.5.1",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
->>>>>>> origin/DevDavalejo
         "lib/net461/Microsoft.IdentityModel.Abstractions.dll",
         "lib/net461/Microsoft.IdentityModel.Abstractions.xml",
         "lib/net462/Microsoft.IdentityModel.Abstractions.dll",
@@ -4105,7 +3731,6 @@
         "lib/net472/Microsoft.IdentityModel.Abstractions.xml",
         "lib/net6.0/Microsoft.IdentityModel.Abstractions.dll",
         "lib/net6.0/Microsoft.IdentityModel.Abstractions.xml",
-<<<<<<< HEAD
         "lib/netstandard2.0/Microsoft.IdentityModel.Abstractions.dll",
         "lib/netstandard2.0/Microsoft.IdentityModel.Abstractions.xml",
         "microsoft.identitymodel.abstractions.6.35.0.nupkg.sha512",
@@ -4121,23 +3746,6 @@
         ".signature.p7s",
         "lib/net45/Microsoft.IdentityModel.JsonWebTokens.dll",
         "lib/net45/Microsoft.IdentityModel.JsonWebTokens.xml",
-=======
-        "lib/net8.0/Microsoft.IdentityModel.Abstractions.dll",
-        "lib/net8.0/Microsoft.IdentityModel.Abstractions.xml",
-        "lib/netstandard2.0/Microsoft.IdentityModel.Abstractions.dll",
-        "lib/netstandard2.0/Microsoft.IdentityModel.Abstractions.xml",
-        "microsoft.identitymodel.abstractions.7.5.1.nupkg.sha512",
-        "microsoft.identitymodel.abstractions.nuspec"
-      ]
-    },
-    "Microsoft.IdentityModel.JsonWebTokens/7.5.1": {
-      "sha512": "93CGSa8RPdZU8zfvA3nf9NGKUqEnQrE12VzYlMqKh72ddhzusosqLNEUgH/YhFWBLRFOnY1RCgHMV7pR+sAx2w==",
-      "type": "package",
-      "path": "microsoft.identitymodel.jsonwebtokens/7.5.1",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
->>>>>>> origin/DevDavalejo
         "lib/net461/Microsoft.IdentityModel.JsonWebTokens.dll",
         "lib/net461/Microsoft.IdentityModel.JsonWebTokens.xml",
         "lib/net462/Microsoft.IdentityModel.JsonWebTokens.dll",
@@ -4146,7 +3754,6 @@
         "lib/net472/Microsoft.IdentityModel.JsonWebTokens.xml",
         "lib/net6.0/Microsoft.IdentityModel.JsonWebTokens.dll",
         "lib/net6.0/Microsoft.IdentityModel.JsonWebTokens.xml",
-<<<<<<< HEAD
         "lib/netstandard2.0/Microsoft.IdentityModel.JsonWebTokens.dll",
         "lib/netstandard2.0/Microsoft.IdentityModel.JsonWebTokens.xml",
         "microsoft.identitymodel.jsonwebtokens.6.35.0.nupkg.sha512",
@@ -4162,23 +3769,6 @@
         ".signature.p7s",
         "lib/net45/Microsoft.IdentityModel.Logging.dll",
         "lib/net45/Microsoft.IdentityModel.Logging.xml",
-=======
-        "lib/net8.0/Microsoft.IdentityModel.JsonWebTokens.dll",
-        "lib/net8.0/Microsoft.IdentityModel.JsonWebTokens.xml",
-        "lib/netstandard2.0/Microsoft.IdentityModel.JsonWebTokens.dll",
-        "lib/netstandard2.0/Microsoft.IdentityModel.JsonWebTokens.xml",
-        "microsoft.identitymodel.jsonwebtokens.7.5.1.nupkg.sha512",
-        "microsoft.identitymodel.jsonwebtokens.nuspec"
-      ]
-    },
-    "Microsoft.IdentityModel.Logging/7.5.1": {
-      "sha512": "PnpAQX20BAiDIPYmWUyQSlEaWD8BLXzHpiDGTCT568Cs0ReOeyzNe401LzCeiv6ilug/KefVeV1CeqtCHTo8dw==",
-      "type": "package",
-      "path": "microsoft.identitymodel.logging/7.5.1",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
->>>>>>> origin/DevDavalejo
         "lib/net461/Microsoft.IdentityModel.Logging.dll",
         "lib/net461/Microsoft.IdentityModel.Logging.xml",
         "lib/net462/Microsoft.IdentityModel.Logging.dll",
@@ -4187,7 +3777,6 @@
         "lib/net472/Microsoft.IdentityModel.Logging.xml",
         "lib/net6.0/Microsoft.IdentityModel.Logging.dll",
         "lib/net6.0/Microsoft.IdentityModel.Logging.xml",
-<<<<<<< HEAD
         "lib/netstandard2.0/Microsoft.IdentityModel.Logging.dll",
         "lib/netstandard2.0/Microsoft.IdentityModel.Logging.xml",
         "microsoft.identitymodel.logging.6.35.0.nupkg.sha512",
@@ -4249,23 +3838,6 @@
         ".signature.p7s",
         "lib/net45/Microsoft.IdentityModel.Tokens.dll",
         "lib/net45/Microsoft.IdentityModel.Tokens.xml",
-=======
-        "lib/net8.0/Microsoft.IdentityModel.Logging.dll",
-        "lib/net8.0/Microsoft.IdentityModel.Logging.xml",
-        "lib/netstandard2.0/Microsoft.IdentityModel.Logging.dll",
-        "lib/netstandard2.0/Microsoft.IdentityModel.Logging.xml",
-        "microsoft.identitymodel.logging.7.5.1.nupkg.sha512",
-        "microsoft.identitymodel.logging.nuspec"
-      ]
-    },
-    "Microsoft.IdentityModel.Tokens/7.5.1": {
-      "sha512": "Q3DKpyFViP84IUlTFKH/zIkswIrmSh2Vd/eFDo4wlOHy4DYxoweZEEw4kDEiKt9VCX6o7SddK3HK2xDYyFpexA==",
-      "type": "package",
-      "path": "microsoft.identitymodel.tokens/7.5.1",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
->>>>>>> origin/DevDavalejo
         "lib/net461/Microsoft.IdentityModel.Tokens.dll",
         "lib/net461/Microsoft.IdentityModel.Tokens.xml",
         "lib/net462/Microsoft.IdentityModel.Tokens.dll",
@@ -4274,7 +3846,6 @@
         "lib/net472/Microsoft.IdentityModel.Tokens.xml",
         "lib/net6.0/Microsoft.IdentityModel.Tokens.dll",
         "lib/net6.0/Microsoft.IdentityModel.Tokens.xml",
-<<<<<<< HEAD
         "lib/netstandard2.0/Microsoft.IdentityModel.Tokens.dll",
         "lib/netstandard2.0/Microsoft.IdentityModel.Tokens.xml",
         "microsoft.identitymodel.tokens.6.35.0.nupkg.sha512",
@@ -4311,37 +3882,6 @@
         "runtime.json"
       ]
     },
->>>>>>> origin/DevCuoralex
-=======
-        "lib/net8.0/Microsoft.IdentityModel.Tokens.dll",
-        "lib/net8.0/Microsoft.IdentityModel.Tokens.xml",
-        "lib/netstandard2.0/Microsoft.IdentityModel.Tokens.dll",
-        "lib/netstandard2.0/Microsoft.IdentityModel.Tokens.xml",
-        "microsoft.identitymodel.tokens.7.5.1.nupkg.sha512",
-        "microsoft.identitymodel.tokens.nuspec"
-      ]
-    },
-    "Microsoft.IO.RecyclableMemoryStream/3.0.0": {
-      "sha512": "irv0HuqoH8Ig5i2fO+8dmDNdFdsrO+DoQcedwIlb810qpZHBNQHZLW7C/AHBQDgLLpw2T96vmMAy/aE4Yj55Sg==",
-      "type": "package",
-      "path": "microsoft.io.recyclablememorystream/3.0.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "README.md",
-        "lib/net6.0/Microsoft.IO.RecyclableMemoryStream.dll",
-        "lib/net6.0/Microsoft.IO.RecyclableMemoryStream.xml",
-        "lib/netstandard2.0/Microsoft.IO.RecyclableMemoryStream.dll",
-        "lib/netstandard2.0/Microsoft.IO.RecyclableMemoryStream.xml",
-        "lib/netstandard2.1/Microsoft.IO.RecyclableMemoryStream.dll",
-        "lib/netstandard2.1/Microsoft.IO.RecyclableMemoryStream.xml",
-        "microsoft.io.recyclablememorystream.3.0.0.nupkg.sha512",
-        "microsoft.io.recyclablememorystream.nuspec"
-      ]
-    },
->>>>>>> origin/DevDavalejo
-=======
->>>>>>> origin/DevGeny
     "Microsoft.OpenApi/1.6.22": {
       "sha512": "aBvunmrdu/x+4CaA/UP1Jx4xWGwk4kymhoIRnn2Vp+zi5/KOPQJ9EkSXHRUr01WcGKtYl3Au7XfkPJbU1G2sjQ==",
       "type": "package",
@@ -4357,10 +3897,6 @@
         "microsoft.openapi.nuspec"
       ]
     },
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
     "Microsoft.SqlServer.Server/1.0.0": {
       "sha512": "N4KeF3cpcm1PUHym1RmakkzfkEv3GRMyofVv40uXsQhCQeglr2OHNcUk2WOG51AKpGO8ynGpo9M/kFXSzghwug==",
       "type": "package",
@@ -4408,27 +3944,6 @@
         "useSharedDesignerContext.txt"
       ]
     },
->>>>>>> origin/DevCuoralex
-=======
-    "MimeMapping/3.0.1": {
-      "sha512": "lhYcUVnWKaqrboAwi05YLCx3wdluM9Sr1Mv5Emhgc8c8yNVvdiSEnQJMdDvgb4grlYTaOmbnhYaezoeateX95w==",
-      "type": "package",
-      "path": "mimemapping/3.0.1",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "README.md",
-        "lib/net462/MimeMapping.dll",
-        "lib/net462/MimeMapping.xml",
-        "lib/netstandard2.0/MimeMapping.dll",
-        "lib/netstandard2.0/MimeMapping.xml",
-        "mimemapping.3.0.1.nupkg.sha512",
-        "mimemapping.nuspec"
-      ]
-    },
->>>>>>> origin/DevDavalejo
-=======
->>>>>>> origin/DevGeny
     "Mono.TextTemplating/3.0.0": {
       "sha512": "YqueG52R/Xej4VVbKuRIodjiAhV0HR/XVbLbNrJhCZnzjnSjgMJ/dCdV0akQQxavX6hp/LC6rqLGLcXeQYU7XA==",
       "type": "package",
@@ -4444,36 +3959,6 @@
         "mono.texttemplating.3.0.0.nupkg.sha512",
         "mono.texttemplating.nuspec",
         "readme.md"
-      ]
-    },
-    "Newtonsoft.Json/13.0.3": {
-      "sha512": "HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
-      "type": "package",
-      "path": "newtonsoft.json/13.0.3",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "LICENSE.md",
-        "README.md",
-        "lib/net20/Newtonsoft.Json.dll",
-        "lib/net20/Newtonsoft.Json.xml",
-        "lib/net35/Newtonsoft.Json.dll",
-        "lib/net35/Newtonsoft.Json.xml",
-        "lib/net40/Newtonsoft.Json.dll",
-        "lib/net40/Newtonsoft.Json.xml",
-        "lib/net45/Newtonsoft.Json.dll",
-        "lib/net45/Newtonsoft.Json.xml",
-        "lib/net6.0/Newtonsoft.Json.dll",
-        "lib/net6.0/Newtonsoft.Json.xml",
-        "lib/netstandard1.0/Newtonsoft.Json.dll",
-        "lib/netstandard1.0/Newtonsoft.Json.xml",
-        "lib/netstandard1.3/Newtonsoft.Json.dll",
-        "lib/netstandard1.3/Newtonsoft.Json.xml",
-        "lib/netstandard2.0/Newtonsoft.Json.dll",
-        "lib/netstandard2.0/Newtonsoft.Json.xml",
-        "newtonsoft.json.13.0.3.nupkg.sha512",
-        "newtonsoft.json.nuspec",
-        "packageIcon.png"
       ]
     },
     "Npgsql/9.0.2": {
@@ -4508,119 +3993,6 @@
         "postgresql.png"
       ]
     },
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    "Supabase/1.1.1": {
-      "sha512": "LW9O05IiZBW3YUDT/gndPKvzT3I7PVgx0j87+AdJu7mT42m7oh2nOnjuDR9pU0E9FE2Ke/QGovrH/u5OjGn7lg==",
-      "type": "package",
-      "path": "supabase/1.1.1",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "README.md",
-        "icon.png",
-        "lib/netstandard2.1/Supabase.dll",
-        "lib/netstandard2.1/Supabase.xml",
-        "supabase.1.1.1.nupkg.sha512",
-        "supabase.nuspec"
-      ]
-    },
-    "Supabase.Core/1.0.0": {
-      "sha512": "fJK3Kfq1alw53AGWHBr+dhPu+BUR5dKuBjGhcxrFRVdsFFFWSD5iPIdTYi0CUQDA2b1OjGudYL1xd51yp4hU9Q==",
-      "type": "package",
-      "path": "supabase.core/1.0.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "README.md",
-        "icon.png",
-        "lib/netstandard2.0/Supabase.Core.dll",
-        "lib/netstandard2.0/Supabase.Core.xml",
-        "supabase.core.1.0.0.nupkg.sha512",
-        "supabase.core.nuspec"
-      ]
-    },
-    "Supabase.Functions/2.0.0": {
-      "sha512": "rc6zlo6XFkQw/B9fEgwpXHtmNPrnnHmtc96PTbviBJ9lzqPT/Un/G3V9MltlORtnG2RLkLvvS/t2AXAO8m2SCQ==",
-      "type": "package",
-      "path": "supabase.functions/2.0.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "README.md",
-        "icon.png",
-        "lib/netstandard2.0/Supabase.Functions.dll",
-        "lib/netstandard2.0/Supabase.Functions.xml",
-        "supabase.functions.2.0.0.nupkg.sha512",
-        "supabase.functions.nuspec"
-      ]
-    },
-    "Supabase.Gotrue/6.0.3": {
-      "sha512": "8dkg000ib95bJm0ffDPUrALrefBHrkiqcolNjuUEStF2TeytPbV+OtOUJAMBOqZ2f1nsCY61Ck/7NOmOyGteDw==",
-      "type": "package",
-      "path": "supabase.gotrue/6.0.3",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "README.md",
-        "icon.png",
-        "lib/netstandard2.1/Supabase.Gotrue.dll",
-        "lib/netstandard2.1/Supabase.Gotrue.xml",
-        "supabase.gotrue.6.0.3.nupkg.sha512",
-        "supabase.gotrue.nuspec"
-      ]
-    },
-    "Supabase.Postgrest/4.0.3": {
-      "sha512": "hpDIh+E5bDgZiHMuM6l+RDm9WWlt/T3fXXFQoqzlsrJFesFMNzkK9feVBG5egJyL/OlwmxuLsnPkR7O+bV3Vcw==",
-      "type": "package",
-      "path": "supabase.postgrest/4.0.3",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "README.md",
-        "icon.png",
-        "lib/netstandard2.0/Supabase.Postgrest.dll",
-        "lib/netstandard2.0/Supabase.Postgrest.xml",
-        "supabase.postgrest.4.0.3.nupkg.sha512",
-        "supabase.postgrest.nuspec"
-      ]
-    },
-    "Supabase.Realtime/7.0.2": {
-      "sha512": "9nwlR9RR+uyD63VUaiqAPsd76NaeM6ORAHq7otc4G34RzBtf6aqjPg9IF6d1DGIk78/lJP31+D4NJmQhl3PkJQ==",
-      "type": "package",
-      "path": "supabase.realtime/7.0.2",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "README.md",
-        "icon.png",
-        "lib/netstandard2.0/Supabase.Realtime.dll",
-        "lib/netstandard2.0/Supabase.Realtime.xml",
-        "lib/netstandard2.1/Supabase.Realtime.dll",
-        "lib/netstandard2.1/Supabase.Realtime.xml",
-        "supabase.realtime.7.0.2.nupkg.sha512",
-        "supabase.realtime.nuspec"
-      ]
-    },
-    "Supabase.Storage/2.0.2": {
-      "sha512": "YKxgwVgLjxi32ze29FT8aSLifiTVSZSxSyI9taOewp6wuxh+aMIPLKWtGEhFhegLv2iFwGcZ3ybMDkCi6RB7Rw==",
-      "type": "package",
-      "path": "supabase.storage/2.0.2",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "README.md",
-        "icon.png",
-        "lib/netstandard2.0/Supabase.Storage.dll",
-        "lib/netstandard2.0/Supabase.Storage.xml",
-        "supabase.storage.2.0.2.nupkg.sha512",
-        "supabase.storage.nuspec"
-      ]
-    },
->>>>>>> origin/DevDavalejo
-=======
->>>>>>> origin/DevGeny
     "Swashbuckle.AspNetCore/7.2.0": {
       "sha512": "vJv19UpWm6OOgnS9QLDnWARNVasXUfj8SFvlG7UVALm4nBnfwRnEky7C0veSDqMUmBeMPC6Ec3d6G1ts/J04Uw==",
       "type": "package",
@@ -4730,7 +4102,6 @@
         "swashbuckle.aspnetcore.swaggerui.7.2.0.nupkg.sha512",
         "swashbuckle.aspnetcore.swaggerui.nuspec"
       ]
-<<<<<<< HEAD
     },
     "System.ClientModel/1.0.0": {
       "sha512": "I3CVkvxeqFYjIVEP59DnjbeoGNfo/+SZrCLpRz2v/g0gpCHaEMPtWSY0s9k/7jR1rAsLNg2z2u1JRB76tPjnIw==",
@@ -4749,9 +4120,6 @@
         "system.clientmodel.1.0.0.nupkg.sha512",
         "system.clientmodel.nuspec"
       ]
->>>>>>> origin/DevCuoralex
-=======
->>>>>>> origin/DevGeny
     },
     "System.CodeDom/6.0.0": {
       "sha512": "CPc6tWO1LAer3IzfZufDBRL+UZQcj5uS207NHALQzP84Vp/z6wF0Aa0YZImOQY8iStY0A2zI/e3ihKNPfUm8XA==",
@@ -4961,7 +4329,6 @@
         "useSharedDesignerContext.txt"
       ]
     },
-<<<<<<< HEAD
     "System.Configuration.ConfigurationManager/6.0.1": {
       "sha512": "jXw9MlUu/kRfEU0WyTptAVueupqIeE3/rl0EZDMlf8pcvJnitQ8HeVEp69rZdaStXwTV72boi/Bhw8lOeO+U2w==",
       "type": "package",
@@ -5088,15 +4455,6 @@
         ".signature.p7s",
         "lib/net45/System.IdentityModel.Tokens.Jwt.dll",
         "lib/net45/System.IdentityModel.Tokens.Jwt.xml",
-=======
-    "System.IdentityModel.Tokens.Jwt/7.5.1": {
-      "sha512": "UUw+E0R73lZLlXgneYIJQxNs1kfbcxjVzw64JQyiwjqCd4HMpAbjn+xRo86QZT84uHq8/MkqvfH82tgjgPzpuw==",
-      "type": "package",
-      "path": "system.identitymodel.tokens.jwt/7.5.1",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
->>>>>>> origin/DevDavalejo
         "lib/net461/System.IdentityModel.Tokens.Jwt.dll",
         "lib/net461/System.IdentityModel.Tokens.Jwt.xml",
         "lib/net462/System.IdentityModel.Tokens.Jwt.dll",
@@ -5105,17 +4463,9 @@
         "lib/net472/System.IdentityModel.Tokens.Jwt.xml",
         "lib/net6.0/System.IdentityModel.Tokens.Jwt.dll",
         "lib/net6.0/System.IdentityModel.Tokens.Jwt.xml",
-<<<<<<< HEAD
         "lib/netstandard2.0/System.IdentityModel.Tokens.Jwt.dll",
         "lib/netstandard2.0/System.IdentityModel.Tokens.Jwt.xml",
         "system.identitymodel.tokens.jwt.6.35.0.nupkg.sha512",
-=======
-        "lib/net8.0/System.IdentityModel.Tokens.Jwt.dll",
-        "lib/net8.0/System.IdentityModel.Tokens.Jwt.xml",
-        "lib/netstandard2.0/System.IdentityModel.Tokens.Jwt.dll",
-        "lib/netstandard2.0/System.IdentityModel.Tokens.Jwt.xml",
-        "system.identitymodel.tokens.jwt.7.5.1.nupkg.sha512",
->>>>>>> origin/DevDavalejo
         "system.identitymodel.tokens.jwt.nuspec"
       ]
     },
@@ -5146,7 +4496,6 @@
         "useSharedDesignerContext.txt"
       ]
     },
-<<<<<<< HEAD
     "System.Memory/4.5.4": {
       "sha512": "1MbJTHS1lZ4bS4FmsJjnuGJOu88ZzTT2rLvrhW7Ygic+pC0NWA+3hgAen0HRdsocuQXCkUTdFn9yHJJhsijDXw==",
       "type": "package",
@@ -5233,34 +4582,6 @@
         "system.numerics.vectors.nuspec",
         "useSharedDesignerContext.txt",
         "version.txt"
-=======
-    "System.Reactive/6.0.0": {
-      "sha512": "31kfaW4ZupZzPsI5PVe77VhnvFF55qgma7KZr/E0iFTs6fmdhhG8j0mgEx620iLTey1EynOkEfnyTjtNEpJzGw==",
-      "type": "package",
-      "path": "system.reactive/6.0.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "build/net6.0-windows10.0.19041/_._",
-        "build/net6.0/_._",
-        "buildTransitive/net6.0-windows10.0.19041/_._",
-        "buildTransitive/net6.0/_._",
-        "icon.png",
-        "lib/net472/System.Reactive.dll",
-        "lib/net472/System.Reactive.xml",
-        "lib/net6.0-windows10.0.19041/System.Reactive.dll",
-        "lib/net6.0-windows10.0.19041/System.Reactive.xml",
-        "lib/net6.0/System.Reactive.dll",
-        "lib/net6.0/System.Reactive.xml",
-        "lib/netstandard2.0/System.Reactive.dll",
-        "lib/netstandard2.0/System.Reactive.xml",
-        "lib/uap10.0.18362/System.Reactive.dll",
-        "lib/uap10.0.18362/System.Reactive.pri",
-        "lib/uap10.0.18362/System.Reactive.xml",
-        "readme.md",
-        "system.reactive.6.0.0.nupkg.sha512",
-        "system.reactive.nuspec"
->>>>>>> origin/DevDavalejo
       ]
     },
     "System.Reflection.Metadata/7.0.0": {
@@ -5879,16 +5200,15 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "System.Threading.Channels/8.0.0": {
-      "sha512": "CMaFr7v+57RW7uZfZkPExsPB6ljwzhjACWW1gfU35Y56rk72B/Wu+sTqxVmGSk4SFUlPc3cjeKND0zktziyjBA==",
+    "System.Threading.Channels/7.0.0": {
+      "sha512": "qmeeYNROMsONF6ndEZcIQ+VxR4Q/TX/7uIVLJqtwIWL7dDWeh0l1UIqgo4wYyjG//5lUNhwkLDSFl+pAWO6oiA==",
       "type": "package",
-      "path": "system.threading.channels/8.0.0",
+      "path": "system.threading.channels/7.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "LICENSE.TXT",
-        "PACKAGE.md",
         "THIRD-PARTY-NOTICES.TXT",
         "buildTransitive/net461/System.Threading.Channels.targets",
         "buildTransitive/net462/_._",
@@ -5900,20 +5220,14 @@
         "lib/net6.0/System.Threading.Channels.xml",
         "lib/net7.0/System.Threading.Channels.dll",
         "lib/net7.0/System.Threading.Channels.xml",
-        "lib/net8.0/System.Threading.Channels.dll",
-        "lib/net8.0/System.Threading.Channels.xml",
         "lib/netstandard2.0/System.Threading.Channels.dll",
         "lib/netstandard2.0/System.Threading.Channels.xml",
         "lib/netstandard2.1/System.Threading.Channels.dll",
         "lib/netstandard2.1/System.Threading.Channels.xml",
-        "system.threading.channels.8.0.0.nupkg.sha512",
+        "system.threading.channels.7.0.0.nupkg.sha512",
         "system.threading.channels.nuspec",
         "useSharedDesignerContext.txt"
       ]
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
     },
     "System.Threading.Tasks.Extensions/4.5.4": {
       "sha512": "zteT+G8xuGu6mS+mzDzYXbzS7rd3K6Fjb9RiZlYlJPam2/hU7JCBZBVEcywNuR+oZ1ncTvc/cq0faRr3P01OVg==",
@@ -5974,124 +5288,38 @@
         "system.windows.extensions.nuspec",
         "useSharedDesignerContext.txt"
       ]
->>>>>>> origin/DevCuoralex
-=======
-    },
-    "Websocket.Client/5.1.1": {
-      "sha512": "VpQV6b8HRnw6bFFIPTOOMtOxba3/viH9K2U2LdOYNjQ2b2HrLHxjodmJr3nPwyNSrtrRPr1RDwOMJ5qqlPnCVg==",
-      "type": "package",
-      "path": "websocket.client/5.1.1",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "README.md",
-        "icon-modern.png",
-        "icon.png",
-        "lib/net6.0/Websocket.Client.dll",
-        "lib/net6.0/Websocket.Client.xml",
-        "lib/net7.0/Websocket.Client.dll",
-        "lib/net7.0/Websocket.Client.xml",
-        "lib/net8.0/Websocket.Client.dll",
-        "lib/net8.0/Websocket.Client.xml",
-        "lib/netstandard2.1/Websocket.Client.dll",
-        "lib/netstandard2.1/Websocket.Client.xml",
-        "websocket.client.5.1.1.nupkg.sha512",
-        "websocket.client.nuspec"
-      ]
->>>>>>> origin/DevDavalejo
-=======
->>>>>>> origin/DevGeny
     }
   },
   "projectFileDependencyGroups": {
     "net9.0": [
-<<<<<<< HEAD
+      "AutoMapper.Extensions.Microsoft.DependencyInjection >= 12.0.1",
       "Microsoft.EntityFrameworkCore >= 9.0.2",
       "Microsoft.EntityFrameworkCore.SqlServer >= 9.0.2",
       "Microsoft.EntityFrameworkCore.Tools >= 9.0.2",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 9.0.3",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      "Supabase >= 1.1.1",
->>>>>>> origin/DevDavalejo
-=======
-      "AutoMapper.Extensions.Microsoft.DependencyInjection >= 12.0.1",
-      "Microsoft.EntityFrameworkCore >= 9.0.2",
-      "Microsoft.EntityFrameworkCore.Design >= 9.0.2",
-      "Npgsql.EntityFrameworkCore.PostgreSQL >= 9.0.3",
->>>>>>> origin/DevGeny
-      "Swashbuckle.AspNetCore >= 7.2.0"
-    ]
-  },
-  "packageFolders": {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    "C:\\Users\\Baldur1\\.nuget\\packages\\": {}
-=======
       "Swashbuckle.AspNetCore >= 7.2.0",
       "Swashbuckle.AspNetCore.Annotations >= 7.2.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\User\\.nuget\\packages\\": {}
->>>>>>> origin/DevCuoralex
-=======
-    "C:\\Users\\Userv\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
->>>>>>> origin/DevDavalejo
-=======
-    "C:\\Users\\Geny\\.nuget\\packages\\": {}
->>>>>>> origin/DevGeny
+    "C:\\Users\\Baldur1\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
-      "projectUniqueName": "C:\\Users\\Userv\\Desktop\\PyProfundización\\DesafioProfBack\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\ProyectAntivirusBackend.csproj",
+      "projectUniqueName": "E:\\programacion\\Nodo\\c#\\challenge\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\ProyectAntivirusBackend.csproj",
       "projectName": "ProyectAntivirusBackend",
-      "projectPath": "C:\\Users\\Userv\\Desktop\\PyProfundización\\DesafioProfBack\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\ProyectAntivirusBackend.csproj",
-      "packagesPath": "C:\\Users\\Userv\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Userv\\Desktop\\PyProfundización\\DesafioProfBack\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\obj\\",
-=======
-      "projectUniqueName": "C:\\Users\\Geny\\Documents\\NODO\\Profundizacion\\Desafio\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\ProyectAntivirusBackend.csproj",
-      "projectName": "ProyectAntivirusBackend",
-      "projectPath": "C:\\Users\\Geny\\Documents\\NODO\\Profundizacion\\Desafio\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\ProyectAntivirusBackend.csproj",
-      "packagesPath": "C:\\Users\\Geny\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Geny\\Documents\\NODO\\Profundizacion\\Desafio\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\obj\\",
->>>>>>> origin/DevGeny
+      "projectPath": "E:\\programacion\\Nodo\\c#\\challenge\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\ProyectAntivirusBackend.csproj",
+      "packagesPath": "C:\\Users\\Baldur1\\.nuget\\packages\\",
+      "outputPath": "E:\\programacion\\Nodo\\c#\\challenge\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-<<<<<<< HEAD
-<<<<<<< HEAD
         "C:\\Users\\Baldur1\\AppData\\Roaming\\NuGet\\NuGet.Config"
-=======
-      "projectUniqueName": "D:\\Documents\\Nodo EAFIT\\Profundización\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\ProyectAntivirusBackend.csproj",
-      "projectName": "ProyectAntivirusBackend",
-      "projectPath": "D:\\Documents\\Nodo EAFIT\\Profundización\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\ProyectAntivirusBackend.csproj",
-      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "D:\\Documents\\Nodo EAFIT\\Profundización\\ProyectAntivirusBackend\\ProyectAntivirusBackend\\obj\\",
-      "projectStyle": "PackageReference",
-      "configFilePaths": [
-        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
->>>>>>> origin/DevCuoralex
-=======
-        "C:\\Users\\Userv\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
->>>>>>> origin/DevDavalejo
-=======
-        "C:\\Users\\Geny\\AppData\\Roaming\\NuGet\\NuGet.Config"
->>>>>>> origin/DevGeny
       ],
       "originalTargetFrameworks": [
         "net9.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -6110,19 +5338,16 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.200"
+      "SdkAnalysisLevel": "9.0.100"
     },
     "frameworks": {
       "net9.0": {
         "targetAlias": "net9.0",
         "dependencies": {
-<<<<<<< HEAD
-=======
           "AutoMapper.Extensions.Microsoft.DependencyInjection": {
             "target": "Package",
             "version": "[12.0.1, )"
           },
->>>>>>> origin/DevGeny
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",
             "version": "[9.0.2, )"
@@ -6141,16 +5366,6 @@
             "target": "Package",
             "version": "[9.0.3, )"
           },
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-          "Supabase": {
-            "target": "Package",
-            "version": "[1.1.1, )"
-          },
->>>>>>> origin/DevDavalejo
-=======
->>>>>>> origin/DevGeny
           "Swashbuckle.AspNetCore": {
             "target": "Package",
             "version": "[7.2.0, )"
@@ -6179,15 +5394,7 @@
             "privateAssets": "all"
           }
         },
-<<<<<<< HEAD
-<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
-=======
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
->>>>>>> origin/DevDavalejo
-=======
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
->>>>>>> origin/DevGeny
       }
     }
   }

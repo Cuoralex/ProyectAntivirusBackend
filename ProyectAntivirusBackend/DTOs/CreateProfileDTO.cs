@@ -6,5 +6,5 @@ namespace ProyectAntivirusBackend.DTOs
         public string Preferences { get; set; } = "{}";
         public string Biography { get; set; } = string.Empty;
         public string ProfilePicture { get; set; } = string.Empty;
-    }
+    }
 }

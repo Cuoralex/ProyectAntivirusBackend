@@ -24,6 +24,6 @@ namespace ProyectAntivirusBackend.Models
         public string ProfilePicture { get; set; } = string.Empty;
 
         // Relación con User
-        public virtual User User { get; set; }
+        public virtual required User User { get; set; }
     }
 }

@@ -46,52 +46,68 @@ namespace ProyectAntivirusBackend.Controllers
         public async Task<ActionResult<ProfileDTO>> PostProfile(CreateProfileDTO createProfileDTO)
         {
 
-            var profile = new Profile
+            var user = await _context.Users.FindAsync(createProfileDTO.UserId);
+            if (user == null)
             {
-                Name = creatProfileDTO.Name,
-                Email = createProfileDTO.Email,
-                Phone = createProfileDTO.Phone,
+                return BadRequest("El usuario no existe.");
+            }
+
+            var profile = new ProfileModel
+            {
+                UserId = user.Id,
+                User = user,
+                Preferences = "{}",
+                Biography = "",
+                ProfilePicture = ""
             };
 
-            _context.Profile.Add(profile);
+
+            _context.Profiles.Add(profile);
             await _context.SaveChangesAsync();
 
-            var ProfileDTO = new ProfileDTO
+            var profileDTO = new ProfileDTO
             {
                 Id = profile.Id,
-                Name = profile.Name,
-                Email = profile.Email,
-                Phone = profile.Phone,
+                UserId = profile.UserId,
+                Preferences = profile.Preferences,
+                Biography = profile.Biography,
+                ProfilePicture = profile.ProfilePicture,
+                Name = profile.User.Name,
+                Email = profile.User.Email,
+                Phone = profile.User?.Phone ?? string.Empty
             };
 
-            return CreatedAtAction(nameof(GetProfile), new { id = profile.Id }, profileDTO);
+            return CreatedAtAction(nameof(GetProfile), new { id = profile.Id }, profileDTO);
 
+            // PUT: api/v1/profile/5
+#pragma warning disable CS8321 // Local function is declared but never used
+            [HttpPut("{id}")]
+            async Task<IActionResult> PutProfile(Guid id, CreateProfileDTO createProfileDTO)
+            {
+                var profile = await _context.Profiles.FindAsync(id);
+                if (profile == null) return NotFound();
+
+                _mapper.Map(createProfileDTO, profile);
+                _context.Entry(profile).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
+
+                return NoContent();
+            }
+#pragma warning restore CS8321 // Local function is declared but never used
+
+            // DELETE: api/v1/profile/5
+#pragma warning disable CS8321 // Local function is declared but never used
+            [HttpDelete("{id}")]
+            async Task<IActionResult> DeleteProfile(Guid id)
+            {
+                var profile = await _context.Profiles.FindAsync(id);
+                if (profile == null) return NotFound();
+
+                _context.Profiles.Remove(profile);
+                await _context.SaveChangesAsync();
+                return NoContent();
+            }
+#pragma warning restore CS8321 // Local function is declared but never used
         }
-
-        // PUT: api/v1/profile/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutProfile(Guid id, CreateProfileDTO createProfileDTO)
-        {
-            var profile = await _context.Profiles.FindAsync(id);
-            if (profile == null) return NotFound();
-
-            _mapper.Map(createProfileDTO, profile);
-            _context.Entry(profile).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        // DELETE: api/v1/profile/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteProfile(Guid id)
-        {
-            var profile = await _context.Profiles.FindAsync(id);
-            if (profile == null) return NotFound();
-
-            _context.Profiles.Remove(profile);
-            await _context.SaveChangesAsync();
-            return NoContent();
-        }
-    }
+    }
 }

@@ -25,9 +25,9 @@ public class RequestsController : ControllerBase
 
 public interface IRequestService
 {
+    Task<IEnumerable<RequestDto>> GetAllAsync();
+    Task<RequestDto?> GetByIdAsync(int id);
     Task AddAsync(RequestDto dto);
-    Task DeleteAsync(int id);
-    Task<object?> GetAllAsync();
-    Task<object?> GetByIdAsync(int id);
     Task UpdateAsync(RequestDto dto);
+    Task DeleteAsync(int id);
 }

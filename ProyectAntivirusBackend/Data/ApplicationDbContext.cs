@@ -3,54 +3,19 @@ using ProyectAntivirusBackend.Models;
 
 namespace ProyectAntivirusBackend.Data
 {
-    public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options)
+    public class ApplicationDbContext : DbContext
     {
-<<<<<<< HEAD
-<<<<<<< HEAD
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
+
         public DbSet<User> Users { get; set; }
         public DbSet<Sector> Sectors { get; set; }
         public DbSet<Service> Services { get; set; }
-
-
-=======
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options) { }
-
-        public DbSet<User> Users { get; set; }
-<<<<<<< HEAD
-        public DbSet<OpportunityType> OpportunityTypes { get; set; }
+        public DbSet<Profile> Profiles { get; set; }
+        public DbSet<ServiceType> ServicesTypes { get; set; }
         public DbSet<Request> Requests { get; set; }
+        public DbSet<OpportunityType> OpportunityTypes { get; set; }
 
-        // Eliminamos el constructor incorrecto
-        // public AppDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<OpportunityType>().ToTable("opportunity_types");
-            base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<User>().ToTable("users", t => t.ExcludeFromMigrations());
-        }
-        
->>>>>>> origin/DevCuoralex
-=======
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
-        {
-        }
-
-        public required DbSet<User> Users { get; set; }
-
-        public required DbSet<ServiceType> ServicesTypes { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<ServiceType>().ToTable("services_types");
-        }
->>>>>>> origin/DevDavalejo
-    }
-}
-=======
-        public DbSet<Profile> Profiles { get; set; } // Nueva línea
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -61,7 +26,6 @@ namespace ProyectAntivirusBackend.Data
                 .HasForeignKey<Profile>(p => p.UserId);
 
             // ... otras configuraciones ...
-        }
-    }
+        }
+    }
 }
->>>>>>> origin/DevGeny
