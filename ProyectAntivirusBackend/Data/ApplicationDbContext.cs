@@ -6,6 +6,7 @@ namespace ProyectAntivirusBackend.Data
     public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options)
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         public DbSet<User> Users { get; set; }
         public DbSet<Sector> Sectors { get; set; }
         public DbSet<Service> Services { get; set; }
@@ -31,5 +32,19 @@ namespace ProyectAntivirusBackend.Data
         }
         
 >>>>>>> origin/DevCuoralex
+=======
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        {
+        }
+
+        public required DbSet<User> Users { get; set; }
+
+        public required DbSet<ServiceType> ServicesTypes { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ServiceType>().ToTable("services_types");
+        }
+>>>>>>> origin/DevDavalejo
     }
 }
