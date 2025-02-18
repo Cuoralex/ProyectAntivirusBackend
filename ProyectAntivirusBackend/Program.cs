@@ -4,6 +4,7 @@ using ProyectAntivirusBackend.Data;
 using ProyectAntivirusBackend.Repositories;
 using ProyectAntivirusBackend.Services;
 using AutoMapper;
+using ProyectAntivirusBackend.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,9 @@ builder.Services.AddScoped<OpportunityTypeService>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<IInstitutionRepository, InstitutionRepository>();
+builder.Services.AddScoped<IInstitutionService, InstitutionService>();
 
 var app = builder.Build();
 

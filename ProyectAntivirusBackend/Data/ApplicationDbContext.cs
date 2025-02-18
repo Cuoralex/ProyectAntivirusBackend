@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using ProyectAntivirusBackend.Models;
+using ServiceModel = ProyectAntivirusBackend.Models.Service;
+
 
 namespace ProyectAntivirusBackend.Data
 {
@@ -9,14 +11,14 @@ namespace ProyectAntivirusBackend.Data
 
         public DbSet<User> Users { get; set; }
         public DbSet<Sector> Sectors { get; set; }
-        public DbSet<Service> Services { get; set; }
+        public DbSet<ServiceModel> Services { get; set; }
         public DbSet<Profile> Profiles { get; set; }
         public DbSet<ServiceType> ServicesTypes { get; set; }
         public DbSet<Request> Requests { get; set; }
         public DbSet<OpportunityType> OpportunityTypes { get; set; }
 
         public DbSet<AuthUser> AuthUsers { get; set; }
-        
+
         public DbSet<Opportunity> Opportunity { get; set; }
 
 
