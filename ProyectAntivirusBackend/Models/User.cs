@@ -28,8 +28,8 @@ namespace ProyectAntivirusBackend.Models
         public bool IsActive { get; set; } = true;
 
         // Relación con auth_users
-        public AuthUser AuthUser { get; set; }
-        
-        public Profile Profile { get; set; } = null!;  
+        public required AuthUser AuthUser { get; set; }
+
+        public Profile Profile { get; set; } = null!;
     }
 }

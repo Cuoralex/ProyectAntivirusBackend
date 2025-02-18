@@ -16,6 +16,6 @@ namespace ProyectAntivirusBackend.Models
         public string PasswordHash { get; set; } = string.Empty;
 
         // Relación con la tabla users
-        public User User { get; set; }
+        public required User User { get; set; }
     }
 }
