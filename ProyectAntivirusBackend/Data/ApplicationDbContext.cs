@@ -15,6 +15,10 @@ namespace ProyectAntivirusBackend.Data
         public DbSet<Request> Requests { get; set; }
         public DbSet<OpportunityType> OpportunityTypes { get; set; }
 
+        public DbSet<AuthUser> AuthUsers { get; set; }
+        
+        public DbSet<Opportunity> Opportunity { get; set; }
+
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -24,6 +28,22 @@ namespace ProyectAntivirusBackend.Data
                 .HasOne(u => u.Profile)
                 .WithOne(p => p.User)
                 .HasForeignKey<Profile>(p => p.UserId);
+
+            // Relación uno a uno entre User y AuthUser
+            modelBuilder.Entity<User>()
+                .HasOne(u => u.AuthUser)
+                .WithOne(a => a.User)
+                .HasForeignKey<AuthUser>(a => a.UserId);
+
+            // Índice único para el correo
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.Email)
+                .IsUnique();
+
+            // Índice para el título de la oportunidad
+            modelBuilder.Entity<Opportunity>()
+                .HasIndex(o => o.Title)
+                .IsUnique();
 
             // ... otras configuraciones ...
         }
