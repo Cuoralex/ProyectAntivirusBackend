@@ -7,14 +7,15 @@ namespace ProyectAntivirusBackend.Models
     public class Sector
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("id")]
         public int Id { get; set; }
 
+        [Required]
+        [MaxLength(20)]
         [Column("name")]
         public string Name { get; set; } = string.Empty;
 
         [Column("description")]
-        public required string Description { get; set; } = string.Empty;
+        public string? Description { get; set; }
     }
 }

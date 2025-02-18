@@ -7,10 +7,10 @@ namespace ProyectAntivirusBackend.Models
     public class AuthUser
     {
         [Column("id")]
-        public Guid Id { get; set; } = Guid.NewGuid();
+        public int Id { get; set; }
 
         [Column("user_id")]
-        public Guid UserId { get; set; }
+        public int UserId { get; set; }
 
         [Column("password_hash")]
         public string PasswordHash { get; set; } = string.Empty;

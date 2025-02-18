@@ -8,22 +8,20 @@ namespace ProyectAntivirusBackend.Models
     {
         [Key]
         [Column("id")]
-        public Guid Id { get; set; } = Guid.NewGuid();
+        public int Id { get; set; }
+
+        [Column("preferences")]
+        public string? Preferences { get; set; }
+
+        [Column("biography")]
+        public string? Biography { get; set; }
+
+        [Column("profile_image")]
+        public string? ProfilePicture { get; set; }
 
         [ForeignKey("User")]
-        [Column("usuario_id")]
-        public Guid UserId { get; set; }
-
-        [Column("preferencias")]
-        public string Preferences { get; set; } = "{}";
-
-        [Column("biografia")]
-        public string Biography { get; set; } = string.Empty;
-
-        [Column("foto_perfil")]
-        public string ProfilePicture { get; set; } = string.Empty;
-
-        // Relación con User
-        public virtual required User User { get; set; }
+        [Column("user_id")]
+        public int UserId { get; set; }
+        public required User User { get; set; }
     }
 }

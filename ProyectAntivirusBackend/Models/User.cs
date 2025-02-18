@@ -1,35 +1,49 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProyectAntivirusBackend.Models
 {
-    [Table("users")] // Nombre de la tabla en PostgreSQL
+    [Table("users")]
     public class User
     {
+        [Key]
         [Column("id")]
-        public Guid Id { get; set; } = Guid.NewGuid();
+        public int Id { get; set; }
 
-        [Column("name")]
-        public string Name { get; set; } = string.Empty;
+        [Required]
+        [MaxLength(60)]
+        [Column("fullname")]
+        public string FullName { get; set; } = string.Empty;
 
+        [Required]
+        [MaxLength(255)]
         [Column("email")]
         public string Email { get; set; } = string.Empty;
+
+        [Required]
+        [Column("password")]
+        public string Password { get; set; } = string.Empty;
 
         [Column("phone")]
         public string? Phone { get; set; }
 
-        [Column("role")]
-        public string Role { get; set; } = "study"; // Valor por defecto
+        [Required]
+        [Column("rol")]
+        public string Role { get; set; } = string.Empty;
 
-        [Column("Registration_Date")]
+        [Column("registration_date")]
         public DateTime RegistrationDate { get; set; } = DateTime.UtcNow;
 
-        [Column("Isactive")]
+        [Required]
+        [Column("birthdate")]
+        public DateTime Birthdate { get; set; }
+
+        [Column("is_active")]
         public bool IsActive { get; set; } = true;
 
-        // Relación con auth_users
-        public required AuthUser AuthUser { get; set; }
+        public Profile? Profile { get; set; }
 
-        public Profile Profile { get; set; } = null!;
+        public AuthUser? AuthUser { get; set; }
     }
 }

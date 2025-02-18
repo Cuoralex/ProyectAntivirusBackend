@@ -18,14 +18,14 @@ public class ServiceTypesController : ControllerBase
 	[HttpGet]
 	public async Task<ActionResult<IEnumerable<ServiceType>>> GetServicesTypes()
 	{
-		return await _context.ServicesTypes.ToListAsync();
+		return await _context.ServiceTypes.ToListAsync();
 	}
 
 	// GET
 	[HttpGet("{id}")]
 	public async Task<ActionResult<ServiceType>> GetServiceType(int id)
 	{
-		var serviceType = await _context.ServicesTypes.FindAsync(id);
+		var serviceType = await _context.ServiceTypes.FindAsync(id);
 
 		if (serviceType == null)
 		{
@@ -39,7 +39,7 @@ public class ServiceTypesController : ControllerBase
 	[HttpPost]
 	public async Task<ActionResult<ServiceType>> PostServiceType(ServiceType serviceType)
 	{
-		_context.ServicesTypes.Add(serviceType);
+		_context.ServiceTypes.Add(serviceType);
 		await _context.SaveChangesAsync();
 
 		return CreatedAtAction(nameof(GetServiceType), new { id = serviceType.Id }, serviceType);
@@ -79,13 +79,13 @@ public class ServiceTypesController : ControllerBase
 	[HttpDelete("{id}")]
 	public async Task<IActionResult> DeleteServiceType(int id)
 	{
-		var serviceType = await _context.ServicesTypes.FindAsync(id);
+		var serviceType = await _context.ServiceTypes.FindAsync(id);
 		if (serviceType == null)
 		{
 			return NotFound();
 		}
 
-		_context.ServicesTypes.Remove(serviceType);
+		_context.ServiceTypes.Remove(serviceType);
 		await _context.SaveChangesAsync();
 
 		return NoContent();
@@ -93,6 +93,6 @@ public class ServiceTypesController : ControllerBase
 
 	private bool ServiceTypeExists(int id)
 	{
-		return _context.ServicesTypes.Any(e => e.Id == id);
+		return _context.ServiceTypes.Any(e => e.Id == id);
 	}
 }

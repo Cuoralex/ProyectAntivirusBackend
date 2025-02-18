@@ -7,23 +7,30 @@ namespace ProyectAntivirusBackend.Models
     public class Service
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("id")]
         public int Id { get; set; }
 
+        [Required]
         [Column("is_active")]
         public bool IsActive { get; set; } = true;
 
+        [Required]
+        [ForeignKey("ServiceType")]
         [Column("service_type_id")]
         public int ServiceTypeId { get; set; }
 
+        public ServiceType ServiceType { get; set; } = null!;
+
+        [Required]
         [Column("title")]
-        public required string Title { get; set; }
+        public string Title { get; set; } = string.Empty;
 
+        [Required]
         [Column("description")]
-        public required string Description { get; set; }
+        public string Description { get; set; } = string.Empty;
 
+        [Required]
         [Column("image")]
-        public required string Image { get; set; }
+        public string Image { get; set; } = string.Empty;
     }
 }

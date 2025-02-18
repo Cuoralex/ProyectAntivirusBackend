@@ -3,19 +3,21 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProyectAntivirusBackend.Models
 {
-    [Table("service_types")] 
+    [Table("services_types")]
     public class ServiceType
     {
-        [Key] 
+        [Key]
         [Column("id")]
         public int Id { get; set; }
 
         [Required]
+        [MaxLength(30)]
         [Column("name")]
-        [StringLength(30)]
-        public required string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
         [Column("description")]
-        public required string Description { get; set; }
+        public string? Description { get; set; }
+
+        public ICollection<Service> Services { get; set; } = new List<Service>();
     }
 }

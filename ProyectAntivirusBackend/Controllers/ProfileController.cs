@@ -72,7 +72,7 @@ namespace ProyectAntivirusBackend.Controllers
                 Preferences = profile.Preferences,
                 Biography = profile.Biography,
                 ProfilePicture = profile.ProfilePicture,
-                Name = profile.User.Name,
+                Name = profile.User.FullName,
                 Email = profile.User.Email,
                 Phone = profile.User?.Phone ?? string.Empty
             };

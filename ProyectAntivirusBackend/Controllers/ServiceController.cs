@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using ProyectAntivirusBackend.Data;
 using ProyectAntivirusBackend.Models;
 using ProyectAntivirusBackend.DTOs;
+using ServiceModel = ProyectAntivirusBackend.Models.Service;
+
 
 namespace ProyectAntivirusBackend.Controllers
 {
@@ -55,7 +57,7 @@ namespace ProyectAntivirusBackend.Controllers
         [HttpPost]
         public async Task<ActionResult<ServiceDTO>> PostService(CreateServiceDTO createServiceDTO)
         {
-            var service = new Service
+            var service = new ServiceModel
             {
                 IsActive = true,
                 ServiceTypeId = createServiceDTO.ServiceTypeId,
