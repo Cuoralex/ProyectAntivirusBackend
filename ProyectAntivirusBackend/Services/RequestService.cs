@@ -1,4 +1,5 @@
 using ProyectAntivirusBackend.Repositories;
+using ProyectAntivirusBackend.Models;
 
 public class RequestService : IRequestService
 {

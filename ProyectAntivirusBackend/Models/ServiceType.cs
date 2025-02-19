@@ -1,25 +1,23 @@
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProyectAntivirusBackend.Models
 {
-    [Table("opportunity_types")]
-    public class OpportunityType
+    [Table("services_types")]
+    public class ServiceType
     {
         [Key]
-        [Column("Id")]
+        [Column("id")]
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(100)]
-        [Column("Name")]
+        [MaxLength(30)]
+        [Column("name")]
         public string Name { get; set; } = string.Empty;
 
-        [MaxLength(255)]
-        [Column("Description")]
+        [Column("description")]
         public string? Description { get; set; }
 
-        public ICollection<Opportunity> Opportunities { get; set; } = new List<Opportunity>();
+        public ICollection<Service> Services { get; set; } = new List<Service>();
     }
 }

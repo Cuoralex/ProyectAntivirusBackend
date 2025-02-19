@@ -3,6 +3,8 @@ using Microsoft.OpenApi.Models;
 using ProyectAntivirusBackend.Data;
 using ProyectAntivirusBackend.Repositories;
 using ProyectAntivirusBackend.Services;
+using AutoMapper;
+using ProyectAntivirusBackend.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +18,9 @@ builder.Services.AddScoped<IOpportunityTypeRepository, OpportunityTypeRepository
 builder.Services.AddScoped<OpportunityTypeService>();
 builder.Services.AddScoped<IRequestService, RequestService>();
 builder.Services.AddScoped<IRequestRepository, RequestRepository>();
+builder.Services.AddScoped<IOpportunityTypeRepository, OpportunityTypeRepository>();
+builder.Services.AddScoped<OpportunityTypeService>();
+
 
 
 // Configurar PostgreSQL (corrige "UserBgsql" a "UseNpgsql")
@@ -35,8 +40,12 @@ builder.Services.AddControllers();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+else
 {
     app.UseExceptionHandler("/Home/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
