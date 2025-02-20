@@ -41,6 +41,9 @@ namespace ProyectAntivirusBackend.Models
         [Column("is_active")]
         public bool IsActive { get; set; } = true;
 
+         [Column("password_hash")]
+        public string PasswordHash { get; set; } = string.Empty;
+
         public Profile? Profile { get; set; }
 
         public AuthUser? AuthUser { get; set; }
