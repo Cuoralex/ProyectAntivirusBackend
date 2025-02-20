@@ -72,5 +72,4 @@ public interface IRequestService
     Task<object?> GetAllAsync();
     Task<object?> GetByIdAsync(int id);
     Task UpdateAsync(RequestDto dto);
-    Task DeleteAsync(int id);
 }
