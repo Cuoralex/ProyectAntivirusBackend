@@ -21,5 +21,8 @@ namespace ProyectAntivirusBackend.Models
 
         [Column("information")]
         public string? Information { get; set; }
+
+        // Agregar esta propiedad de navegación
+        public ICollection<Opportunity> Opportunities { get; set; } = new List<Opportunity>();
     }
 }

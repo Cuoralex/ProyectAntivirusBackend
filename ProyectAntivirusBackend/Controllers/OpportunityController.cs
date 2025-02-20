@@ -24,16 +24,26 @@ namespace ProyectAntivirusBackend.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<OpportunityDTO>>> GetOpportunity()
         {
-            var Opportunity = await _context.Opportunities.ToListAsync();
-            var opportunityDTOs = _mapper.Map<IEnumerable<OpportunityDTO>>(Opportunity);
+            var opportunities = await _context.Opportunities
+                .Include(o => o.Sector)
+                .Include(o => o.Institution)
+                .Include(o => o.OpportunityType)
+                .ToListAsync();
+
+            var opportunityDTOs = _mapper.Map<IEnumerable<OpportunityDTO>>(opportunities);
             return Ok(opportunityDTOs);
         }
 
         // GET: api/v1/opportunity/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<OpportunityDTO>> GetOpportunity(Guid id)
+        public async Task<ActionResult<OpportunityDTO>> GetOpportunity(int id)
         {
-            var opportunity = await _context.Opportunities.FindAsync(id);
+            var opportunity = await _context.Opportunities
+                .Include(o => o.Sector)
+                .Include(o => o.Institution)
+                .Include(o => o.OpportunityType)
+                .FirstOrDefaultAsync(o => o.Id == id);
+
             if (opportunity == null) return NotFound();
 
             var opportunityDTO = _mapper.Map<OpportunityDTO>(opportunity);
@@ -44,6 +54,21 @@ namespace ProyectAntivirusBackend.Controllers
         [HttpPost]
         public async Task<ActionResult<OpportunityDTO>> PostOpportunity(CreateOpportunityDTO createOpportunityDTO)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var institution = await _context.Institutions.FindAsync(createOpportunityDTO.InstitutionId);
+            if (institution == null)
+                return NotFound(new { message = "Institution not found." });
+
+            var sector = await _context.Sectors.FindAsync(createOpportunityDTO.SectorId);
+            if (sector == null)
+                return NotFound(new { message = "Sector not found." });
+
+            var opportunityType = await _context.OpportunityTypes.FindAsync(createOpportunityDTO.OpportunityTypeId);
+            if (opportunityType == null)
+                return NotFound(new { message = "Opportunity Type not found." });
+
             var opportunity = _mapper.Map<Opportunity>(createOpportunityDTO);
             opportunity.PublicationDate = DateTime.UtcNow;
 

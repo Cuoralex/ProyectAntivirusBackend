@@ -19,8 +19,6 @@ namespace ProyectAntivirusBackend.Models
         [Column("service_type_id")]
         public int ServiceTypeId { get; set; }
 
-        public ServiceType ServiceType { get; set; } = null!;
-
         [Required]
         [Column("title")]
         public string Title { get; set; } = string.Empty;
@@ -32,5 +30,7 @@ namespace ProyectAntivirusBackend.Models
         [Required]
         [Column("image")]
         public string Image { get; set; } = string.Empty;
+
+        public ServiceType? ServiceType { get; set; }
     }
 }

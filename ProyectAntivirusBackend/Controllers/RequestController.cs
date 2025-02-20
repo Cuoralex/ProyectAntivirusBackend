@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Swashbuckle.AspNetCore.Annotations;
+using ProyectAntivirusBackend.DTOs;
 
 /// <summary>
 /// Controller to manage requests.
@@ -20,20 +21,20 @@ public class RequestsController : ControllerBase
 
     [HttpGet]
     [SwaggerOperation(Summary = "Retrieves all requests", Description = "Returns a list of all requests.")]
-    [ProducesResponseType(typeof(IEnumerable<RequestDto>), 200)]
-    public async Task<ActionResult<IEnumerable<RequestDto>>> GetAll() => Ok(await _service.GetAllAsync());
+    [ProducesResponseType(typeof(IEnumerable<RequestDTO>), 200)]
+    public async Task<ActionResult<IEnumerable<RequestDTO>>> GetAll() => Ok(await _service.GetAllAsync());
 
     [HttpGet("{id}")]
     [SwaggerOperation(Summary = "Retrieves a request by ID", Description = "Returns a specific request based on the provided ID.")]
-    [ProducesResponseType(typeof(RequestDto), 200)]
+    [ProducesResponseType(typeof(RequestDTO), 200)]
     [ProducesResponseType(404)]
-    public async Task<ActionResult<RequestDto>> GetById(int id) => Ok(await _service.GetByIdAsync(id));
+    public async Task<ActionResult<RequestDTO>> GetById(int id) => Ok(await _service.GetByIdAsync(id));
 
     [HttpPost]
     [SwaggerOperation(Summary = "Adds a new request", Description = "Creates a new request and returns the created entity.")]
-    [ProducesResponseType(typeof(RequestDto), 201)]
+    [ProducesResponseType(typeof(RequestDTO), 201)]
     [ProducesResponseType(400)]
-    public async Task<IActionResult> Add([FromBody] RequestDto dto)
+    public async Task<IActionResult> Add([FromBody] RequestDTO dto)
     {
         await _service.AddAsync(dto);
         return CreatedAtAction(nameof(GetById), new { id = dto.Id }, dto);
@@ -44,7 +45,7 @@ public class RequestsController : ControllerBase
     [ProducesResponseType(204)]
     [ProducesResponseType(400)]
     [ProducesResponseType(404)]
-    public async Task<IActionResult> Update(int id, [FromBody] RequestDto dto)
+    public async Task<IActionResult> Update(int id, [FromBody] RequestDTO dto)
     {
         if (id != dto.Id) return BadRequest();
         await _service.UpdateAsync(dto);
@@ -67,9 +68,9 @@ public class RequestsController : ControllerBase
 /// </summary>
 public interface IRequestService
 {
-    Task AddAsync(RequestDto dto);
+    Task AddAsync(RequestDTO dto);
     Task DeleteAsync(int id);
     Task<object?> GetAllAsync();
     Task<object?> GetByIdAsync(int id);
-    Task UpdateAsync(RequestDto dto);
+    Task UpdateAsync(RequestDTO dto);
 }

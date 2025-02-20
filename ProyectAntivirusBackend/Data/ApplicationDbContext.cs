@@ -52,9 +52,9 @@ namespace ProyectAntivirusBackend.Data
             // Relación uno a muchos entre Opportunity y Institution
             modelBuilder.Entity<Opportunity>()
                 .HasOne(o => o.Institution)
-                .WithMany()
+                .WithMany(i => i.Opportunities)
                 .HasForeignKey(o => o.InstitutionId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict); // Evita eliminar instituciones si hay oportunidades vinculadas
 
             // Relación uno a muchos entre Opportunity y Sector
             modelBuilder.Entity<Opportunity>()

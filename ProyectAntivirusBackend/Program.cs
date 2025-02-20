@@ -18,6 +18,8 @@ builder.Services.AddScoped<IOpportunityTypeRepository, OpportunityTypeRepository
 builder.Services.AddScoped<OpportunityTypeService>();
 builder.Services.AddScoped<IRequestService, RequestService>();
 builder.Services.AddScoped<IRequestRepository, RequestRepository>();
+builder.Services.AddScoped<IInstitutionService, InstitutionService>();
+builder.Services.AddScoped<IInstitutionRepository, InstitutionRepository>();
 
 // Agregar AutoMapper
 builder.Services.AddAutoMapper(typeof(Program));
