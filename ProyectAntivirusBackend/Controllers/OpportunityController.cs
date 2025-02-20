@@ -31,7 +31,7 @@ namespace ProyectAntivirusBackend.Controllers
 
         // GET: api/v1/opportunity/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<OpportunityDTO>> GetOpportunity(Guid id)
+        public async Task<ActionResult<OpportunityDTO>> GetOpportunity(int id)
         {
             var opportunity = await _context.Opportunities.FindAsync(id);
             if (opportunity == null) return NotFound();
@@ -44,19 +44,46 @@ namespace ProyectAntivirusBackend.Controllers
         [HttpPost]
         public async Task<ActionResult<OpportunityDTO>> PostOpportunity(CreateOpportunityDTO createOpportunityDTO)
         {
+            // Buscar el Sector en la base de datos
+            var sector = await _context.Sectors.FirstOrDefaultAsync(s => s.Name == createOpportunityDTO.Sector);
+            if (sector == null)
+            {
+                return BadRequest("Sector inválido. Debe ser un sector existente en la base de datos.");
+            }
+
+            // Buscar la Institución en la base de datos
+            var institution = await _context.Institutions.FirstOrDefaultAsync(i => i.Name == createOpportunityDTO.Institution);
+            if (institution == null)
+            {
+                return BadRequest("Institución inválida. Debe ser una institución existente en la base de datos.");
+            }
+
+            // Buscar el Tipo de Oportunidad en la base de datos
+            var opportunityType = await _context.OpportunityTypes.FirstOrDefaultAsync(ot => ot.Name == createOpportunityDTO.Type);
+            if (opportunityType == null)
+            {
+                return BadRequest("Tipo de oportunidad inválido.");
+            }
+
+            // Mapear la oportunidad sin sector, institution ni type
             var opportunity = _mapper.Map<Opportunity>(createOpportunityDTO);
+            opportunity.Sector = sector;  // Asignar Sector desde la BD
+            opportunity.Institution = institution;  // Asignar Institution desde la BD
+            opportunity.OpportunityType = opportunityType;  // Asignar OpportunityType desde la BD
             opportunity.PublicationDate = DateTime.UtcNow;
 
-            _context.Opportunities.Add(opportunity);
+            await _context.Opportunities.AddAsync(opportunity);
             await _context.SaveChangesAsync();
 
             var opportunityDTO = _mapper.Map<OpportunityDTO>(opportunity);
             return CreatedAtAction(nameof(GetOpportunity), new { id = opportunity.Id }, opportunityDTO);
         }
 
+
+
         // PUT: api/v1/opportunity/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutOpportunity(Guid id, CreateOpportunityDTO createOpportunityDTO)
+        public async Task<IActionResult> PutOpportunity(int id, CreateOpportunityDTO createOpportunityDTO)
         {
             var opportunity = await _context.Opportunities.FindAsync(id);
             if (opportunity == null) return NotFound();
@@ -70,7 +97,7 @@ namespace ProyectAntivirusBackend.Controllers
 
         // DELETE: api/v1/opportunity/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteOpportunity(Guid id)
+        public async Task<IActionResult> DeleteOpportunity(int id)
         {
             var opportunity = await _context.Opportunities.FindAsync(id);
             if (opportunity == null) return NotFound();

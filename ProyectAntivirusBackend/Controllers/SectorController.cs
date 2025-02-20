@@ -39,6 +39,28 @@ namespace ProyectAntivirusBackend.Controllers
             return Ok(new SectorDTO { Id = sector.Id, Name = sector.Name, Description = sector.Description });
         }
 
+        [HttpGet("{id}/opportunities")]
+        public async Task<ActionResult<IEnumerable<OpportunityDTO>>> GetOpportunitiesBySector(int id)
+        {
+            var opportunities = await _context.Opportunities
+                .Where(o => o.SectorId == id)
+                .Select(o => new OpportunityDTO
+                {
+                    Id = o.Id,
+                    Title = o.Title,
+                    Description = o.Description
+                })
+                .ToListAsync();
+
+            if (!opportunities.Any())
+            {
+                return NotFound($"No hay oportunidades asociadas al sector con ID {id}");
+            }
+
+            return Ok(opportunities);
+        }
+
+
         [HttpPost]
         public async Task<ActionResult<SectorDTO>> PostSector(Sector sector)
         {

@@ -51,7 +51,7 @@ namespace ProyectAntivirusBackend.Controllers
         // GET: api/v1/user/5
         [Authorize]
         [HttpGet("{id}")]
-        public async Task<ActionResult<UserDTO>> GetUser(Guid id)
+        public async Task<ActionResult<UserDTO>> GetUser(int id)
         {
             var user = await _context.Users.FindAsync(id);
             if (user == null) return NotFound();
@@ -65,6 +65,10 @@ namespace ProyectAntivirusBackend.Controllers
         public async Task<ActionResult<UserDTO>> PostUser(CreateUserDTO createUserDTO)
         {
             var user = _mapper.Map<User>(createUserDTO);
+
+            // Encriptar la contraseña antes de guardarla en la BD
+            user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(createUserDTO.Password);
+
             user.RegistrationDate = DateTime.UtcNow;
             user.IsActive = true;
 
@@ -75,10 +79,11 @@ namespace ProyectAntivirusBackend.Controllers
             return CreatedAtAction(nameof(GetUser), new { id = user.Id }, userDTO);
         }
 
+
         // PUT: api/v1/user/5
         [Authorize]
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(Guid id, CreateUserDTO createUserDTO)
+        public async Task<IActionResult> PutUser(int id, CreateUserDTO createUserDTO)
         {
             var user = await _context.Users.FindAsync(id);
             if (user == null) return NotFound();
@@ -93,7 +98,7 @@ namespace ProyectAntivirusBackend.Controllers
         // DELETE: api/v1/user/5
         [Authorize]
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser(Guid id)
+        public async Task<IActionResult> DeleteUser(int id)
         {
             var user = await _context.Users.FindAsync(id);
             if (user == null) return NotFound();

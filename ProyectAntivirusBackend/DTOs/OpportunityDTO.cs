@@ -2,7 +2,7 @@ namespace ProyectAntivirusBackend.DTOs
 {
     public class OpportunityDTO
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string Title { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public string Type { get; set; } = string.Empty;
@@ -14,6 +14,6 @@ namespace ProyectAntivirusBackend.DTOs
         public DateTime ExpirationDate { get; set; }
         public string Institution { get; set; } = string.Empty;
         public string Status { get; set; } = "abierta"; // Estado por defecto: "abierta"
-        
+
     }
 }

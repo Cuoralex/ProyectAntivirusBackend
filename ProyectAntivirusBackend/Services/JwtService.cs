@@ -18,18 +18,16 @@ namespace ProyectAntivirusBackend.Services
         {
             var jwtSettings = _configuration.GetSection("Jwt");
             var keyValue = jwtSettings["Key"];
-            if (string.IsNullOrEmpty(keyValue))
-            {
-                throw new InvalidOperationException("JWT Key no está configurada.");
-            }
-            var key = Encoding.ASCII.GetBytes(keyValue);
+            var issuer = jwtSettings["Issuer"];
+            var audience = jwtSettings["Audience"];
 
-            var expireMinutesValue = jwtSettings["ExpireMinutes"];
-            if (string.IsNullOrEmpty(expireMinutesValue))
+            if (string.IsNullOrEmpty(keyValue) || string.IsNullOrEmpty(issuer) || string.IsNullOrEmpty(audience))
             {
-                throw new InvalidOperationException("JWT ExpireMinutes no está configurado.");
+                throw new InvalidOperationException("JWT Key, Issuer o Audience no están configurados correctamente.");
             }
-            var expireMinutes = double.Parse(expireMinutesValue);
+
+            var key = Encoding.UTF8.GetBytes(keyValue);
+            var expireMinutes = double.Parse(jwtSettings["ExpireMinutes"] ?? "60");
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
@@ -39,6 +37,8 @@ namespace ProyectAntivirusBackend.Services
                     new Claim(ClaimTypes.Role, role)
                 }),
                 Expires = DateTime.UtcNow.AddMinutes(expireMinutes),
+                Issuer = issuer,
+                Audience = audience,
                 SigningCredentials = new SigningCredentials(
                     new SymmetricSecurityKey(key),
                     SecurityAlgorithms.HmacSha256Signature)

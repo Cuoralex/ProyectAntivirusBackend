@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization; // Agregar esto
 
 namespace ProyectAntivirusBackend.Models
 {
@@ -20,6 +21,7 @@ namespace ProyectAntivirusBackend.Models
         [Column("Description")]
         public string? Description { get; set; }
 
+        [JsonIgnore] // Evita que Swagger y la API lo incluyan en los JSON
         public ICollection<Opportunity> Opportunities { get; set; } = new List<Opportunity>();
     }
 }

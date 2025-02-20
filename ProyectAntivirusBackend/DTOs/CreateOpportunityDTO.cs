@@ -11,6 +11,6 @@ namespace ProyectAntivirusBackend.DTOs
         public string Benefits { get; set; } = string.Empty;
         public DateTime ExpirationDate { get; set; }
         public string Institution { get; set; } = string.Empty;
-         public string Status { get; set; } = "abierta"; // Estado por defecto: "abierta"
+        public string Status { get; set; } = "abierta";
     }
 }
