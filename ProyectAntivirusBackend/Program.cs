@@ -11,7 +11,6 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
 // Configurar JWT
 var jwtSettings = builder.Configuration.GetSection("Jwt");
 var keyValue = jwtSettings["Key"];
@@ -20,37 +19,6 @@ if (string.IsNullOrEmpty(keyValue))
     throw new InvalidOperationException("JWT Key no está configurada.");
 }
 var key = Encoding.ASCII.GetBytes(keyValue);
-
-
-builder.Services.AddAuthentication(options =>
-{
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-})
-.AddJwtBearer(options =>
-{
-    options.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
-        ValidIssuer = jwtSettings["Issuer"],
-        ValidAudience = jwtSettings["Audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(key)
-    };
-});
-
-
-// Configurar JWT
-var jwtSettings = builder.Configuration.GetSection("Jwt");
-var keyValue = jwtSettings["Key"];
-if (string.IsNullOrEmpty(keyValue))
-{
-    throw new InvalidOperationException("JWT Key no está configurada.");
-}
-var key = Encoding.ASCII.GetBytes(keyValue);
-
 
 builder.Services.AddAuthentication(options =>
 {
@@ -114,6 +82,7 @@ else
 
 app.UseHttpsRedirection();
 app.UseRouting();
+app.UseAuthentication(); // 👈 Asegúrate de agregar esto
 app.UseAuthorization();
 app.MapControllers();
 

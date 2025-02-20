@@ -3,10 +3,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProyectAntivirusBackend.Models
 {
-    [Table("profiles")]
+    [Table("profiles")] // Nombre de la tabla en PostgreSQL
     public class Profile
     {
-        [Key]
         [Column("id")]
         public int Id { get; set; }
 
@@ -17,11 +16,12 @@ namespace ProyectAntivirusBackend.Models
         public string? Biography { get; set; }
 
         [Column("profile_image")]
-        public string? ProfilePicture { get; set; }
+        public string? ProfileImage { get; set; }
 
-        [ForeignKey("User")]
         [Column("user_id")]
         public int UserId { get; set; }
-        public required User User { get; set; }
+
+        [ForeignKey("UserId")]
+        public User User { get; set; } = null!;
     }
 }

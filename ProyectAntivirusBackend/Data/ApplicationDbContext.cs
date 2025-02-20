@@ -21,6 +21,7 @@ namespace ProyectAntivirusBackend.Data
         public DbSet<AuthUser> AuthUsers { get; set; }
         public DbSet<Opportunity> Opportunities { get; set; }
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Relación uno a uno entre User y Profile
@@ -88,6 +89,13 @@ namespace ProyectAntivirusBackend.Data
             modelBuilder.Entity<Opportunity>()
                 .HasIndex(o => o.Title)
                 .IsUnique();
+
+            modelBuilder.Entity<Profile>()
+                .HasOne(p => p.User)
+                .WithOne(u => u.Profile)
+                .HasForeignKey<Profile>(p => p.UserId)
+                .OnDelete(DeleteBehavior.Cascade); // Si se borra un usuario, también se borra su perfil
+
         }
     }
 }
