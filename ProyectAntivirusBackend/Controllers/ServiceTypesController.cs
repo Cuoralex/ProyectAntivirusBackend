@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProyectAntivirusBackend.Data;
+using ProyectAntivirusBackend.DTOs;
 using ProyectAntivirusBackend.Models;
 
 [Route("api/[controller]")]
@@ -37,13 +38,26 @@ public class ServiceTypesController : ControllerBase
 
 	// POST
 	[HttpPost]
-	public async Task<ActionResult<ServiceType>> PostServiceType(ServiceType serviceType)
+	public async Task<ActionResult<ServiceTypeDTO>> PostServiceType(CreateServiceTypeDTO createServiceTypeDTO)
 	{
+		var serviceType = new ServiceType
+		{
+			Name = createServiceTypeDTO.Name,
+			Description = createServiceTypeDTO.Description
+		};
+
 		_context.ServiceTypes.Add(serviceType);
 		await _context.SaveChangesAsync();
 
-		return CreatedAtAction(nameof(GetServiceType), new { id = serviceType.Id }, serviceType);
+		return CreatedAtAction(nameof(GetServiceType), new { id = serviceType.Id }, new ServiceTypeDTO
+		{
+			Id = serviceType.Id,
+			Name = serviceType.Name,
+			Description = serviceType.Description,
+			Services = new List<ServiceDTO>()
+		});
 	}
+
 
 	// PUT
 	[HttpPut("{id}")]

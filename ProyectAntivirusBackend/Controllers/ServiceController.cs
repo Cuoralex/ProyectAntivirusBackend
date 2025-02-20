@@ -23,6 +23,7 @@ namespace ProyectAntivirusBackend.Controllers
         public async Task<ActionResult<IEnumerable<ServiceDTO>>> GetServices()
         {
             var services = await _context.Services
+                .Include(s => s.ServiceType)
                 .Select(s => new ServiceDTO
                 {
                     Id = s.Id,
@@ -30,12 +31,14 @@ namespace ProyectAntivirusBackend.Controllers
                     ServiceTypeId = s.ServiceTypeId,
                     Title = s.Title,
                     Description = s.Description,
-                    Image = s.Image
+                    Image = s.Image,
+                    ServiceTypeName = s.ServiceType != null ? s.ServiceType.Name : ""
                 })
                 .ToListAsync();
 
             return Ok(services);
         }
+
 
         [HttpGet("{id}")]
         public async Task<ActionResult<ServiceDTO>> GetService(int id)
@@ -57,10 +60,17 @@ namespace ProyectAntivirusBackend.Controllers
         [HttpPost]
         public async Task<ActionResult<ServiceDTO>> PostService(CreateServiceDTO createServiceDTO)
         {
+            var serviceType = await _context.ServiceTypes.FindAsync(createServiceDTO.ServiceTypeId);
+            if (serviceType == null)
+            {
+                return BadRequest($"El ServiceTypeId {createServiceDTO.ServiceTypeId} no existe.");
+            }
+
             var service = new ServiceModel
             {
                 IsActive = true,
                 ServiceTypeId = createServiceDTO.ServiceTypeId,
+                ServiceType = serviceType,
                 Title = createServiceDTO.Title,
                 Description = createServiceDTO.Description,
                 Image = createServiceDTO.Image
@@ -80,13 +90,21 @@ namespace ProyectAntivirusBackend.Controllers
             });
         }
 
+
         [HttpPut("{id}")]
         public async Task<IActionResult> PutService(int id, CreateServiceDTO createServiceDTO)
         {
             var service = await _context.Services.FindAsync(id);
             if (service == null) return NotFound();
 
+            var serviceType = await _context.ServiceTypes.FindAsync(createServiceDTO.ServiceTypeId);
+            if (serviceType == null)
+            {
+                return BadRequest($"El ServiceTypeId {createServiceDTO.ServiceTypeId} no existe.");
+            }
+
             service.ServiceTypeId = createServiceDTO.ServiceTypeId;
+            service.ServiceType = serviceType;
             service.Title = createServiceDTO.Title;
             service.Description = createServiceDTO.Description;
             service.Image = createServiceDTO.Image;
@@ -97,6 +115,7 @@ namespace ProyectAntivirusBackend.Controllers
             return NoContent();
         }
 
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteService(int id)
         {
@@ -104,9 +123,17 @@ namespace ProyectAntivirusBackend.Controllers
             if (service == null) return NotFound();
 
             _context.Services.Remove(service);
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+                return BadRequest("No se puede eliminar este servicio porque está relacionado con otros datos.");
+            }
 
             return NoContent();
         }
+
     }
 }

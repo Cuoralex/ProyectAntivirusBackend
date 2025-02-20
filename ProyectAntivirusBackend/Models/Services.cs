@@ -19,7 +19,7 @@ namespace ProyectAntivirusBackend.Models
         [Column("service_type_id")]
         public int ServiceTypeId { get; set; }
 
-        public ServiceType ServiceType { get; set; } = null!;
+        public ServiceType? ServiceType { get; set; } = null!;
 
         [Required]
         [Column("title")]
