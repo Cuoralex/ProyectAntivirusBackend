@@ -23,21 +23,23 @@ namespace ProyectAntivirusBackend.Controllers
         public async Task<ActionResult<IEnumerable<ServiceDTO>>> GetServices()
         {
             var services = await _context.Services
-                .Include(s => s.ServiceType)
+                .Include(s => s.ServiceType) // Incluimos la relación con ServiceType
                 .Select(s => new ServiceDTO
                 {
                     Id = s.Id,
                     IsActive = s.IsActive,
                     ServiceTypeId = s.ServiceTypeId,
+                    ServiceTypeName = s.ServiceType != null ? s.ServiceType.Name : "Sin Tipo", // Validamos si es null
                     Title = s.Title,
                     Description = s.Description,
-                    Image = s.Image,
-                    ServiceTypeName = s.ServiceType != null ? s.ServiceType.Name : ""
+                    Image = s.Image
                 })
                 .ToListAsync();
 
             return Ok(services);
         }
+
+
 
 
         [HttpGet("{id}")]

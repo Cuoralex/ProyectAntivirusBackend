@@ -17,24 +17,63 @@ public class ServiceTypesController : ControllerBase
 
 	// GET
 	[HttpGet]
-	public async Task<ActionResult<IEnumerable<ServiceType>>> GetServicesTypes()
+	public async Task<ActionResult<IEnumerable<ServiceTypeDTO>>> GetServiceTypes()
 	{
-		return await _context.ServiceTypes.ToListAsync();
+		var serviceTypes = await _context.ServiceTypes
+			.Include(st => st.Services) // Incluir los servicios relacionados
+			.Select(st => new ServiceTypeDTO
+			{
+				Id = st.Id,
+				Name = st.Name,
+				Description = st.Description,
+				Services = st.Services.Select(s => new ServiceDTO
+				{
+					Id = s.Id,
+					IsActive = s.IsActive,
+					ServiceTypeId = s.ServiceTypeId,
+					Title = s.Title,
+					Description = s.Description,
+					Image = s.Image
+				}).ToList() // Convertimos la lista de servicios
+			})
+			.ToListAsync();
+
+		return Ok(serviceTypes);
 	}
+
 
 	// GET
 	[HttpGet("{id}")]
-	public async Task<ActionResult<ServiceType>> GetServiceType(int id)
+	public async Task<ActionResult<ServiceTypeDTO>> GetServiceType(int id)
 	{
-		var serviceType = await _context.ServiceTypes.FindAsync(id);
+		var serviceType = await _context.ServiceTypes
+			.Include(st => st.Services)
+			.FirstOrDefaultAsync(st => st.Id == id);
 
 		if (serviceType == null)
 		{
 			return NotFound();
 		}
 
-		return serviceType;
+		var serviceTypeDTO = new ServiceTypeDTO
+		{
+			Id = serviceType.Id,
+			Name = serviceType.Name,
+			Description = serviceType.Description,
+			Services = serviceType.Services.Select(s => new ServiceDTO
+			{
+				Id = s.Id,
+				IsActive = s.IsActive,
+				ServiceTypeId = s.ServiceTypeId,
+				Title = s.Title,
+				Description = s.Description,
+				Image = s.Image
+			}).ToList()
+		};
+
+		return Ok(serviceTypeDTO);
 	}
+
 
 	// POST
 	[HttpPost]
