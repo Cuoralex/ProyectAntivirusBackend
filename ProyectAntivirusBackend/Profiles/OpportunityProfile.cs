@@ -8,14 +8,15 @@ namespace ProyectAntivirusBackend.Profiles
     {
         public OpportunityProfile()
         {
-            // Mapeo de Opportunity a OpportunityDTO
-            CreateMap<Opportunity, OpportunityDTO>();
+            CreateMap<Opportunity, OpportunityDTO>()
+            .ForMember(dest => dest.Sectors_id, opt => opt.MapFrom(src => src.Sectors.Id))
+            .ForMember(dest => dest.Institutions_id, opt => opt.MapFrom(src => src.Institutions.Id))
+            .ForMember(dest => dest.Opportunity_Types_id, opt => opt.MapFrom(src => src.OpportunityTypes.Id));
 
-            // Mapeo de CreateOpportunityDTO a Opportunity, ignorando Sector e Institution
-            CreateMap<CreateOpportunityDTO, Opportunity>()
-                .ForMember(dest => dest.Sector, opt => opt.Ignore()) // Se asignará en el controlador
-                .ForMember(dest => dest.Institution, opt => opt.Ignore()) // También se asignará en el controlador
-                .ForMember(dest => dest.OpportunityType, opt => opt.Ignore()); // Se asignará en el controlador
+        CreateMap<CreateOpportunityDTO, Opportunity>()
+            .ForMember(dest => dest.SectorsId, opt => opt.MapFrom(src => src.SectorsId))
+            .ForMember(dest => dest.InstitutionsId, opt => opt.MapFrom(src => src.InstitutionsId))
+            .ForMember(dest => dest.OpportunityTypesId, opt => opt.MapFrom(src => src.OpportunityTypesId));
         }
     }
 }

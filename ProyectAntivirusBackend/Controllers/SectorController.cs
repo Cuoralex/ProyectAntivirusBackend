@@ -43,7 +43,7 @@ namespace ProyectAntivirusBackend.Controllers
         public async Task<ActionResult<IEnumerable<OpportunityDTO>>> GetOpportunitiesBySector(int id)
         {
             var opportunities = await _context.Opportunities
-                .Where(o => o.SectorId == id)
+                .Where(o => o.SectorsId == id)
                 .Select(o => new OpportunityDTO
                 {
                     Id = o.Id,

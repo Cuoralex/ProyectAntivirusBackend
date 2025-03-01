@@ -43,23 +43,23 @@ namespace ProyectAntivirusBackend.Data
 
             // Relación uno a muchos entre Opportunity y OpportunityType
             modelBuilder.Entity<Opportunity>()
-                .HasOne(o => o.OpportunityType)
+                .HasOne(o => o.OpportunityTypes)
                 .WithMany(ot => ot.Opportunities)
-                .HasForeignKey(o => o.OpportunityTypeId)
-                .OnDelete(DeleteBehavior.SetNull);
+                .HasForeignKey(o => o.OpportunityTypesId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             // Relación uno a muchos entre Opportunity y Institution
             modelBuilder.Entity<Opportunity>()
-                .HasOne(o => o.Institution)
+                .HasOne(o => o.Institutions)
                 .WithMany()
-                .HasForeignKey(o => o.InstitutionId)
+                .HasForeignKey(o => o.InstitutionsId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             // Relación uno a muchos entre Opportunity y Sector
             modelBuilder.Entity<Opportunity>()
-                .HasOne(o => o.Sector)
+                .HasOne(o => o.Sectors)
                 .WithMany()
-                .HasForeignKey(o => o.SectorId)
+                .HasForeignKey(o => o.SectorsId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             // Relación uno a muchos entre Request y Opportunity
@@ -89,6 +89,8 @@ namespace ProyectAntivirusBackend.Data
                 .IsUnique();
 
             modelBuilder.Entity<OpportunityType>().ToTable("opportunity_types");
+            modelBuilder.Entity<Sector>().ToTable("sectors");
+            modelBuilder.Entity<Institution>().ToTable("institutions");
 
         }
     }
