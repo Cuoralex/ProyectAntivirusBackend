@@ -6,13 +6,14 @@ namespace ProyectAntivirusBackend.DTOs
         public string Title { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public string Type { get; set; } = string.Empty;
-        public string Sector { get; set; } = string.Empty;
+        public int Opportunity_Types_id { get; set; }
+        public int Sector_id { get; set; }
         public string Location { get; set; } = string.Empty;
         public string Requirements { get; set; } = string.Empty;
         public string Benefits { get; set; } = string.Empty;
         public DateTime PublicationDate { get; set; }
         public DateTime ExpirationDate { get; set; }
-        public string Institution { get; set; } = string.Empty;
+        public int Institution_id { get; set; }
         public string Status { get; set; } = "abierta"; // Estado por defecto: "abierta"
 
     }

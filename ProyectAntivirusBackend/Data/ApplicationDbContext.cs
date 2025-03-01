@@ -15,7 +15,7 @@ namespace ProyectAntivirusBackend.Data
         public DbSet<Profile> Profiles { get; set; }
         public DbSet<ServiceType> ServiceTypes { get; set; }
         public DbSet<Request> Requests { get; set; }
-        public DbSet<OpportunityType> OpportunityTypes { get; set; }
+        public DbSet<OpportunityType> Opportunity_Types { get; set; }
         public DbSet<Institution> Institutions { get; set; }
         public DbSet<AuthUser> AuthUsers { get; set; }
         public DbSet<Opportunity> Opportunities { get; set; }
@@ -87,6 +87,9 @@ namespace ProyectAntivirusBackend.Data
             modelBuilder.Entity<Opportunity>()
                 .HasIndex(o => o.Title)
                 .IsUnique();
+
+            modelBuilder.Entity<OpportunityType>().ToTable("opportunity_types");
+
         }
     }
 }

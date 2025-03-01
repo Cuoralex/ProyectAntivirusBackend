@@ -42,24 +42,28 @@ namespace ProyectAntivirusBackend.Controllers
 
         // POST: api/v1/opportunity
         [HttpPost]
-        public async Task<ActionResult<OpportunityDTO>> PostOpportunity(CreateOpportunityDTO createOpportunityDTO)
+        [HttpPost]
+        public async Task<ActionResult<OpportunityDTO>> PostOpportunity([FromBody] CreateOpportunityDTO createOpportunityDTO)
+
         {
+            
+            Console.WriteLine($"SectorId recibido: {createOpportunityDTO.Sector}"); // 🔹 Verifica qué ID se recibe
             // Buscar el Sector en la base de datos
-            var sector = await _context.Sectors.FirstOrDefaultAsync(s => s.Name == createOpportunityDTO.Sector);
+            var sector = await _context.Sectors.FirstOrDefaultAsync(s => s.Id == createOpportunityDTO.Sector);
             if (sector == null)
             {
                 return BadRequest("Sector inválido. Debe ser un sector existente en la base de datos.");
             }
 
             // Buscar la Institución en la base de datos
-            var institution = await _context.Institutions.FirstOrDefaultAsync(i => i.Name == createOpportunityDTO.Institution);
+            var institution = await _context.Institutions.FirstOrDefaultAsync(s => s.Id == createOpportunityDTO.Institution);
             if (institution == null)
             {
                 return BadRequest("Institución inválida. Debe ser una institución existente en la base de datos.");
             }
 
             // Buscar el Tipo de Oportunidad en la base de datos
-            var opportunityType = await _context.OpportunityTypes.FirstOrDefaultAsync(ot => ot.Name == createOpportunityDTO.Type);
+            var opportunityType = await _context.Opportunity_Types.FirstOrDefaultAsync(s => s.Id == createOpportunityDTO.OpportunityTypes);
             if (opportunityType == null)
             {
                 return BadRequest("Tipo de oportunidad inválido.");
