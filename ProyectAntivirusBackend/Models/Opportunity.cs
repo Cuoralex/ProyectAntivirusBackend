@@ -31,14 +31,21 @@ namespace ProyectAntivirusBackend.Models
         public int SectorsId { get; set; }
         public required Sector Sectors { get; set; }
 
-        [Column("location")]
-        public string? Location { get; set; }
+        [Required]
+        [ForeignKey("Locality")]
+        [Column("locality_id")]
+        public int LocalitiesId { get; set; }
+        public required Locality Localities { get; set; }
 
         [Column("requirements")]
         public string? Requirements { get; set; }
 
         [Column("benefits")]
         public string? Benefits { get; set; }
+        
+        [Required]
+        [Column("modality")]
+        public required string Modality { get; set; }
 
         [Required]
         [Column("publication_date")]
@@ -53,6 +60,7 @@ namespace ProyectAntivirusBackend.Models
         [Column("institution_id")]
         public int InstitutionsId { get; set; }
         public required Institution Institutions { get; set; }
+
         [Column("status")]
         public string Status { get; internal set; } = "abierta";
     }

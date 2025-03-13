@@ -37,6 +37,7 @@ namespace ProyectAntivirusBackend.Controllers
                 .Include(o => o.OpportunityTypes)
                 .Include(o => o.Sectors)
                 .Include(o => o.Institutions)
+                .Include(o => o.Localities)
                 .FirstOrDefaultAsync(o => o.Id == id);
             if (opportunity == null) return NotFound();
 
@@ -51,39 +52,33 @@ namespace ProyectAntivirusBackend.Controllers
             Console.WriteLine($"📌 SectorId recibido en el backend: {createOpportunityDTO.SectorsId}");
             Console.WriteLine($"📌 InstitutionId recibido en el backend: {createOpportunityDTO.InstitutionsId}");
             Console.WriteLine($"📌 OpportunityTypeId recibido en el backend: {createOpportunityDTO.OpportunityTypesId}");
+            Console.WriteLine($"📌 LocalitiesId recibido en el backend: {createOpportunityDTO.LocalitiesId}");
 
-            // Buscar el Sector en la base de datos
+            // Buscar entidades en la base de datos
             var sector = await _context.Sectors.FindAsync(createOpportunityDTO.SectorsId);
-            if (sector == null)
-            {
-                return BadRequest("Error: Sector inválido. Debe ser un sector existente en la base de datos.");
-            }
+            if (sector == null) return BadRequest("Error: Sector inválido. Debe ser un sector existente en la base de datos.");
 
-            // Buscar la Institución en la base de datos
             var institution = await _context.Institutions.FindAsync(createOpportunityDTO.InstitutionsId);
-            if (institution == null)
-            {
-                return BadRequest("Error: Institución inválida. Debe ser una institución existente en la base de datos.");
-            }
+            if (institution == null) return BadRequest("Error: Institución inválida. Debe ser una institución existente en la base de datos.");
 
-            // Buscar el Tipo de Oportunidad en la base de datos
             var opportunityType = await _context.Opportunity_Types.FindAsync(createOpportunityDTO.OpportunityTypesId);
-            if (opportunityType == null)
-            {
-                return BadRequest("Error: Tipo de oportunidad inválido.");
-            }
+            if (opportunityType == null) return BadRequest("Error: Tipo de oportunidad inválido.");
+
+            var locality = await _context.Localities.FindAsync(createOpportunityDTO.LocalitiesId);
+            if (locality == null) return BadRequest("Error: Localidad inválida.");
 
             // Crear la oportunidad con los valores correctos
             var opportunity = new Opportunity
             {
                 Title = createOpportunityDTO.Title,
                 Description = createOpportunityDTO.Description,
-                Sectors = sector,  // ✅ Se asigna correctamente desde la BD
-                Institutions = institution,  // ✅ Se asigna correctamente desde la BD
-                OpportunityTypes = opportunityType,  // ✅ Se asigna correctamente desde la BD
-                Location = createOpportunityDTO.Location,
+                Sectors = sector,  
+                Institutions = institution,  
+                OpportunityTypes = opportunityType,  
+                Localities = locality,  // Asignación correcta de localidad
                 Requirements = createOpportunityDTO.Requirements,
                 Benefits = createOpportunityDTO.Benefits,
+                Modality = createOpportunityDTO.Modality,
                 PublicationDate = DateTime.UtcNow,
                 ExpirationDate = createOpportunityDTO.ExpirationDate,
                 Status = createOpportunityDTO.Status

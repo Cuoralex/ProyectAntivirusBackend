@@ -48,7 +48,8 @@ namespace ProyectAntivirusBackend.Controllers
                 {
                     Id = o.Id,
                     Title = o.Title,
-                    Description = o.Description
+                    Description = o.Description,
+                    Modality = o.Modality
                 })
                 .ToListAsync();
 

@@ -7,11 +7,25 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ProyectAntivirusBackend.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialSchema : Migration
+    public partial class FixCategoryId : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "categories",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    name = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
+                    description = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_categories", x => x.id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "institutions",
                 columns: table => new
@@ -28,17 +42,18 @@ namespace ProyectAntivirusBackend.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "opportunity_types",
+                name: "localities",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    Description = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true)
+                    country = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
+                    state = table.Column<string>(type: "text", nullable: false),
+                    city = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_opportunity_types", x => x.Id);
+                    table.PrimaryKey("PK_localities", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -82,7 +97,8 @@ namespace ProyectAntivirusBackend.Migrations
                     rol = table.Column<string>(type: "text", nullable: false),
                     registration_date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     birthdate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    is_active = table.Column<bool>(type: "boolean", nullable: false)
+                    is_active = table.Column<bool>(type: "boolean", nullable: false),
+                    password_hash = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -90,41 +106,22 @@ namespace ProyectAntivirusBackend.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "opportunities",
+                name: "opportunity_types",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    title = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
-                    description = table.Column<string>(type: "text", nullable: false),
-                    opportunity_type_id = table.Column<int>(type: "integer", nullable: false),
-                    sector_id = table.Column<int>(type: "integer", nullable: false),
-                    location = table.Column<string>(type: "text", nullable: true),
-                    requirements = table.Column<string>(type: "text", nullable: true),
-                    benefits = table.Column<string>(type: "text", nullable: true),
-                    publication_date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    expiration_date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    institution_id = table.Column<int>(type: "integer", nullable: false)
+                    name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    description = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
+                    categories_id = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_opportunities", x => x.id);
+                    table.PrimaryKey("PK_opportunity_types", x => x.id);
                     table.ForeignKey(
-                        name: "FK_opportunities_institutions_institution_id",
-                        column: x => x.institution_id,
-                        principalTable: "institutions",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_opportunities_opportunity_types_opportunity_type_id",
-                        column: x => x.opportunity_type_id,
-                        principalTable: "opportunity_types",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.SetNull);
-                    table.ForeignKey(
-                        name: "FK_opportunities_sectors_sector_id",
-                        column: x => x.sector_id,
-                        principalTable: "sectors",
+                        name: "FK_opportunity_types_categories_categories_id",
+                        column: x => x.categories_id,
+                        principalTable: "categories",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -195,6 +192,54 @@ namespace ProyectAntivirusBackend.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "opportunities",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    title = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
+                    description = table.Column<string>(type: "text", nullable: false),
+                    opportunity_type_id = table.Column<int>(type: "integer", nullable: false),
+                    sector_id = table.Column<int>(type: "integer", nullable: false),
+                    locality_id = table.Column<int>(type: "integer", nullable: false),
+                    requirements = table.Column<string>(type: "text", nullable: true),
+                    benefits = table.Column<string>(type: "text", nullable: true),
+                    modality = table.Column<string>(type: "text", nullable: false),
+                    publication_date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    expiration_date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    institution_id = table.Column<int>(type: "integer", nullable: false),
+                    status = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_opportunities", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_opportunities_institutions_institution_id",
+                        column: x => x.institution_id,
+                        principalTable: "institutions",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_opportunities_localities_locality_id",
+                        column: x => x.locality_id,
+                        principalTable: "localities",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_opportunities_opportunity_types_opportunity_type_id",
+                        column: x => x.opportunity_type_id,
+                        principalTable: "opportunity_types",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_opportunities_sectors_sector_id",
+                        column: x => x.sector_id,
+                        principalTable: "sectors",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "requests",
                 columns: table => new
                 {
@@ -234,6 +279,11 @@ namespace ProyectAntivirusBackend.Migrations
                 column: "institution_id");
 
             migrationBuilder.CreateIndex(
+                name: "IX_opportunities_locality_id",
+                table: "opportunities",
+                column: "locality_id");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_opportunities_opportunity_type_id",
                 table: "opportunities",
                 column: "opportunity_type_id");
@@ -248,6 +298,11 @@ namespace ProyectAntivirusBackend.Migrations
                 table: "opportunities",
                 column: "title",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_opportunity_types_categories_id",
+                table: "opportunity_types",
+                column: "categories_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_profiles_user_id",
@@ -305,10 +360,16 @@ namespace ProyectAntivirusBackend.Migrations
                 name: "institutions");
 
             migrationBuilder.DropTable(
+                name: "localities");
+
+            migrationBuilder.DropTable(
                 name: "opportunity_types");
 
             migrationBuilder.DropTable(
                 name: "sectors");
+
+            migrationBuilder.DropTable(
+                name: "categories");
         }
     }
 }

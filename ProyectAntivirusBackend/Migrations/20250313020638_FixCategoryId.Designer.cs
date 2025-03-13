@@ -12,8 +12,8 @@ using ProyectAntivirusBackend.Data;
 namespace ProyectAntivirusBackend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250220192104_AddPasswordHashToUsers")]
-    partial class AddPasswordHashToUsers
+    [Migration("20250313020638_FixCategoryId")]
+    partial class FixCategoryId
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,6 +51,31 @@ namespace ProyectAntivirusBackend.Migrations
                     b.ToTable("auth_users");
                 });
 
+            modelBuilder.Entity("ProyectAntivirusBackend.Models.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)")
+                        .HasColumnName("name");
+
+                    b.Property<string>("description")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("description");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("categories", (string)null);
+                });
+
             modelBuilder.Entity("ProyectAntivirusBackend.Models.Institution", b =>
                 {
                     b.Property<int>("Id")
@@ -77,7 +102,37 @@ namespace ProyectAntivirusBackend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("institutions");
+                    b.ToTable("institutions", (string)null);
+                });
+
+            modelBuilder.Entity("ProyectAntivirusBackend.Models.Locality", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("city");
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)")
+                        .HasColumnName("country");
+
+                    b.Property<string>("State")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("state");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("localities", (string)null);
                 });
 
             modelBuilder.Entity("ProyectAntivirusBackend.Models.Opportunity", b =>
@@ -102,15 +157,20 @@ namespace ProyectAntivirusBackend.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("expiration_date");
 
-                    b.Property<int>("InstitutionId")
+                    b.Property<int>("InstitutionsId")
                         .HasColumnType("integer")
                         .HasColumnName("institution_id");
 
-                    b.Property<string>("Location")
-                        .HasColumnType("text")
-                        .HasColumnName("location");
+                    b.Property<int>("LocalitiesId")
+                        .HasColumnType("integer")
+                        .HasColumnName("locality_id");
 
-                    b.Property<int>("OpportunityTypeId")
+                    b.Property<string>("Modality")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("modality");
+
+                    b.Property<int>("OpportunityTypesId")
                         .HasColumnType("integer")
                         .HasColumnName("opportunity_type_id");
 
@@ -122,9 +182,14 @@ namespace ProyectAntivirusBackend.Migrations
                         .HasColumnType("text")
                         .HasColumnName("requirements");
 
-                    b.Property<int>("SectorId")
+                    b.Property<int>("SectorsId")
                         .HasColumnType("integer")
                         .HasColumnName("sector_id");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("status");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -134,11 +199,13 @@ namespace ProyectAntivirusBackend.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("InstitutionId");
+                    b.HasIndex("InstitutionsId");
 
-                    b.HasIndex("OpportunityTypeId");
+                    b.HasIndex("LocalitiesId");
 
-                    b.HasIndex("SectorId");
+                    b.HasIndex("OpportunityTypesId");
+
+                    b.HasIndex("SectorsId");
 
                     b.HasIndex("Title")
                         .IsUnique();
@@ -151,24 +218,30 @@ namespace ProyectAntivirusBackend.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("Id");
+                        .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("integer")
+                        .HasColumnName("categories_id");
 
                     b.Property<string>("Description")
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)")
-                        .HasColumnName("Description");
+                        .HasColumnName("description");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)")
-                        .HasColumnName("Name");
+                        .HasColumnName("name");
 
                     b.HasKey("Id");
 
-                    b.ToTable("opportunity_types");
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("opportunity_types", (string)null);
                 });
 
             modelBuilder.Entity("ProyectAntivirusBackend.Models.Profile", b =>
@@ -260,7 +333,7 @@ namespace ProyectAntivirusBackend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("sectors");
+                    b.ToTable("sectors", (string)null);
                 });
 
             modelBuilder.Entity("ProyectAntivirusBackend.Models.Service", b =>
@@ -399,29 +472,48 @@ namespace ProyectAntivirusBackend.Migrations
 
             modelBuilder.Entity("ProyectAntivirusBackend.Models.Opportunity", b =>
                 {
-                    b.HasOne("ProyectAntivirusBackend.Models.Institution", "Institution")
+                    b.HasOne("ProyectAntivirusBackend.Models.Institution", "Institutions")
                         .WithMany()
-                        .HasForeignKey("InstitutionId")
+                        .HasForeignKey("InstitutionsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ProyectAntivirusBackend.Models.OpportunityType", "OpportunityType")
-                        .WithMany("Opportunities")
-                        .HasForeignKey("OpportunityTypeId")
-                        .OnDelete(DeleteBehavior.SetNull)
-                        .IsRequired();
-
-                    b.HasOne("ProyectAntivirusBackend.Models.Sector", "Sector")
+                    b.HasOne("ProyectAntivirusBackend.Models.Locality", "Localities")
                         .WithMany()
-                        .HasForeignKey("SectorId")
+                        .HasForeignKey("LocalitiesId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("Institution");
+                    b.HasOne("ProyectAntivirusBackend.Models.OpportunityType", "OpportunityTypes")
+                        .WithMany("Opportunities")
+                        .HasForeignKey("OpportunityTypesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("OpportunityType");
+                    b.HasOne("ProyectAntivirusBackend.Models.Sector", "Sectors")
+                        .WithMany()
+                        .HasForeignKey("SectorsId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
-                    b.Navigation("Sector");
+                    b.Navigation("Institutions");
+
+                    b.Navigation("Localities");
+
+                    b.Navigation("OpportunityTypes");
+
+                    b.Navigation("Sectors");
+                });
+
+            modelBuilder.Entity("ProyectAntivirusBackend.Models.OpportunityType", b =>
+                {
+                    b.HasOne("ProyectAntivirusBackend.Models.Category", "Categories")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Categories");
                 });
 
             modelBuilder.Entity("ProyectAntivirusBackend.Models.Profile", b =>

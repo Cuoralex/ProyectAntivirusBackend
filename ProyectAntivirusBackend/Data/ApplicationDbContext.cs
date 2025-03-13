@@ -17,6 +17,8 @@ namespace ProyectAntivirusBackend.Data
         public DbSet<Request> Requests { get; set; }
         public DbSet<OpportunityType> Opportunity_Types { get; set; }
         public DbSet<Institution> Institutions { get; set; }
+        public DbSet<Locality> Localities { get; set; }
+        public DbSet<Category> Categories { get; set; }
         public DbSet<AuthUser> AuthUsers { get; set; }
         public DbSet<Opportunity> Opportunities { get; set; }
 
@@ -41,6 +43,14 @@ namespace ProyectAntivirusBackend.Data
                 .HasIndex(u => u.Email)
                 .IsUnique();
 
+            modelBuilder.Entity<Opportunity>()
+                .Property(o => o.PublicationDate)
+                .HasColumnType("timestamp with time zone");
+
+            modelBuilder.Entity<Opportunity>()
+                .Property(o => o.ExpirationDate)
+                .HasColumnType("timestamp with time zone");
+
             // Relación uno a muchos entre Opportunity y OpportunityType
             modelBuilder.Entity<Opportunity>()
                 .HasOne(o => o.OpportunityTypes)
@@ -60,6 +70,20 @@ namespace ProyectAntivirusBackend.Data
                 .HasOne(o => o.Sectors)
                 .WithMany()
                 .HasForeignKey(o => o.SectorsId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Relación uno a muchos entre Opportunity y Locality
+            modelBuilder.Entity<Opportunity>()
+                .HasOne(o => o.Localities)
+                .WithMany()
+                .HasForeignKey(o => o.LocalitiesId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Relación uno a muchos entre OpportunityType y Locality
+            modelBuilder.Entity<OpportunityType>()
+                .HasOne(o => o.Categories)
+                .WithMany()
+                .HasForeignKey(o => o.CategoryId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             // Relación uno a muchos entre Request y Opportunity
@@ -91,7 +115,8 @@ namespace ProyectAntivirusBackend.Data
             modelBuilder.Entity<OpportunityType>().ToTable("opportunity_types");
             modelBuilder.Entity<Sector>().ToTable("sectors");
             modelBuilder.Entity<Institution>().ToTable("institutions");
-
+            modelBuilder.Entity<Locality>().ToTable("localities");
+            modelBuilder.Entity<Category>().ToTable("categories");
         }
     }
 }
