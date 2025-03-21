@@ -24,9 +24,18 @@ namespace ProyectAntivirusBackend.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<OpportunityDTO>>> GetOpportunity()
         {
-            var opportunities = await _context.Opportunities.ToListAsync();
-            var opportunityDTOs = _mapper.Map<IEnumerable<OpportunityDTO>>(opportunities);
-            return Ok(opportunityDTOs);
+            var opportunities = await _context.Opportunities
+                .Include(o => o.OpportunityTypes)
+                .Include(o => o.Sectors)
+                .Include(o => o.Institutions)
+                .Include(o => o.Localities)
+                .ToListAsync();
+
+                    if (!opportunities.Any()) return NotFound();
+
+                    var opportunitiesDTO = _mapper.Map<List<OpportunityDTO>>(opportunities); // Mapear lista completa
+
+                    return Ok(opportunitiesDTO);
         }
 
         // GET: api/v1/opportunity/5
