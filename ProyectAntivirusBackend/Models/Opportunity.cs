@@ -22,20 +22,20 @@ namespace ProyectAntivirusBackend.Models
         [Required]
         [ForeignKey("OpportunityType")]
         [Column("opportunity_type_id")]
-        public int OpportunityTypesId { get; set; }
+        public int OpportunityTypeId { get; set; }
         public required OpportunityType OpportunityTypes { get; set; }
 
         [Required]
         [ForeignKey("Sector")]
         [Column("sector_id")]
-        public int SectorsId { get; set; }
+        public int SectorId { get; set; }
         public required Sector Sectors { get; set; }
 
         [Required]
         [ForeignKey("Locality")]
         [Column("locality_id")]
-        public int LocalitiesId { get; set; }
-        public required Locality Localities { get; set; }
+        public int LocalityId { get; set; }
+        public required  Locality Localities { get; set; }
 
         [Column("requirements")]
         public string? Requirements { get; set; }
@@ -58,10 +58,10 @@ namespace ProyectAntivirusBackend.Models
         [Required]
         [ForeignKey("Institution")]
         [Column("institution_id")]
-        public int InstitutionsId { get; set; }
+        public int InstitutionId { get; set; }
         public required Institution Institutions { get; set; }
 
         [Column("status")]
-        public string Status { get; internal set; } = "abierta";
+        public string Status { get; set; } = "abierta";
     }
 }

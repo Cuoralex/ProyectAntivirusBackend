@@ -49,22 +49,22 @@ namespace ProyectAntivirusBackend.Controllers
         [HttpPost]
         public async Task<ActionResult<OpportunityDTO>> PostOpportunity([FromBody] CreateOpportunityDTO createOpportunityDTO)
         {
-            Console.WriteLine($"📌 SectorId recibido en el backend: {createOpportunityDTO.SectorsId}");
-            Console.WriteLine($"📌 InstitutionId recibido en el backend: {createOpportunityDTO.InstitutionsId}");
-            Console.WriteLine($"📌 OpportunityTypeId recibido en el backend: {createOpportunityDTO.OpportunityTypesId}");
-            Console.WriteLine($"📌 LocalitiesId recibido en el backend: {createOpportunityDTO.LocalitiesId}");
+            Console.WriteLine($"📌 SectorId recibido en el backend: {createOpportunityDTO.SectorId}");
+            Console.WriteLine($"📌 InstitutionId recibido en el backend: {createOpportunityDTO.InstitutionId}");
+            Console.WriteLine($"📌 OpportunityTypeId recibido en el backend: {createOpportunityDTO.OpportunityTypeId}");
+            Console.WriteLine($"📌 LocalitiesId recibido en el backend: {createOpportunityDTO.LocalityId}");
 
             // Buscar entidades en la base de datos
-            var sector = await _context.Sectors.FindAsync(createOpportunityDTO.SectorsId);
+            var sector = await _context.Sectors.FindAsync(createOpportunityDTO.SectorId);
             if (sector == null) return BadRequest("Error: Sector inválido. Debe ser un sector existente en la base de datos.");
 
-            var institution = await _context.Institutions.FindAsync(createOpportunityDTO.InstitutionsId);
+            var institution = await _context.Institutions.FindAsync(createOpportunityDTO.InstitutionId);
             if (institution == null) return BadRequest("Error: Institución inválida. Debe ser una institución existente en la base de datos.");
 
-            var opportunityType = await _context.Opportunity_Types.FindAsync(createOpportunityDTO.OpportunityTypesId);
+            var opportunityType = await _context.OpportunityTypes.FindAsync(createOpportunityDTO.OpportunityTypeId);
             if (opportunityType == null) return BadRequest("Error: Tipo de oportunidad inválido.");
 
-            var locality = await _context.Localities.FindAsync(createOpportunityDTO.LocalitiesId);
+            var locality = await _context.Localities.FindAsync(createOpportunityDTO.LocalityId);
             if (locality == null) return BadRequest("Error: Localidad inválida.");
 
             // Crear la oportunidad con los valores correctos
@@ -72,9 +72,9 @@ namespace ProyectAntivirusBackend.Controllers
             {
                 Title = createOpportunityDTO.Title,
                 Description = createOpportunityDTO.Description,
-                Sectors = sector,  
-                Institutions = institution,  
-                OpportunityTypes = opportunityType,  
+                Sectors = sector,
+                Institutions = institution,
+                OpportunityTypes = opportunityType,
                 Localities = locality,  // Asignación correcta de localidad
                 Requirements = createOpportunityDTO.Requirements,
                 Benefits = createOpportunityDTO.Benefits,
@@ -90,6 +90,48 @@ namespace ProyectAntivirusBackend.Controllers
             var opportunityDTO = _mapper.Map<OpportunityDTO>(opportunity);
             return CreatedAtAction(nameof(GetOpportunity), new { id = opportunity.Id }, opportunityDTO);
         }
+
+        [HttpPost("{id}/rate")]
+        public async Task<IActionResult> RateOpportunity(int id, [FromBody] RatingRequest request)
+        {
+            var userId = GetUserIdFromToken(); // Obtener el usuario autenticado
+            var existingRating = await _context.Ratings
+                .FirstOrDefaultAsync(r => r.UserId == userId && r.OpportunityId == id);
+
+            if (existingRating != null)
+            {
+                // Si ya votó, actualizar su puntuación y comentario
+                existingRating.Score = (int)request.Score;
+                existingRating.Comment = (string)request.Comment;
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                // Si no ha votado, registrar la calificación
+                var rating = new Rating
+                {
+                    UserId = userId,
+                    OpportunityId = id,
+                    Score = (int)request.Score,
+                    Comment = (string)request.Comment
+                };
+                _context.Ratings.Add(rating);
+                await _context.SaveChangesAsync();
+            }
+
+            // Recalcular promedio de calificaciones
+            var averageRating = await _context.Ratings
+                .Where(r => r.OpportunityId == id)
+                .AverageAsync(r => r.Score);
+
+            return Ok(new { newRating = averageRating });
+        }
+
+        private int GetUserIdFromToken()
+        {
+            throw new NotImplementedException();
+        }
+
 
         // PUT: api/v1/opportunity/5
         [HttpPut("{id}")]
@@ -116,5 +158,11 @@ namespace ProyectAntivirusBackend.Controllers
             await _context.SaveChangesAsync();
             return NoContent();
         }
+    }
+
+    public class RatingRequest
+    {
+        public object Score { get; internal set; }
+        public object Comment { get; internal set; }
     }
 }

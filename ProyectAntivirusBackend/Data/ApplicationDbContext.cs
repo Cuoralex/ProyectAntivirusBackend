@@ -15,12 +15,14 @@ namespace ProyectAntivirusBackend.Data
         public DbSet<Profile> Profiles { get; set; }
         public DbSet<ServiceType> ServiceTypes { get; set; }
         public DbSet<Request> Requests { get; set; }
-        public DbSet<OpportunityType> Opportunity_Types { get; set; }
+        public DbSet<OpportunityType> OpportunityTypes { get; set; }
         public DbSet<Institution> Institutions { get; set; }
         public DbSet<Locality> Localities { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<AuthUser> AuthUsers { get; set; }
         public DbSet<Opportunity> Opportunities { get; set; }
+        public DbSet<Rating> Ratings { get; set; }
+        public IEnumerable<object> Ratingsatings { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -55,28 +57,28 @@ namespace ProyectAntivirusBackend.Data
             modelBuilder.Entity<Opportunity>()
                 .HasOne(o => o.OpportunityTypes)
                 .WithMany(ot => ot.Opportunities)
-                .HasForeignKey(o => o.OpportunityTypesId)
+                .HasForeignKey(o => o.OpportunityTypeId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             // Relación uno a muchos entre Opportunity y Institution
             modelBuilder.Entity<Opportunity>()
                 .HasOne(o => o.Institutions)
                 .WithMany()
-                .HasForeignKey(o => o.InstitutionsId)
+                .HasForeignKey(o => o.InstitutionId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             // Relación uno a muchos entre Opportunity y Sector
             modelBuilder.Entity<Opportunity>()
                 .HasOne(o => o.Sectors)
                 .WithMany()
-                .HasForeignKey(o => o.SectorsId)
+                .HasForeignKey(o => o.SectorId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             // Relación uno a muchos entre Opportunity y Locality
             modelBuilder.Entity<Opportunity>()
                 .HasOne(o => o.Localities)
                 .WithMany()
-                .HasForeignKey(o => o.LocalitiesId)
+                .HasForeignKey(o => o.LocalityId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             // Relación uno a muchos entre OpportunityType y Locality
@@ -117,6 +119,7 @@ namespace ProyectAntivirusBackend.Data
             modelBuilder.Entity<Institution>().ToTable("institutions");
             modelBuilder.Entity<Locality>().ToTable("localities");
             modelBuilder.Entity<Category>().ToTable("categories");
+            modelBuilder.Entity<Rating>().ToTable("ranking");
         }
     }
 }

@@ -17,6 +17,6 @@ namespace ProyectAntivirusBackend.Models
 
         [Required]
         [Column("description")]
-        public string description { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
     }
 }

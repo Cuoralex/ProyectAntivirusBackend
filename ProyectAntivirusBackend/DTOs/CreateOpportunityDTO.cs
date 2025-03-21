@@ -4,13 +4,17 @@ namespace ProyectAntivirusBackend.DTOs
     {
         public string Title { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
-        public required int SectorsId { get; set; }
+        public required int SectorId { get; set; }
+        public string SectorName { get; set; }
         public string Requirements { get; set; } = string.Empty;
         public string Benefits { get; set; } = string.Empty;
         public DateTime ExpirationDate { get; set; }
-        public required int OpportunityTypesId { get; set; }
-        public required int InstitutionsId { get; set; }
-        public required int LocalitiesId { get; set; }
+        public required int OpportunityTypeId { get; set; }
+        public string OpportunityTypeName { get; set; }
+        public required int InstitutionId { get; set; }
+        public string InstitutionName { get; set; }
+        public required int LocalityId { get; set; }
+        public string LocalityCity { get; set; }
         public string Status { get; set; } = "abierta";
         public required string Modality { get; set; }
     }
