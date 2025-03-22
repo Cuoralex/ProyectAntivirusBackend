@@ -26,6 +26,7 @@ namespace ProyectAntivirusBackend.Controllers
         {
             var opportunities = await _context.Opportunities
                 .Include(o => o.OpportunityTypes)
+                    .ThenInclude(ot=>ot.Categories)
                 .Include(o => o.Sectors)
                 .Include(o => o.Institutions)
                 .Include(o => o.Localities)
@@ -44,6 +45,7 @@ namespace ProyectAntivirusBackend.Controllers
         {
             var opportunity = await _context.Opportunities
                 .Include(o => o.OpportunityTypes)
+                    .ThenInclude(ot=>ot.Categories)
                 .Include(o => o.Sectors)
                 .Include(o => o.Institutions)
                 .Include(o => o.Localities)

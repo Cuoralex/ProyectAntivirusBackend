@@ -13,6 +13,8 @@ namespace ProyectAntivirusBackend.DTOs
         public string? OpportunityTypeName { get; set; }
         public required int InstitutionId { get; set; }
         public string? InstitutionName { get; set; }
+        public int CategoryId { get; set; }
+        public string? CategoryName { get; set; }
         public required int LocalityId { get; set; }
         public string? LocalityCity { get; set; }
         public string Status { get; set; } = "abierta";

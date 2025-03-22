@@ -9,14 +9,16 @@ namespace ProyectAntivirusBackend.Profiles
         public OpportunityProfile()
         {
             CreateMap<Opportunity, OpportunityDTO>()
-            .ForMember(dest => dest.SectorId, opt => opt.MapFrom(src => src.Sectors.Id))
-            .ForMember(dest => dest.SectorName, opt => opt.MapFrom(src => src.Sectors.Name))
-            .ForMember(dest => dest.InstitutionId, opt => opt.MapFrom(src => src.Institutions.Id))
-            .ForMember(dest => dest.InstitutionName, opt => opt.MapFrom(src => src.Institutions.Name))
-            .ForMember(dest => dest.OpportunityTypeId, opt => opt.MapFrom(src => src.OpportunityTypes.Id))
-            .ForMember(dest => dest.OpportunityTypeName, opt => opt.MapFrom(src => src.OpportunityTypes.Name))
-            .ForMember(dest => dest.LocalityId, opt => opt.MapFrom(src => src.Localities.Id))
-            .ForMember(dest => dest.LocalityCity, opt => opt.MapFrom(src => src.Localities.City));
+                .ForMember(dest => dest.SectorId, opt => opt.MapFrom(src => src.Sectors.Id))
+                .ForMember(dest => dest.SectorName, opt => opt.MapFrom(src => src.Sectors.Name))
+                .ForMember(dest => dest.InstitutionId, opt => opt.MapFrom(src => src.Institutions.Id))
+                .ForMember(dest => dest.InstitutionName, opt => opt.MapFrom(src => src.Institutions.Name))
+                .ForMember(dest => dest.OpportunityTypeId, opt => opt.MapFrom(src => src.OpportunityTypes.Id))
+                .ForMember(dest => dest.OpportunityTypeName, opt => opt.MapFrom(src => src.OpportunityTypes.Name))
+                .ForMember(dest => dest.LocalityId, opt => opt.MapFrom(src => src.Localities.Id))
+                .ForMember(dest => dest.LocalityCity, opt => opt.MapFrom(src => src.Localities.City))
+                .ForMember(dest => dest.CategoryId, opt => opt.MapFrom(src => src.OpportunityTypes.Categories.Id))
+                .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.OpportunityTypes.Categories.Name));
 
             CreateMap<CreateOpportunityDTO, Opportunity>()
                 .ForMember(dest => dest.SectorId, opt => opt.MapFrom(src => src.SectorId))
