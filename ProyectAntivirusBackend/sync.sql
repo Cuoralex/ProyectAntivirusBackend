@@ -82,7 +82,6 @@ BEGIN
         description text NOT NULL,
         opportunity_type_id integer NOT NULL,
         sector_id integer NOT NULL,
-        location text,
         requirements text,
         benefits text,
         publication_date timestamp with time zone NOT NULL,
