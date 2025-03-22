@@ -31,11 +31,11 @@ namespace ProyectAntivirusBackend.Controllers
                 .Include(o => o.Localities)
                 .ToListAsync();
 
-                    if (!opportunities.Any()) return NotFound();
+            if (!opportunities.Any()) return NotFound();
 
-                    var opportunitiesDTO = _mapper.Map<List<OpportunityDTO>>(opportunities); // Mapear lista completa
+            var opportunitiesDTO = _mapper.Map<List<OpportunityDTO>>(opportunities); // Mapear lista completa
 
-                    return Ok(opportunitiesDTO);
+            return Ok(opportunitiesDTO);
         }
 
         // GET: api/v1/opportunity/5
@@ -58,45 +58,54 @@ namespace ProyectAntivirusBackend.Controllers
         [HttpPost]
         public async Task<ActionResult<OpportunityDTO>> PostOpportunity([FromBody] CreateOpportunityDTO createOpportunityDTO)
         {
-            Console.WriteLine($"📌 SectorId recibido en el backend: {createOpportunityDTO.SectorId}");
-            Console.WriteLine($"📌 InstitutionId recibido en el backend: {createOpportunityDTO.InstitutionId}");
-            Console.WriteLine($"📌 OpportunityTypeId recibido en el backend: {createOpportunityDTO.OpportunityTypeId}");
-            Console.WriteLine($"📌 LocalitiesId recibido en el backend: {createOpportunityDTO.LocalityId}");
+            Console.WriteLine($"📌 SectorId recibido: {createOpportunityDTO.SectorId}");
+            Console.WriteLine($"📌 InstitutionId recibido: {createOpportunityDTO.InstitutionId}");
+            Console.WriteLine($"📌 OpportunityTypeId recibido: {createOpportunityDTO.OpportunityTypeId}");
+            Console.WriteLine($"📌 LocalityId recibido: {createOpportunityDTO.LocalityId}");
 
-            // Buscar entidades en la base de datos
+            // Validaciones de entidades relacionadas
             var sector = await _context.Sectors.FindAsync(createOpportunityDTO.SectorId);
-            if (sector == null) return BadRequest("Error: Sector inválido. Debe ser un sector existente en la base de datos.");
+            if (sector == null)
+                return BadRequest("❌ Error: Sector inválido. Debe existir en la base de datos.");
 
             var institution = await _context.Institutions.FindAsync(createOpportunityDTO.InstitutionId);
-            if (institution == null) return BadRequest("Error: Institución inválida. Debe ser una institución existente en la base de datos.");
+            if (institution == null)
+                return BadRequest("❌ Error: Institución inválida. Debe existir en la base de datos.");
 
             var opportunityType = await _context.OpportunityTypes.FindAsync(createOpportunityDTO.OpportunityTypeId);
-            if (opportunityType == null) return BadRequest("Error: Tipo de oportunidad inválido.");
+            if (opportunityType == null)
+                return BadRequest("❌ Error: Tipo de oportunidad inválido.");
 
             var locality = await _context.Localities.FindAsync(createOpportunityDTO.LocalityId);
-            if (locality == null) return BadRequest("Error: Localidad inválida.");
 
-            // Crear la oportunidad con los valores correctos
+            // Creación del objeto Opportunity
             var opportunity = new Opportunity
             {
                 Title = createOpportunityDTO.Title,
                 Description = createOpportunityDTO.Description,
-                Sectors = sector,
-                Institutions = institution,
-                OpportunityTypes = opportunityType,
-                Localities = locality,  // Asignación correcta de localidad
+                SectorId = createOpportunityDTO.SectorId,
+                InstitutionId = createOpportunityDTO.InstitutionId,
+                OpportunityTypeId = createOpportunityDTO.OpportunityTypeId,
+                LocalityId = createOpportunityDTO.LocalityId,
                 Requirements = createOpportunityDTO.Requirements,
                 Benefits = createOpportunityDTO.Benefits,
                 Modality = createOpportunityDTO.Modality,
                 PublicationDate = DateTime.UtcNow,
                 ExpirationDate = createOpportunityDTO.ExpirationDate,
-                Status = createOpportunityDTO.Status
+                Status = createOpportunityDTO.Status,
+
+                Sectors = sector,
+                Institutions = institution,
+                OpportunityTypes = opportunityType,
+                Localities = locality
             };
 
-            await _context.Opportunities.AddAsync(opportunity);
+
+            _context.Opportunities.Add(opportunity);
             await _context.SaveChangesAsync();
 
             var opportunityDTO = _mapper.Map<OpportunityDTO>(opportunity);
+
             return CreatedAtAction(nameof(GetOpportunity), new { id = opportunity.Id }, opportunityDTO);
         }
 
