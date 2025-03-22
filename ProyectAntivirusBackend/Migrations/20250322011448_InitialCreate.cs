@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ProyectAntivirusBackend.Migrations
 {
     /// <inheritdoc />
-    public partial class FixCategoryId : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -57,6 +57,23 @@ namespace ProyectAntivirusBackend.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ranking",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    UserId = table.Column<int>(type: "integer", nullable: false),
+                    OpportunityId = table.Column<int>(type: "integer", nullable: false),
+                    Score = table.Column<int>(type: "integer", nullable: false),
+                    Comment = table.Column<string>(type: "text", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ranking", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "sectors",
                 columns: table => new
                 {
@@ -92,13 +109,12 @@ namespace ProyectAntivirusBackend.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     fullname = table.Column<string>(type: "character varying(60)", maxLength: 60, nullable: false),
                     email = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
-                    password = table.Column<string>(type: "text", nullable: false),
+                    password_hash = table.Column<string>(type: "text", nullable: false),
                     phone = table.Column<string>(type: "text", nullable: true),
                     rol = table.Column<string>(type: "text", nullable: false),
                     registration_date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     birthdate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    is_active = table.Column<bool>(type: "boolean", nullable: false),
-                    password_hash = table.Column<string>(type: "text", nullable: false)
+                    is_active = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -340,6 +356,9 @@ namespace ProyectAntivirusBackend.Migrations
 
             migrationBuilder.DropTable(
                 name: "profiles");
+
+            migrationBuilder.DropTable(
+                name: "ranking");
 
             migrationBuilder.DropTable(
                 name: "requests");

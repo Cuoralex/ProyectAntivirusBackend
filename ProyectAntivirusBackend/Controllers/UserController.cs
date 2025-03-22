@@ -64,16 +64,40 @@ namespace ProyectAntivirusBackend.Controllers
         [HttpPost]
         public async Task<ActionResult<UserDTO>> PostUser(CreateUserDTO createUserDTO)
         {
+            var existingUser = await _context.Users
+                .AnyAsync(u => u.Email == createUserDTO.Email);
+
+            if (existingUser)
+            {
+                return Conflict(new { userExists = "El correo ya está registrado." });
+            }
+
+            if (createUserDTO.Birthdate == default || createUserDTO.Birthdate > DateTime.UtcNow)
+            {
+                return BadRequest(new { error = "Fecha de nacimiento inválida." });
+            }
+
             var user = _mapper.Map<User>(createUserDTO);
 
-            // Encriptar la contraseña antes de guardarla en la BD
             user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(createUserDTO.Password);
-
             user.RegistrationDate = DateTime.UtcNow;
             user.IsActive = true;
+            user.Birthdate = createUserDTO.Birthdate;
 
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Users.Add(user);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException ex)
+            {
+                if (ex.InnerException?.Message.Contains("IX_users_Email") == true)
+                {
+                    return Conflict(new { userExists = "El correo ya está registrado." });
+                }
+
+                throw;
+            }
 
             var userDTO = _mapper.Map<UserDTO>(user);
             return CreatedAtAction(nameof(GetUser), new { id = user.Id }, userDTO);

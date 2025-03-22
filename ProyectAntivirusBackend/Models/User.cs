@@ -1,4 +1,3 @@
-using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -21,32 +20,31 @@ namespace ProyectAntivirusBackend.Models
         [Column("email")]
         public string Email { get; set; } = string.Empty;
 
-        [Required]
-        [Column("password")]
+        [NotMapped]
         public string Password { get; set; } = string.Empty;
+
+        [Required]
+        [Column("password_hash")]
+        public string PasswordHash { get; set; } = string.Empty;
 
         [Column("phone")]
         public string? Phone { get; set; }
 
         [Required]
         [Column("rol")]
-        public string Role { get; set; } = string.Empty;
+        public string Role { get; set; } = "user";
 
         [Column("registration_date")]
         public DateTime RegistrationDate { get; set; } = DateTime.UtcNow;
 
         [Required]
         [Column("birthdate")]
-        public DateTime Birthdate { get; set; }
+        public DateTime Birthdate { get; set; } = DateTime.UtcNow;
 
         [Column("is_active")]
         public bool IsActive { get; set; } = true;
 
-        [Column("password_hash")]
-        public string PasswordHash { get; set; } = string.Empty;
-
         public Profile? Profile { get; set; }
-
         public AuthUser? AuthUser { get; set; }
     }
 }
