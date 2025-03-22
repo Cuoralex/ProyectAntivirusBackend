@@ -22,7 +22,7 @@ namespace ProyectAntivirusBackend.Data
         public DbSet<AuthUser> AuthUsers { get; set; }
         public DbSet<Opportunity> Opportunities { get; set; }
         public DbSet<Rating> Ratings { get; set; }
-        public IEnumerable<object> Ratingsatings { get; set; }
+        public required IEnumerable<object> Ratingsatings { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

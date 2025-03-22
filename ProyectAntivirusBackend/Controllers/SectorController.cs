@@ -49,7 +49,11 @@ namespace ProyectAntivirusBackend.Controllers
                     Id = o.Id,
                     Title = o.Title,
                     Description = o.Description,
-                    Modality = o.Modality
+                    Modality = o.Modality,
+                    SectorName =o.Sectors.Name,
+                    OpportunityTypeName=o.OpportunityTypes.Name,
+                    LocalityCity=o.Localities.City,
+                    InstitutionName=o.Institutions.Name,
                 })
                 .ToListAsync();
 
