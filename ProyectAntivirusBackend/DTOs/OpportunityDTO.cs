@@ -19,6 +19,8 @@ namespace ProyectAntivirusBackend.DTOs
         public DateTime ExpirationDate { get; set; } = DateTime.UtcNow;
         public int InstitutionId { get; set; }
         public string? InstitutionName { get; set; }
+        public string? InstitutionImage { get; set; }
+        public string? InstitutionInformation { get; set; }
         public int CategoryId { get; set; }
         public string? CategoryName { get; set; }
         public string Status { get; set; } = "abierta";
