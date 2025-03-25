@@ -26,7 +26,7 @@ namespace ProyectAntivirusBackend.Controllers
         {
             var opportunities = await _context.Opportunities
                 .Include(o => o.OpportunityTypes)
-                    .ThenInclude(ot=>ot.Categories)
+                    .ThenInclude(ot => ot.Categories)
                 .Include(o => o.Sectors)
                 .Include(o => o.Institutions)
                 .Include(o => o.Localities)
@@ -39,13 +39,34 @@ namespace ProyectAntivirusBackend.Controllers
             return Ok(opportunitiesDTO);
         }
 
+        [HttpGet("opportunities.data")]
+        public IActionResult GetOpportunities(string? title, int? opportunityTypeId)
+        {
+            Console.WriteLine($"Filtros recibidos - Title: {title}, TypeId: {opportunityTypeId}");
+
+            var opportunities = _context.Opportunities.AsQueryable();
+
+            if (!string.IsNullOrEmpty(title))
+            {
+                opportunities = opportunities.Where(o => o.Title.Contains(title));
+            }
+
+            if (opportunityTypeId.HasValue)
+            {
+                opportunities = opportunities.Where(o => o.OpportunityTypeId == opportunityTypeId);
+            }
+
+            var filteredOpportunities = opportunities.ToList();
+            return Ok(filteredOpportunities);
+        }
+
         // GET: api/v1/opportunity/5
         [HttpGet("{id}")]
         public async Task<ActionResult<OpportunityDTO>> GetOpportunity(int id)
         {
             var opportunity = await _context.Opportunities
                 .Include(o => o.OpportunityTypes)
-                    .ThenInclude(ot=>ot.Categories)
+                    .ThenInclude(ot => ot.Categories)
                 .Include(o => o.Sectors)
                 .Include(o => o.Institutions)
                 .Include(o => o.Localities)
