@@ -8,14 +8,32 @@ namespace ProyectAntivirusBackend.Profiles
     {
         public OpportunityProfile()
         {
-            // Mapeo de Opportunity a OpportunityDTO
-            CreateMap<Opportunity, OpportunityDTO>();
+            CreateMap<Opportunity, OpportunityDTO>()
+                .ForMember(dest => dest.SectorId, opt => opt.MapFrom(src => src.Sectors.Id))
+                .ForMember(dest => dest.SectorName, opt => opt.MapFrom(src => src.Sectors.Name))
+                .ForMember(dest => dest.InstitutionId, opt => opt.MapFrom(src => src.Institutions.Id))
+                .ForMember(dest => dest.InstitutionName, opt => opt.MapFrom(src => src.Institutions.Name))
+                .ForMember(dest => dest.InstitutionImage, opt => opt.MapFrom(src => src.Institutions.Image))
+                .ForMember(dest => dest.InstitutionInformation, opt => opt.MapFrom(src => src.Institutions.Information))
+                .ForMember(dest => dest.OpportunityTypeId, opt => opt.MapFrom(src => src.OpportunityTypes.Id))
+                .ForMember(dest => dest.OpportunityTypeName, opt => opt.MapFrom(src => src.OpportunityTypes.Name))
+                .ForMember(dest => dest.LocalityId, opt => opt.MapFrom(src => src.Localities.Id))
+                .ForMember(dest => dest.LocalityCity, opt => opt.MapFrom(src => src.Localities.City))
+                .ForMember(dest => dest.CategoryId, opt => opt.MapFrom(src => src.OpportunityTypes.Categories.Id))
+                .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.OpportunityTypes.Categories.Name));
 
-            // Mapeo de CreateOpportunityDTO a Opportunity, ignorando Sector e Institution
             CreateMap<CreateOpportunityDTO, Opportunity>()
-                .ForMember(dest => dest.Sector, opt => opt.Ignore()) // Se asignará en el controlador
-                .ForMember(dest => dest.Institution, opt => opt.Ignore()) // También se asignará en el controlador
-                .ForMember(dest => dest.OpportunityType, opt => opt.Ignore()); // Se asignará en el controlador
+                .ForMember(dest => dest.SectorId, opt => opt.MapFrom(src => src.SectorId))
+                .ForMember(dest => dest.Sectors, opt => opt.MapFrom(src => src.SectorName))
+                .ForMember(dest => dest.InstitutionId, opt => opt.MapFrom(src => src.InstitutionId))
+                .ForMember(dest => dest.Institutions, opt => opt.MapFrom(src => src.InstitutionName))
+                .ForMember(dest => dest.Institutions, opt => opt.MapFrom(src => src.InstitutionImage))
+                .ForMember(dest => dest.Institutions, opt => opt.MapFrom(src => src.InstitutionInformation))
+                .ForMember(dest => dest.OpportunityTypeId, opt => opt.MapFrom(src => src.OpportunityTypeId))
+                .ForMember(dest => dest.OpportunityTypes, opt => opt.MapFrom(src => src.OpportunityTypeName))
+                .ForMember(dest => dest.LocalityId, opt => opt.MapFrom(src => src.LocalityId))
+                .ForMember(dest => dest.Localities, opt => opt.MapFrom(src => src.LocalityCity));
+
         }
     }
 }
