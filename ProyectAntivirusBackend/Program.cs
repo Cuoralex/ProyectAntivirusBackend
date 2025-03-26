@@ -84,7 +84,15 @@ builder.Services.AddScoped<IRequestService, RequestService>();
 builder.Services.AddScoped<IOpportunityTypeRepository, OpportunityTypeRepository>();
 builder.Services.AddScoped<OpportunityTypeService>();
 builder.Services.AddScoped<JwtService>();
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "AllowSpecificOrigin", builder =>
+    {
+        builder.WithOrigins("http://localhost:5173")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
 
 
 builder.Services.AddControllers();
@@ -109,6 +117,7 @@ else
 
 app.UseHttpsRedirection();
 app.UseRouting();
+app.UseCors("AllowSpecificOrigin");
 app.UseAuthorization();
 app.MapControllers();
 
