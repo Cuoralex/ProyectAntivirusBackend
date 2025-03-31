@@ -14,7 +14,7 @@ namespace ProyectAntivirusBackend.DTOs
         public required int InstitutionId { get; set; }
         public string? InstitutionName { get; set; }
         public string? InstitutionImage { get; set; }
-        public string? InstitutionInformation { get; set; }
+        public string? InstitutionLink { get; set; }
         public int CategoryId { get; set; }
         public string? CategoryName { get; set; }
         public required int LocalityId { get; set; }
