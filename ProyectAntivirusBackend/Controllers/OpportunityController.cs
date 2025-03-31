@@ -40,9 +40,9 @@ namespace ProyectAntivirusBackend.Controllers
         }
 
         [HttpGet("opportunities.data")]
-        public IActionResult GetOpportunities(string? title, int? opportunityTypeId)
+        public IActionResult GetOpportunities(string? title, int? opportunityTypeId, int? institutionId, int? localityId, DateTime? publicationDate, DateTime? expirationDate)
         {
-            Console.WriteLine($"Filtros recibidos - Title: {title}, TypeId: {opportunityTypeId}");
+            Console.WriteLine($"Filtros recibidos - Title: {title}, TypeId: {opportunityTypeId}, InstitutionId: {institutionId}, LocalityId: {localityId}, PublishedDate: {publicationDate}, ExpirationDate: {expirationDate}");
 
             var opportunities = _context.Opportunities.AsQueryable();
 
@@ -51,9 +51,34 @@ namespace ProyectAntivirusBackend.Controllers
                 opportunities = opportunities.Where(o => o.Title.Contains(title));
             }
 
+            // Filtro por tipo de oportunidad
             if (opportunityTypeId.HasValue)
             {
                 opportunities = opportunities.Where(o => o.OpportunityTypeId == opportunityTypeId);
+            }
+
+            // Filtro por institución
+            if (institutionId.HasValue)
+            {
+                opportunities = opportunities.Where(o => o.InstitutionId == institutionId);
+            }
+
+            // Filtro por ubicación (localidad)
+            if (localityId.HasValue)
+            {
+                opportunities = opportunities.Where(o => o.LocalityId == localityId);
+            }
+
+            // Filtro por fecha de publicación
+            if (publicationDate.HasValue)
+            {
+                opportunities = opportunities.Where(o => o.PublicationDate >= publicationDate);
+            }
+
+            // Filtro por fecha de expiración
+            if (expirationDate.HasValue)
+            {
+                opportunities = opportunities.Where(o => o.ExpirationDate <= expirationDate);
             }
 
             var filteredOpportunities = opportunities.ToList();
@@ -136,6 +161,11 @@ namespace ProyectAntivirusBackend.Controllers
         public async Task<IActionResult> RateOpportunity(int id, [FromBody] RatingRequest request)
         {
             var userId = GetUserIdFromToken(); // Obtener el usuario autenticado
+            if (userId == 0) return Unauthorized("Usuario no autenticado.");
+
+            var opportunity = await _context.Opportunities.FindAsync(id);
+            if (opportunity == null) return NotFound("Oportunidad no encontrada.");
+
             var existingRating = await _context.Ratings
                 .FirstOrDefaultAsync(r => r.UserId == userId && r.OpportunityId == id);
 
@@ -144,7 +174,6 @@ namespace ProyectAntivirusBackend.Controllers
                 // Si ya votó, actualizar su puntuación y comentario
                 existingRating.Score = (int)request.Score;
                 existingRating.Comment = (string)request.Comment;
-                await _context.SaveChangesAsync();
             }
             else
             {
@@ -157,22 +186,26 @@ namespace ProyectAntivirusBackend.Controllers
                     Comment = (string)request.Comment
                 };
                 _context.Ratings.Add(rating);
-                await _context.SaveChangesAsync();
             }
 
-            // Recalcular promedio de calificaciones
-            var averageRating = await _context.Ratings
-                .Where(r => r.OpportunityId == id)
-                .AverageAsync(r => r.Score);
+            await _context.SaveChangesAsync();
 
-            return Ok(new { newRating = averageRating });
+            // Recalcular promedio de calificaciones y total de votos
+            var ratings = await _context.Ratings
+                .Where(r => r.OpportunityId == id)
+                .ToListAsync();
+
+            var averageRating = ratings.Average(r => r.Score);
+            var totalVotes = ratings.Count;
+
+            return Ok(new { newRating = averageRating, totalVotes });
         }
 
         private int GetUserIdFromToken()
         {
-            throw new NotImplementedException();
+            // Implementar lógica para extraer el ID del usuario autenticado desde el token
+            return 1; // Este valor debe ser dinámico según el usuario logueado
         }
-
 
         // PUT: api/v1/opportunity/5
         [HttpPut("{id}")]

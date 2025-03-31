@@ -19,7 +19,7 @@ namespace ProyectAntivirusBackend.Models
         [Column("image")]
         public string Image { get; set; } = string.Empty;
 
-        [Column("information")]
-        public string? Information { get; set; }
+        [Column("link")]
+        public string? Link { get; set; }
     }
 }

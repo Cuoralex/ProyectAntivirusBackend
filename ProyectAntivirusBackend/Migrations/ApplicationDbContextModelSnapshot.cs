@@ -87,9 +87,9 @@ namespace ProyectAntivirusBackend.Migrations
                         .HasColumnType("text")
                         .HasColumnName("image");
 
-                    b.Property<string>("Information")
+                    b.Property<string>("Link")
                         .HasColumnType("text")
-                        .HasColumnName("information");
+                        .HasColumnName("link");
 
                     b.Property<string>("Name")
                         .IsRequired()
