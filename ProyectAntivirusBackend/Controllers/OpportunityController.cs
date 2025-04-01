@@ -162,11 +162,28 @@ namespace ProyectAntivirusBackend.Controllers
             return CreatedAtAction(nameof(GetOpportunity), new { id = opportunity.Id }, opportunityDTO);
         }
 
-        [HttpPost("{id}/rate")]
-        public async Task<IActionResult> RateOpportunity(int id, [FromBody] RatingRequest request)
+        // GET: api/v1/rating
+        [HttpGet("{id}/rating/{userId}")]
+        public async Task<IActionResult> GetRating(int id, int userId)
         {
-            var userId = GetUserIdFromToken(); // Obtener el usuario autenticado
-            if (userId == 0) return Unauthorized("Usuario no autenticado.");
+            var ratings = await _context.Ratings
+                .Where(r => r.OpportunityId == id)
+                .ToListAsync();
+
+            var userRating = ratings.FirstOrDefault(r => r.UserId == userId);
+            var averageRating = ratings.Any() ? ratings.Average(r => r.Score) : 0;
+
+            return Ok(new
+            {
+                Average = averageRating,
+                UserRating = userRating?.Score // Devuelve la calificación del usuario, si existe
+            });
+        }
+
+        // POST: api/v1/rating
+        [HttpPost("{id}/rate/{userId}")]
+        public async Task<IActionResult> RateOpportunity(int id, int userId, [FromBody] RatingRequest request)
+        {
 
             var opportunity = await _context.Opportunities.FindAsync(id);
             if (opportunity == null) return NotFound("Oportunidad no encontrada.");
