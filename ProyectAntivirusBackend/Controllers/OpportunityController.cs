@@ -146,11 +146,11 @@ namespace ProyectAntivirusBackend.Controllers
                 PublicationDate = DateTime.UtcNow,
                 ExpirationDate = createOpportunityDTO.ExpirationDate,
                 Status = createOpportunityDTO.Status,
-
                 Sectors = sector,
                 Institutions = institution,
                 OpportunityTypes = opportunityType,
-                Localities = locality
+                Localities = locality,
+                RatingId = createOpportunityDTO.RatingId,
             };
 
 
@@ -176,7 +176,7 @@ namespace ProyectAntivirusBackend.Controllers
             return Ok(new
             {
                 Average = averageRating,
-                UserRating = userRating?.Score // Devuelve la calificación del usuario, si existe
+                UserRating = userRating?.Score
             });
         }
 
@@ -209,7 +209,8 @@ namespace ProyectAntivirusBackend.Controllers
                     UserId = userId,
                     OpportunityId = id,
                     Score = (int)request.Score,
-                    Comment = (string)request.Comment
+                    Comment = (string)request.Comment,
+                
                 };
                 _context.Ratings.Add(rating);
             }

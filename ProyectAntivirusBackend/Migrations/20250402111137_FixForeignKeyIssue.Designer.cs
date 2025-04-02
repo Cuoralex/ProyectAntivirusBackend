@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using ProyectAntivirusBackend.Data;
@@ -11,9 +12,11 @@ using ProyectAntivirusBackend.Data;
 namespace ProyectAntivirusBackend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250402111137_FixForeignKeyIssue")]
+    partial class FixForeignKeyIssue
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -94,7 +97,8 @@ namespace ProyectAntivirusBackend.Migrations
 
                     b.HasIndex("OportunityId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("favorites", (string)null);
                 });
@@ -200,10 +204,6 @@ namespace ProyectAntivirusBackend.Migrations
                     b.Property<DateTime>("PublicationDate")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("publication_date");
-
-                    b.Property<int>("RatingId")
-                        .HasColumnType("integer")
-                        .HasColumnName("rating_id");
 
                     b.Property<string>("Requirements")
                         .HasColumnType("text")
@@ -445,6 +445,9 @@ namespace ProyectAntivirusBackend.Migrations
                         .HasColumnType("character varying(255)")
                         .HasColumnName("email");
 
+                    b.Property<int>("FavoriteId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasMaxLength(60)
@@ -530,8 +533,8 @@ namespace ProyectAntivirusBackend.Migrations
                         .IsRequired();
 
                     b.HasOne("ProyectAntivirusBackend.Models.User", "User")
-                        .WithMany("Favorites")
-                        .HasForeignKey("UserId")
+                        .WithOne("Favorite")
+                        .HasForeignKey("ProyectAntivirusBackend.Models.Favorite", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -641,7 +644,8 @@ namespace ProyectAntivirusBackend.Migrations
                 {
                     b.Navigation("AuthUser");
 
-                    b.Navigation("Favorites");
+                    b.Navigation("Favorite")
+                        .IsRequired();
 
                     b.Navigation("Profile");
                 });

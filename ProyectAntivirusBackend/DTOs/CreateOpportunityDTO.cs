@@ -21,5 +21,6 @@ namespace ProyectAntivirusBackend.DTOs
         public string? LocalityCity { get; set; }
         public string Status { get; set; } = "abierta";
         public required string Modality { get; set; }
+        public required int RatingId { get; set; }
     }
 }

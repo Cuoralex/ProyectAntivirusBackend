@@ -1,9 +1,28 @@
-public class Rating
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace ProyectAntivirusBackend.Models
 {
-    public int Id { get; set; }
-    public int UserId { get; set; }
-    public int OpportunityId { get; set; }
-    public  required int Score { get; set; }  // Puntuación del 1 al 5
-    public required string Comment { get; set; } // Justificación del usuario
-    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
+    public class Rating
+    {
+        [Key]
+        [Column("id")]
+        public int Id { get; set; }
+
+        [ForeignKey("User")]
+        [Column("user_id")]
+        public int UserId { get; set; }
+
+        [ForeignKey("Opportunity")]
+        [Column("opportunities_id")]
+        public int OpportunityId { get; set; }
+    [   Required]
+        [Column("modality")]
+        public required int Score { get; set; }
+        [Required]
+        [Column("modality")]
+        public required string Comment { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    }
 }

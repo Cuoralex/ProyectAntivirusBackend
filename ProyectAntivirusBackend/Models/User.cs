@@ -46,5 +46,7 @@ namespace ProyectAntivirusBackend.Models
 
         public Profile? Profile { get; set; }
         public AuthUser? AuthUser { get; set; }
+        public List<Favorite> Favorites { get; set; } = new();
+        public List<Rating> Ratings { get; set; } = new();
     }
 }
