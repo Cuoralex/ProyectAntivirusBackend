@@ -35,14 +35,14 @@ namespace ProyectAntivirusBackend.Models
         [ForeignKey("Locality")]
         [Column("locality_id")]
         public int LocalityId { get; set; }
-        public required  Locality Localities { get; set; }
+        public required Locality Localities { get; set; }
 
         [Column("requirements")]
         public string? Requirements { get; set; }
 
         [Column("benefits")]
         public string? Benefits { get; set; }
-        
+
         [Required]
         [Column("modality")]
         public required string Modality { get; set; }
@@ -64,10 +64,10 @@ namespace ProyectAntivirusBackend.Models
         [Column("status")]
         public string Status { get; set; } = "abierta";
 
-        [Required]
         [ForeignKey("Rating")]
         [Column("rating_id")]
         public int RatingId { get; set; }
+
 
         public List<Favorite> Favorites { get; set; } = new();
         public List<Rating> Ratings { get; set; } = new();

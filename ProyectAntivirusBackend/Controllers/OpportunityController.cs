@@ -150,7 +150,8 @@ namespace ProyectAntivirusBackend.Controllers
                 Institutions = institution,
                 OpportunityTypes = opportunityType,
                 Localities = locality,
-                RatingId = createOpportunityDTO.RatingId,
+                Ratings = new List<Rating>()
+,
             };
 
 
@@ -166,12 +167,12 @@ namespace ProyectAntivirusBackend.Controllers
         [HttpGet("{id}/rating/{userId}")]
         public async Task<IActionResult> GetRating(int id, int userId)
         {
-            var ratings = await _context.Ratings
+            var rating = await _context.Ratings
                 .Where(r => r.OpportunityId == id)
                 .ToListAsync();
 
-            var userRating = ratings.FirstOrDefault(r => r.UserId == userId);
-            var averageRating = ratings.Any() ? ratings.Average(r => r.Score) : 0;
+            var userRating = rating.FirstOrDefault(r => r.UserId == userId);
+            var averageRating = rating.Any() ? rating.Average(r => r.Score) : 0;
 
             return Ok(new
             {

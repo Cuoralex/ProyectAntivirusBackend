@@ -22,7 +22,8 @@ namespace ProyectAntivirusBackend.Controllers
         [HttpGet]
         public async Task<ActionResult<List<Rating>>> GetAllRatings()
         {
-            var ratings = await _context.Ratings.Include(r => r.OpportunityId).ToListAsync();
+            var ratings = await _context.Ratings.Include(r => r.Opportunity).ToListAsync();
+
             return Ok(ratings);
         }
 

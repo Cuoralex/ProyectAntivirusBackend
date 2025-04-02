@@ -15,13 +15,15 @@ namespace ProyectAntivirusBackend.Models
         public int UserId { get; set; }
 
         [ForeignKey("Opportunity")]
-        [Column("opportunities_id")]
+        [Column("opportunity_id")]
         public int OpportunityId { get; set; }
-    [   Required]
-        [Column("modality")]
+        public Opportunity? Opportunity { get; set; }
+
+        [Required]
+        [Column("score")]
         public required int Score { get; set; }
         [Required]
-        [Column("modality")]
+        [Column("coment")]
         public required string Comment { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     }
