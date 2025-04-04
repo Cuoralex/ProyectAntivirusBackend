@@ -26,16 +26,30 @@ namespace ProyectAntivirusBackend.Controllers
 
         // POST: api/v1/user/login
         [HttpPost("login")]
-        public async Task<ActionResult<string>> Login(LoginDTO loginDTO)
+        public async Task<IActionResult> Login(LoginDTO loginDTO)
         {
             var user = await _context.Users
                 .FirstOrDefaultAsync(u => u.Email == loginDTO.Email);
 
             if (user == null || !BCrypt.Net.BCrypt.Verify(loginDTO.Password, user.PasswordHash))
-                return Unauthorized("Credenciales inválidas");
+                return Unauthorized(new { message = "Credenciales inválidas" });
 
             var token = _jwtService.GenerateToken(user.Email, user.Role);
-            return Ok(new { Token = token });
+
+            Response.Cookies.Append("authToken", token, new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                SameSite = SameSiteMode.Strict,
+                Expires = DateTimeOffset.UtcNow.AddHours(1)
+            });
+
+            return Ok(new
+            {
+                email = user.Email,
+                role = user.Role,
+                token = token
+            });
         }
 
         // GET: api/v1/user
@@ -118,6 +132,38 @@ namespace ProyectAntivirusBackend.Controllers
 
             return NoContent();
         }
+
+        [Authorize]
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> PatchUser(int id, [FromBody] UpdateUserDTO dto)
+        {
+            var user = await _context.Users.FindAsync(id);
+            if (user == null) return NotFound();
+
+            _mapper.Map(dto, user);
+
+            user.Birthdate = DateTime.SpecifyKind(user.Birthdate, DateTimeKind.Utc);
+
+            _context.Entry(user).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        [Authorize]
+        [HttpPatch("{id}/status")]
+        public async Task<IActionResult> UpdateStatus(int id, [FromBody] UpdateUserStatusDTO dto)
+        {
+            var user = await _context.Users.FindAsync(id);
+            if (user == null) return NotFound();
+
+            user.IsActive = dto.IsActive;
+            _context.Entry(user).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
 
         // DELETE: api/v1/user/5
         [Authorize]
