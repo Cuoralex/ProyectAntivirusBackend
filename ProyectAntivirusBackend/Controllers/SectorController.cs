@@ -50,10 +50,10 @@ namespace ProyectAntivirusBackend.Controllers
                     Title = o.Title,
                     Description = o.Description,
                     Modality = o.Modality,
-                    SectorName =o.Sectors.Name,
-                    OpportunityTypeName=o.OpportunityTypes.Name,
-                    LocalityCity=o.Localities.City,
-                    InstitutionName=o.Institutions.Name,
+                    SectorName = o.Sectors.Name,
+                    OpportunityTypeName = o.OpportunityTypes.Name,
+                    LocalityCity = o.Localities.City,
+                    InstitutionName = o.Institutions.Name,
                 })
                 .ToListAsync();
 
@@ -75,12 +75,13 @@ namespace ProyectAntivirusBackend.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutSector(int id, Sector sector)
+        public async Task<IActionResult> PutSector(int id, [FromBody] CreateSectorDTO dto)
         {
-            if (id != sector.Id)
-            {
-                return BadRequest();
-            }
+            var sector = await _context.Sectors.FindAsync(id);
+            if (sector == null) return NotFound();
+
+            sector.Name = dto.Name;
+            sector.Description = dto.Description;
 
             _context.Entry(sector).State = EntityState.Modified;
 
@@ -102,6 +103,7 @@ namespace ProyectAntivirusBackend.Controllers
 
             return NoContent();
         }
+
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteSector(int id)
