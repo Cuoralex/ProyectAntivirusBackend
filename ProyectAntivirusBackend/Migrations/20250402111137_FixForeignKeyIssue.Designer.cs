@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using ProyectAntivirusBackend.Data;
@@ -11,9 +12,11 @@ using ProyectAntivirusBackend.Data;
 namespace ProyectAntivirusBackend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250402111137_FixForeignKeyIssue")]
+    partial class FixForeignKeyIssue
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -82,7 +85,7 @@ namespace ProyectAntivirusBackend.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("OpportunityId")
+                    b.Property<int>("OportunityId")
                         .HasColumnType("integer")
                         .HasColumnName("opportunity_id");
 
@@ -92,9 +95,10 @@ namespace ProyectAntivirusBackend.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OpportunityId");
+                    b.HasIndex("OportunityId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("favorites", (string)null);
                 });
@@ -167,10 +171,6 @@ namespace ProyectAntivirusBackend.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<double?>("AverageScore")
-                        .HasColumnType("double precision")
-                        .HasColumnName("average_score");
-
                     b.Property<string>("Benefits")
                         .HasColumnType("text")
                         .HasColumnName("benefits");
@@ -204,10 +204,6 @@ namespace ProyectAntivirusBackend.Migrations
                     b.Property<DateTime>("PublicationDate")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("publication_date");
-
-                    b.Property<int>("RatingId")
-                        .HasColumnType("integer")
-                        .HasColumnName("rating_id");
 
                     b.Property<string>("Requirements")
                         .HasColumnType("text")
@@ -306,44 +302,6 @@ namespace ProyectAntivirusBackend.Migrations
                         .IsUnique();
 
                     b.ToTable("profiles");
-                });
-
-            modelBuilder.Entity("ProyectAntivirusBackend.Models.Rating", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Comment")
-                        .HasColumnType("text")
-                        .HasColumnName("comment");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("created_at");
-
-                    b.Property<int>("OpportunityId")
-                        .HasColumnType("integer")
-                        .HasColumnName("opportunity_id");
-
-                    b.Property<double>("Score")
-                        .HasColumnType("double precision")
-                        .HasColumnName("score");
-
-                    b.Property<int?>("UserId")
-                        .HasColumnType("integer")
-                        .HasColumnName("user_id");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OpportunityId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("rating", (string)null);
                 });
 
             modelBuilder.Entity("ProyectAntivirusBackend.Models.Request", b =>
@@ -487,6 +445,9 @@ namespace ProyectAntivirusBackend.Migrations
                         .HasColumnType("character varying(255)")
                         .HasColumnName("email");
 
+                    b.Property<int>("FavoriteId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasMaxLength(60)
@@ -523,6 +484,35 @@ namespace ProyectAntivirusBackend.Migrations
                     b.ToTable("users");
                 });
 
+            modelBuilder.Entity("Rating", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Comment")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("OpportunityId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Score")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ranking", (string)null);
+                });
+
             modelBuilder.Entity("ProyectAntivirusBackend.Models.AuthUser", b =>
                 {
                     b.HasOne("ProyectAntivirusBackend.Models.User", "User")
@@ -537,14 +527,14 @@ namespace ProyectAntivirusBackend.Migrations
             modelBuilder.Entity("ProyectAntivirusBackend.Models.Favorite", b =>
                 {
                     b.HasOne("ProyectAntivirusBackend.Models.Opportunity", "Opportunity")
-                        .WithMany("Favorites")
-                        .HasForeignKey("OpportunityId")
+                        .WithMany()
+                        .HasForeignKey("OportunityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ProyectAntivirusBackend.Models.User", "User")
-                        .WithMany("Favorites")
-                        .HasForeignKey("UserId")
+                        .WithOne("Favorite")
+                        .HasForeignKey("ProyectAntivirusBackend.Models.Favorite", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -610,21 +600,6 @@ namespace ProyectAntivirusBackend.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("ProyectAntivirusBackend.Models.Rating", b =>
-                {
-                    b.HasOne("ProyectAntivirusBackend.Models.Opportunity", "Opportunity")
-                        .WithMany("Ratings")
-                        .HasForeignKey("OpportunityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ProyectAntivirusBackend.Models.User", null)
-                        .WithMany("Ratings")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("Opportunity");
-                });
-
             modelBuilder.Entity("ProyectAntivirusBackend.Models.Request", b =>
                 {
                     b.HasOne("ProyectAntivirusBackend.Models.Opportunity", "Opportunity")
@@ -655,13 +630,6 @@ namespace ProyectAntivirusBackend.Migrations
                     b.Navigation("ServiceType");
                 });
 
-            modelBuilder.Entity("ProyectAntivirusBackend.Models.Opportunity", b =>
-                {
-                    b.Navigation("Favorites");
-
-                    b.Navigation("Ratings");
-                });
-
             modelBuilder.Entity("ProyectAntivirusBackend.Models.OpportunityType", b =>
                 {
                     b.Navigation("Opportunities");
@@ -676,11 +644,10 @@ namespace ProyectAntivirusBackend.Migrations
                 {
                     b.Navigation("AuthUser");
 
-                    b.Navigation("Favorites");
+                    b.Navigation("Favorite")
+                        .IsRequired();
 
                     b.Navigation("Profile");
-
-                    b.Navigation("Ratings");
                 });
 #pragma warning restore 612, 618
         }

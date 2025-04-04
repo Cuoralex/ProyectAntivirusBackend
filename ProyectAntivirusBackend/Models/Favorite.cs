@@ -3,8 +3,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProyectAntivirusBackend.Models
 {
-
-    public class Rating
+    [Table("favorites")]
+    public class Favorite
     {
         [Key]
         [Column("id")]
@@ -13,18 +13,12 @@ namespace ProyectAntivirusBackend.Models
         [ForeignKey("User")]
         [Column("user_id")]
         public int? UserId { get; set; }
+        public User? User { get; set; } = null!;
 
+        [Required]
         [ForeignKey("Opportunity")]
         [Column("opportunity_id")]
         public int OpportunityId { get; set; }
-        public Opportunity? Opportunity { get; set; }
-
-        [Required]
-        [Column("score")]
-        public required double Score { get; set; }
-    
-        [Column("comment")]
-        public string? Comment { get; set; }
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public Opportunity Opportunity { get; set; } = null!;
     }
 }

@@ -22,6 +22,7 @@ namespace ProyectAntivirusBackend.Data
         public DbSet<AuthUser> AuthUsers { get; set; }
         public DbSet<Opportunity> Opportunities { get; set; }
         public DbSet<Rating> Ratings { get; set; }
+        public DbSet<Favorite> Favorites { get; set; }
         public required IEnumerable<object> Ratingsatings { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -114,12 +115,34 @@ namespace ProyectAntivirusBackend.Data
                 .HasIndex(o => o.Title)
                 .IsUnique();
 
+            modelBuilder.Entity<User>()
+                .HasMany(u => u.Favorites)
+                .WithOne(f => f.User)
+                .HasForeignKey(f => f.UserId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Rating>()
+                .HasOne(r => r.Opportunity)
+                .WithMany(o => o.Ratings)
+                .HasForeignKey(r => r.OpportunityId);
+
+            modelBuilder.Entity<Rating>()
+                .Property(r => r.CreatedAt)
+                .HasColumnName("created_at");
+
+            modelBuilder.Entity<Rating>()
+                .Property(r => r.UserId)
+                .IsRequired(false);
+
             modelBuilder.Entity<OpportunityType>().ToTable("opportunity_types");
             modelBuilder.Entity<Sector>().ToTable("sectors");
             modelBuilder.Entity<Institution>().ToTable("institutions");
             modelBuilder.Entity<Locality>().ToTable("localities");
             modelBuilder.Entity<Category>().ToTable("categories");
-            modelBuilder.Entity<Rating>().ToTable("ranking");
+            modelBuilder.Entity<Rating>().ToTable("rating");
+            modelBuilder.Entity<Favorite>().ToTable("favorites");
+
         }
     }
 }

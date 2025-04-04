@@ -24,6 +24,7 @@ namespace ProyectAntivirusBackend.DTOs
         public int CategoryId { get; set; }
         public string? CategoryName { get; set; }
         public string Status { get; set; } = "abierta";
+        public required int RatingId { get; set; }
 
     }
 }

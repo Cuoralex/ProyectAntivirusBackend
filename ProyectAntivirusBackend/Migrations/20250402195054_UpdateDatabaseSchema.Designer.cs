@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using ProyectAntivirusBackend.Data;
@@ -11,9 +12,11 @@ using ProyectAntivirusBackend.Data;
 namespace ProyectAntivirusBackend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250402195054_UpdateDatabaseSchema")]
+    partial class UpdateDatabaseSchema
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -82,7 +85,7 @@ namespace ProyectAntivirusBackend.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("OpportunityId")
+                    b.Property<int>("OportunityId")
                         .HasColumnType("integer")
                         .HasColumnName("opportunity_id");
 
@@ -92,7 +95,7 @@ namespace ProyectAntivirusBackend.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OpportunityId");
+                    b.HasIndex("OportunityId");
 
                     b.HasIndex("UserId");
 
@@ -166,10 +169,6 @@ namespace ProyectAntivirusBackend.Migrations
                         .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<double?>("AverageScore")
-                        .HasColumnType("double precision")
-                        .HasColumnName("average_score");
 
                     b.Property<string>("Benefits")
                         .HasColumnType("text")
@@ -318,22 +317,22 @@ namespace ProyectAntivirusBackend.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Comment")
+                        .IsRequired()
                         .HasColumnType("text")
-                        .HasColumnName("comment");
+                        .HasColumnName("coment");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("created_at");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<int>("OpportunityId")
                         .HasColumnType("integer")
                         .HasColumnName("opportunity_id");
 
-                    b.Property<double>("Score")
-                        .HasColumnType("double precision")
+                    b.Property<int>("Score")
+                        .HasColumnType("integer")
                         .HasColumnName("score");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int>("UserId")
                         .HasColumnType("integer")
                         .HasColumnName("user_id");
 
@@ -538,7 +537,7 @@ namespace ProyectAntivirusBackend.Migrations
                 {
                     b.HasOne("ProyectAntivirusBackend.Models.Opportunity", "Opportunity")
                         .WithMany("Favorites")
-                        .HasForeignKey("OpportunityId")
+                        .HasForeignKey("OportunityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -620,7 +619,9 @@ namespace ProyectAntivirusBackend.Migrations
 
                     b.HasOne("ProyectAntivirusBackend.Models.User", null)
                         .WithMany("Ratings")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Opportunity");
                 });

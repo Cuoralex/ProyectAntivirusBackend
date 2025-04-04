@@ -4,9 +4,12 @@ using Microsoft.EntityFrameworkCore;
 using ProyectAntivirusBackend.Data;
 using ProyectAntivirusBackend.DTOs;
 using ProyectAntivirusBackend.Models;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ProyectAntivirusBackend.Controllers
 {
+
     [Route("api/v1/opportunity")]
     [ApiController]
     public class OpportunityController : ControllerBase
@@ -125,6 +128,8 @@ namespace ProyectAntivirusBackend.Controllers
                 return BadRequest("❌ Error: Tipo de oportunidad inválido.");
 
             var locality = await _context.Localities.FindAsync(createOpportunityDTO.LocalityId);
+            if (locality == null)
+                return BadRequest("❌ Error: Tipo de oportunidad inválido.");
 
             // Creación del objeto Opportunity
             var opportunity = new Opportunity
@@ -141,11 +146,12 @@ namespace ProyectAntivirusBackend.Controllers
                 PublicationDate = DateTime.UtcNow,
                 ExpirationDate = createOpportunityDTO.ExpirationDate,
                 Status = createOpportunityDTO.Status,
-
                 Sectors = sector,
                 Institutions = institution,
                 OpportunityTypes = opportunityType,
-                Localities = locality
+                Localities = locality,
+                Ratings = new List<Rating>()
+,
             };
 
 
@@ -157,15 +163,36 @@ namespace ProyectAntivirusBackend.Controllers
             return CreatedAtAction(nameof(GetOpportunity), new { id = opportunity.Id }, opportunityDTO);
         }
 
-        [HttpPost("{id}/rate")]
-        public async Task<IActionResult> RateOpportunity(int id, [FromBody] RatingRequest request)
+        // GET: api/v1/rating
+        [HttpGet("{id}/rating/{userId}")]
+        public async Task<IActionResult> GetRating(int id, int userId)
         {
-            var userId = GetUserIdFromToken(); // Obtener el usuario autenticado
-            if (userId == 0) return Unauthorized("Usuario no autenticado.");
+            var rating = await _context.Ratings
+                .Where(r => r.OpportunityId == id)
+                .ToListAsync();
+
+            var userRating = rating.FirstOrDefault(r => r.UserId == userId);
+            var averageRating = rating.Any() ? rating.Average(r => r.Score) : 0;
+
+            return Ok(new
+            {
+                Average = averageRating,
+                UserRating = userRating?.Score
+            });
+        }
+
+        // POST: api/v1/rating
+        [HttpPost("{id}/rate/{userId}")]
+        public async Task<IActionResult> RateOpportunity(int id, int userId, [FromBody] RatingRequest request)
+        {
 
             var opportunity = await _context.Opportunities.FindAsync(id);
             if (opportunity == null) return NotFound("Oportunidad no encontrada.");
 
+            if (request.Score < 1 || request.Score > 5)
+            {
+                return BadRequest("La calificación debe estar entre 1 y 5.");
+            }
             var existingRating = await _context.Ratings
                 .FirstOrDefaultAsync(r => r.UserId == userId && r.OpportunityId == id);
 
@@ -183,10 +210,12 @@ namespace ProyectAntivirusBackend.Controllers
                     UserId = userId,
                     OpportunityId = id,
                     Score = (int)request.Score,
-                    Comment = (string)request.Comment
+                    Comment = (string)request.Comment,
+                
                 };
                 _context.Ratings.Add(rating);
             }
+
 
             await _context.SaveChangesAsync();
 
@@ -203,9 +232,18 @@ namespace ProyectAntivirusBackend.Controllers
 
         private int GetUserIdFromToken()
         {
-            // Implementar lógica para extraer el ID del usuario autenticado desde el token
-            return 1; // Este valor debe ser dinámico según el usuario logueado
+            var identity = HttpContext.User.Identity as System.Security.Claims.ClaimsIdentity;
+            if (identity != null)
+            {
+                var userIdClaim = identity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+                if (userIdClaim != null)
+                {
+                    return int.Parse(userIdClaim.Value);
+                }
+            }
+            return 0; // Usuario no autenticado
         }
+
 
         // PUT: api/v1/opportunity/5
         [HttpPut("{id}")]
@@ -236,7 +274,8 @@ namespace ProyectAntivirusBackend.Controllers
 
     public class RatingRequest
     {
-        public object Score { get; internal set; }
-        public object Comment { get; internal set; }
+        public int Score { get; set; }
+        public required string Comment { get; set; }
     }
+
 }

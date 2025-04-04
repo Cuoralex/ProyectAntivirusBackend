@@ -1,5 +1,8 @@
-public class RatingDTO
+namespace ProyectAntivirusBackend.DTOs
 {
-    public int Score { get; set; }  // ✅ Debe ser int
-    public required string Comment { get; set; }  // ✅ Debe ser string
+    public class RatingDTO
+    {
+        public int Score { get; set; }
+        public required string Comment { get; set; }
+    }
 }

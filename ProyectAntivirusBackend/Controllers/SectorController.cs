@@ -54,6 +54,7 @@ namespace ProyectAntivirusBackend.Controllers
                     OpportunityTypeName=o.OpportunityTypes.Name,
                     LocalityCity=o.Localities.City,
                     InstitutionName=o.Institutions.Name,
+                    RatingId=o.RatingId
                 })
                 .ToListAsync();
 
