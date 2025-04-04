@@ -11,7 +11,7 @@ namespace ProyectAntivirusBackend.Models
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(30)]
+        [MaxLength(150)]
         [Column("name")]
         public string Name { get; set; } = string.Empty;
 
