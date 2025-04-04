@@ -23,6 +23,8 @@ namespace ProyectAntivirusBackend.Controllers
             _mapper = mapper;
         }
 
+
+
         // GET: api/v1/opportunity
         [HttpGet]
         public async Task<ActionResult<IEnumerable<OpportunityDTO>>> GetOpportunity()
@@ -270,6 +272,8 @@ namespace ProyectAntivirusBackend.Controllers
             await _context.SaveChangesAsync();
             return NoContent();
         }
+
+
     }
 
     public class RatingRequest

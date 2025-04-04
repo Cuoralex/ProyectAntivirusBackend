@@ -23,13 +23,13 @@ namespace ProyectAntivirusBackend.Controllers
         public async Task<ActionResult<IEnumerable<ServiceDTO>>> GetServices()
         {
             var services = await _context.Services
-                .Include(s => s.ServiceType) // Incluimos la relación con ServiceType
+                .Include(s => s.ServiceType)
                 .Select(s => new ServiceDTO
                 {
                     Id = s.Id,
                     IsActive = s.IsActive,
                     ServiceTypeId = s.ServiceTypeId,
-                    ServiceTypeName = s.ServiceType != null ? s.ServiceType.Name : "Sin Tipo", // Validamos si es null
+                    ServiceTypeName = s.ServiceType != null ? s.ServiceType.Name : "Sin Tipo",
                     Title = s.Title,
                     Description = s.Description,
                     Image = s.Image
@@ -137,5 +137,16 @@ namespace ProyectAntivirusBackend.Controllers
             return NoContent();
         }
 
+        [HttpPatch("{id}/status")]
+        public async Task<IActionResult> UpdateStatus(int id, [FromBody] UpdateServiceStatusDTO dto)
+        {
+            var service = await _context.Services.FindAsync(id);
+            if (service == null) return NotFound();
+
+            service.IsActive = dto.IsActive;
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
     }
 }

@@ -16,11 +16,14 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
     {
-        policy.WithOrigins("http://localhost:5173")
-              .AllowAnyHeader()
-              .AllowAnyMethod();
+        policy
+            .SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost")
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials();
     });
 });
+
 
 var jwtSettings = builder.Configuration.GetSection("Jwt");
 var keyValue = jwtSettings["Key"];
@@ -41,6 +44,20 @@ builder.Services.AddAuthentication(options =>
 })
 .AddJwtBearer(options =>
 {
+    options.Events = new JwtBearerEvents
+    {
+        OnMessageReceived = context =>
+{
+    if (context.Request.Cookies.ContainsKey("authToken"))
+    {
+        var token = context.Request.Cookies["authToken"];
+        context.Token = token;
+    }
+    return Task.CompletedTask;
+}
+
+    };
+
     options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuer = true,
@@ -122,6 +139,7 @@ app.UseCors("AllowFrontend");
 
 app.UseHttpsRedirection();
 app.UseRouting();
+app.UseCookiePolicy();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();

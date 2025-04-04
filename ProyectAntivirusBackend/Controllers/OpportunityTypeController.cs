@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using ProyectAntivirusBackend.Services;
 using ProyectAntivirusBackend.Models;
+using ProyectAntivirusBackend.DTOs; // ← Asegúrate de importar el namespace correcto
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Swashbuckle.AspNetCore.Annotations;
+using ProyectAntivirusBackend.Data;
 
 namespace ProyectAntivirusBackend.Controllers
 {
@@ -12,24 +14,21 @@ namespace ProyectAntivirusBackend.Controllers
     public class OpportunityTypeController : ControllerBase
     {
         private readonly OpportunityTypeService _service;
+        private readonly ApplicationDbContext _context;
 
-        public OpportunityTypeController(OpportunityTypeService service)
+        public OpportunityTypeController(OpportunityTypeService service, ApplicationDbContext context)
         {
             _service = service;
+            _context = context;
         }
 
         [HttpGet]
-        [SwaggerOperation(Summary = "Get all opportunity types", Description = "Retrieves all opportunity types from the system.")]
-        [SwaggerResponse(200, "Returns the list of opportunity types", typeof(IEnumerable<OpportunityType>))]
         public async Task<ActionResult<IEnumerable<OpportunityType>>> GetAll()
         {
             return Ok(await _service.GetAllAsync());
         }
 
         [HttpGet("{id}")]
-        [SwaggerOperation(Summary = "Get opportunity type by ID", Description = "Retrieves an opportunity type by its ID.")]
-        [SwaggerResponse(200, "Returns the opportunity type", typeof(OpportunityType))]
-        [SwaggerResponse(404, "Opportunity type not found")]
         public async Task<ActionResult<OpportunityType>> GetById(int id)
         {
             var result = await _service.GetByIdAsync(id);
@@ -37,32 +36,45 @@ namespace ProyectAntivirusBackend.Controllers
         }
 
         [HttpPost]
-        [SwaggerOperation(Summary = "Create a new opportunity type", Description = "Creates a new opportunity type in the system.")]
-        [SwaggerResponse(201, "Opportunity type created successfully", typeof(OpportunityType))]
-        [SwaggerResponse(400, "Invalid input provided")]
-        public async Task<ActionResult<OpportunityType>> Create([FromBody] OpportunityType opportunityType)
+        public async Task<ActionResult<OpportunityType>> Create([FromBody] CreateOpportunityTypeDTO dto)
         {
+            var category = await _context.Categories.FindAsync(dto.CategoryId);
+            if (category == null)
+                return BadRequest("La categoría especificada no existe.");
+
+            var opportunityType = new OpportunityType
+            {
+                Name = dto.Name,
+                Description = dto.Description,
+                CategoryId = dto.CategoryId,
+                Categories = category
+            };
+
             await _service.AddAsync(opportunityType);
             return CreatedAtAction(nameof(GetById), new { id = opportunityType.Id }, opportunityType);
         }
 
         [HttpPut("{id}")]
-        [SwaggerOperation(Summary = "Update an opportunity type", Description = "Updates an existing opportunity type by its ID.")]
-        [SwaggerResponse(204, "Opportunity type updated successfully")]
-        [SwaggerResponse(400, "ID mismatch or invalid data")]
-        public async Task<IActionResult> Update(int id, [FromBody] OpportunityType opportunityType)
+        public async Task<IActionResult> Update(int id, [FromBody] CreateOpportunityTypeDTO dto)
         {
-            if (id != opportunityType.Id)
-                return BadRequest("ID mismatch");
+            var existing = await _service.GetByIdAsync(id);
+            if (existing == null)
+                return NotFound();
 
-            await _service.UpdateAsync(opportunityType);
+            var category = await _context.Categories.FindAsync(dto.CategoryId);
+            if (category == null)
+                return BadRequest("La categoría especificada no existe.");
+
+            existing.Name = dto.Name;
+            existing.Description = dto.Description;
+            existing.CategoryId = dto.CategoryId;
+            existing.Categories = category;
+
+            await _service.UpdateAsync(existing);
             return NoContent();
         }
 
         [HttpDelete("{id}")]
-        [SwaggerOperation(Summary = "Delete an opportunity type", Description = "Deletes an opportunity type by its ID.")]
-        [SwaggerResponse(204, "Opportunity type deleted successfully")]
-        [SwaggerResponse(404, "Opportunity type not found")]
         public async Task<IActionResult> Delete(int id)
         {
             await _service.DeleteAsync(id);

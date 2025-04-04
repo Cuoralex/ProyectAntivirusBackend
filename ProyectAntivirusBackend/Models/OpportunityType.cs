@@ -25,7 +25,9 @@ namespace ProyectAntivirusBackend.Models
         [ForeignKey("Category")]
         [Column("categories_id")]
         public int CategoryId { get; set; }
-        public required Category Categories { get; set; }
+        [JsonIgnore]
+        public Category? Categories { get; set; }
+
 
         public ICollection<Opportunity> Opportunities { get; set; } = new List<Opportunity>();
     }
