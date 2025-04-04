@@ -51,16 +51,25 @@ public class FavoriteController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateFavorite(FavoriteDTO favoriteDto)
+    public async Task<IActionResult> CreateFavorite([FromBody] FavoriteDTO favoriteDto)
     {
         if (favoriteDto == null || favoriteDto.OpportunityId == 0)
         {
             return BadRequest("Datos inválidos.");
         }
 
+        // Verificar si la oportunidad ya fue marcada como favorita
+        var existingFavorite = await _context.Favorites
+            .FirstOrDefaultAsync(f => f.OpportunityId == favoriteDto.OpportunityId);
+
+        if (existingFavorite != null)
+        {
+            return BadRequest("Esta oportunidad ya está marcada como favorita.");
+        }
+
         var favorite = new Favorite
         {
-            OpportunityId = favoriteDto.OpportunityId,
+            OpportunityId = favoriteDto.OpportunityId
         };
 
         _context.Favorites.Add(favorite);
@@ -68,6 +77,36 @@ public class FavoriteController : ControllerBase
 
         return CreatedAtAction(nameof(ObtenerFavoritoPorId), new { id = favorite.Id }, favorite);
     }
+
+    [HttpPost("{id}")]
+    public async Task<IActionResult> CreateFavoriteWithId(int id, [FromBody] FavoriteDTO favoriteDto)
+    {
+        if (favoriteDto == null || favoriteDto.OpportunityId == 0)
+        {
+            return BadRequest("Datos inválidos.");
+        }
+
+        // Verificar si el favorito ya existe para evitar duplicados
+        var existingFavorite = await _context.Favorites
+            .FirstOrDefaultAsync(f => f.OpportunityId == favoriteDto.OpportunityId && f.Id == id);
+
+        if (existingFavorite != null)
+        {
+            return BadRequest("Esta oportunidad ya está marcada como favorita.");
+        }
+
+        var favorite = new Favorite
+        {
+            Id = id, // Asignamos el ID proporcionado en la URL
+            OpportunityId = favoriteDto.OpportunityId
+        };
+
+        _context.Favorites.Add(favorite);
+        await _context.SaveChangesAsync();
+
+        return CreatedAtAction(nameof(ObtenerFavoritoPorId), new { id = favorite.Id }, favorite);
+    }
+
 
     [HttpPut("{id}")]
     public async Task<IActionResult> ActualizarFavorito(int id, [FromBody] Favorite favorite)
