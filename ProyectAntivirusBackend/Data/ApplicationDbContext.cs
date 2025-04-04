@@ -127,6 +127,14 @@ namespace ProyectAntivirusBackend.Data
                 .WithMany(o => o.Ratings)
                 .HasForeignKey(r => r.OpportunityId);
 
+            modelBuilder.Entity<Rating>()
+                .Property(r => r.CreatedAt)
+                .HasColumnName("created_at");
+
+            modelBuilder.Entity<Rating>()
+                .Property(r => r.UserId)
+                .IsRequired(false);
+
             modelBuilder.Entity<OpportunityType>().ToTable("opportunity_types");
             modelBuilder.Entity<Sector>().ToTable("sectors");
             modelBuilder.Entity<Institution>().ToTable("institutions");

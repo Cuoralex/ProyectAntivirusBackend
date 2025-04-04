@@ -68,6 +68,8 @@ namespace ProyectAntivirusBackend.Models
         [Column("rating_id")]
         public int RatingId { get; set; }
 
+        [Column("average_score")]
+        public double? AverageScore { get; set; }
 
         public List<Favorite> Favorites { get; set; } = new();
         public List<Rating> Ratings { get; set; } = new();

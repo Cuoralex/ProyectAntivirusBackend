@@ -14,7 +14,7 @@ public class FavoriteController : ControllerBase
     private readonly ApplicationDbContext _context;
     private readonly IMapper _mapper;
 
-    public FavoriteController(ApplicationDbContext context, IMapper mapper) // Se añade el mapper al constructor
+    public FavoriteController(ApplicationDbContext context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;
@@ -23,8 +23,8 @@ public class FavoriteController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Favorite>>> ObtenerFavoritos()
     {
-        var favoritos = await _context.Favorites.ToListAsync();
-        return Ok(favoritos);
+        var favorites = await _context.Favorites.ToListAsync();
+        return Ok(favorites);
     }
 
     [HttpGet("{id}")]
@@ -51,43 +51,22 @@ public class FavoriteController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> MarcarFavorito([FromBody] Favorite favorite)
+    public async Task<IActionResult> CreateFavorite(FavoriteDTO favoriteDto)
     {
-        if (favorite == null)
+        if (favoriteDto == null || favoriteDto.OpportunityId == 0)
         {
             return BadRequest("Datos inválidos.");
         }
 
-        // Corrección: Usamos los nombres correctos de las propiedades en Favorite
-        var estudiante = await _context.Users.FindAsync(favorite.UserId);
-        var oportunidad = await _context.Opportunities.FindAsync(favorite.OportunityId); // Corrección de 'Oportunities' → 'Opportunities'
-
-        if (estudiante == null || oportunidad == null)
+        var favorite = new Favorite
         {
-            return NotFound("Usuario u oportunidad no encontrados.");
-        }
-
-        // Corrección: Verificar si ya existe el favorito con los nombres correctos
-        var favoriteExistente = await _context.Favorites
-            .FirstOrDefaultAsync(f => f.UserId == favorite.UserId && f.OportunityId == favorite.OportunityId);
-
-        if (favoriteExistente != null)
-        {
-            return Conflict("El favorito ya existe.");
-        }
+            OpportunityId = favoriteDto.OpportunityId,
+        };
 
         _context.Favorites.Add(favorite);
         await _context.SaveChangesAsync();
 
-        return Ok(new { message = "Favorito agregado correctamente.", data = favorite });
-    }
-
-    [HttpPost("favorites")]
-    public async Task<IActionResult> AddFavorite([FromBody] Favorite favorite)
-    {
-        _context.Favorites.Add(favorite);
-        await _context.SaveChangesAsync();
-        return CreatedAtAction(nameof(GetUserFavorites), new { userId = favorite.UserId }, favorite);
+        return CreatedAtAction(nameof(ObtenerFavoritoPorId), new { id = favorite.Id }, favorite);
     }
 
     [HttpPut("{id}")]

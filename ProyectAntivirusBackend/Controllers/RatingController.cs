@@ -1,8 +1,6 @@
-using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProyectAntivirusBackend.Data;
-using ProyectAntivirusBackend.DTOs;
 using ProyectAntivirusBackend.Models;
 
 namespace ProyectAntivirusBackend.Controllers
@@ -18,75 +16,121 @@ namespace ProyectAntivirusBackend.Controllers
             _context = context;
         }
 
-        /// 🔹 Obtener todas las calificaciones
         [HttpGet]
         public async Task<ActionResult<List<Rating>>> GetAllRatings()
         {
-            var ratings = await _context.Ratings.Include(r => r.Opportunity).ToListAsync();
-
-            return Ok(ratings);
+            try
+            {
+                var ratings = await _context.Ratings.ToListAsync();
+                if (ratings == null || ratings.Count == 0)
+                {
+                    return NotFound(new { message = "No hay calificaciones registradas" });
+                }
+                return Ok(ratings);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Error interno del servidor", error = ex.Message });
+            }
         }
 
-        /// 🔹 Obtener calificaciones de un usuario específico
         [HttpGet("user/{userId}")]
         public async Task<ActionResult<List<Rating>>> GetUserRatings(int userId)
         {
             var ratings = await _context.Ratings
                 .Where(r => r.UserId == userId)
-                .Include(r => r.OpportunityId)
+                .Include(r => r.Opportunity)
                 .ToListAsync();
 
             return Ok(ratings);
         }
 
-        /// 🔹 Obtener una calificación específica por ID
         [HttpGet("{id}")]
         public async Task<ActionResult<Rating>> GetRatingById(int id)
         {
             var rating = await _context.Ratings.FindAsync(id);
-
             if (rating == null)
             {
                 return NotFound(new { message = "Calificación no encontrada" });
             }
-
             return Ok(rating);
         }
 
-        /// 🔹 Crear una nueva calificación
-        [HttpPost("ratings")]
-        public async Task<IActionResult> CreateRating([FromBody] Rating request)
+        [HttpGet("opportunity/{opportunityId}/average")]
+        public async Task<ActionResult<double>> GetAverageRating(int opportunityId)
         {
-            // Validar que el usuario existe
-            var user = await _context.Users.FindAsync(request.UserId);
-            if (user == null)
+            var average = await _context.Ratings
+                .Where(r => r.OpportunityId == opportunityId)
+                .AverageAsync(r => (double?)r.Score) ?? 0;
+
+            return Ok(new { average });
+        }
+
+        [HttpPost("opportunity/{opportunityId}/average")]
+        public async Task<ActionResult<double>> AddRatingAndCalculateAverage(
+    [FromRoute] int opportunityId, [FromBody] Rating request)
+        {
+            if (request.Score < 1 || request.Score > 5)
             {
-                return NotFound(new { message = "Usuario no encontrado" });
+                return BadRequest(new { message = "El puntaje debe estar entre 1 y 5." });
             }
 
-            // Validar que la oportunidad existe
-            var opportunity = await _context.Opportunities.FindAsync(request.OpportunityId);
+            var opportunity = await _context.Opportunities.FindAsync(opportunityId);
             if (opportunity == null)
             {
                 return NotFound(new { message = "Oportunidad no encontrada" });
             }
 
-            // Crear la calificación
-            var rating = new Rating
-            {
-                UserId = request.UserId,
-                OpportunityId = request.OpportunityId,
-                Score = request.Score,
-                Comment = request.Comment
-            };
-
-            _context.Ratings.Add(rating);
+            _context.Ratings.Add(request);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetUserRatings), new { userId = request.UserId }, rating);
+            // Recalcular el promedio
+            double newAverage = await _context.Ratings
+                .Where(r => r.OpportunityId == opportunityId)
+                .AverageAsync(r => r.Score);
+
+            // Guardar el promedio en la oportunidad
+            opportunity.AverageScore = newAverage;
+            await _context.SaveChangesAsync();
+
+            return Ok(new { average = newAverage });
         }
 
-        /// 🔹 Actualizar una calificación existente
+        [HttpPost]
+        public async Task<IActionResult> CreateRating([FromBody] Rating request)
+        {
+            Console.WriteLine("📥 Se recibió una petición POST en /ratings");
+            Console.WriteLine($"➡️ OpportunityId: {request.OpportunityId}, UserId: {request.UserId}, Score: {request.Score}, Comment: {request.Comment}");
+
+            if (request.UserId <= 0 || request.OpportunityId <= 0 || request.Score < 1 || request.Score > 5)
+            {
+                return BadRequest(new { message = "Datos inválidos: asegúrate de incluir UserId, OpportunityId y un Score entre 1 y 5." });
+            }
+
+            Console.WriteLine("⚠️ Datos inválidos en la petición");
+            var exists = await _context.Ratings
+                .AnyAsync(r => r.OpportunityId == request.OpportunityId && r.UserId == request.UserId);
+
+            if (exists)
+            {
+                Console.WriteLine("⚠️ El usuario ya votó por esta oportunidad");
+                return Conflict(new { message = "Ya existe una calificación de este usuario para esta oportunidad." });
+            }
+
+            var opportunity = await _context.Opportunities.FindAsync(request.OpportunityId);
+            if (opportunity == null)
+            {
+                Console.WriteLine("❌ Oportunidad no encontrada");
+                return NotFound(new { message = "Oportunidad no encontrada" });
+            }
+
+            _context.Ratings.Add(request);
+            await _context.SaveChangesAsync();
+
+            Console.WriteLine("✅ Calificación guardada correctamente");
+            return CreatedAtAction(nameof(GetUserRatings), new { userId = request.UserId }, request);
+        }
+
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateRating(int id, [FromBody] Rating updatedRating)
         {
@@ -102,12 +146,12 @@ namespace ProyectAntivirusBackend.Controllers
             }
 
             rating.Score = updatedRating.Score;
+            rating.Comment = updatedRating.Comment;
             await _context.SaveChangesAsync();
 
             return Ok(rating);
         }
 
-        /// 🔹 Eliminar una calificación
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteRating(int id)
         {
@@ -123,5 +167,4 @@ namespace ProyectAntivirusBackend.Controllers
             return NoContent();
         }
     }
-
 }

@@ -12,7 +12,7 @@ namespace ProyectAntivirusBackend.Models
 
         [ForeignKey("User")]
         [Column("user_id")]
-        public int UserId { get; set; }
+        public int? UserId { get; set; }
 
         [ForeignKey("Opportunity")]
         [Column("opportunity_id")]
@@ -21,10 +21,10 @@ namespace ProyectAntivirusBackend.Models
 
         [Required]
         [Column("score")]
-        public required int Score { get; set; }
-        [Required]
-        [Column("coment")]
-        public required string Comment { get; set; }
+        public required double Score { get; set; }
+    
+        [Column("comment")]
+        public string? Comment { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     }
 }
