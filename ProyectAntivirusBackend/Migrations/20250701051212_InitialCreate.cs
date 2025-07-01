@@ -34,7 +34,7 @@ namespace ProyectAntivirusBackend.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     name = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
                     image = table.Column<string>(type: "text", nullable: false),
-                    information = table.Column<string>(type: "text", nullable: true)
+                    link = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -57,23 +57,6 @@ namespace ProyectAntivirusBackend.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ranking",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    UserId = table.Column<int>(type: "integer", nullable: false),
-                    OpportunityId = table.Column<int>(type: "integer", nullable: false),
-                    Score = table.Column<int>(type: "integer", nullable: false),
-                    Comment = table.Column<string>(type: "text", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ranking", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "sectors",
                 columns: table => new
                 {
@@ -93,7 +76,7 @@ namespace ProyectAntivirusBackend.Migrations
                 {
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    name = table.Column<string>(type: "character varying(30)", maxLength: 30, nullable: false),
+                    name = table.Column<string>(type: "character varying(150)", maxLength: 150, nullable: false),
                     description = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
@@ -224,7 +207,9 @@ namespace ProyectAntivirusBackend.Migrations
                     publication_date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     expiration_date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     institution_id = table.Column<int>(type: "integer", nullable: false),
-                    status = table.Column<string>(type: "text", nullable: false)
+                    status = table.Column<string>(type: "text", nullable: false),
+                    rating_id = table.Column<int>(type: "integer", nullable: false),
+                    average_score = table.Column<double>(type: "double precision", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -253,6 +238,60 @@ namespace ProyectAntivirusBackend.Migrations
                         principalTable: "sectors",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "favorites",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    user_id = table.Column<int>(type: "integer", nullable: false),
+                    opportunity_id = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_favorites", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_favorites_opportunities_opportunity_id",
+                        column: x => x.opportunity_id,
+                        principalTable: "opportunities",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_favorites_users_user_id",
+                        column: x => x.user_id,
+                        principalTable: "users",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "rating",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    user_id = table.Column<int>(type: "integer", nullable: true),
+                    opportunity_id = table.Column<int>(type: "integer", nullable: false),
+                    score = table.Column<double>(type: "double precision", nullable: false),
+                    comment = table.Column<string>(type: "text", nullable: true),
+                    created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_rating", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_rating_opportunities_opportunity_id",
+                        column: x => x.opportunity_id,
+                        principalTable: "opportunities",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_rating_users_user_id",
+                        column: x => x.user_id,
+                        principalTable: "users",
+                        principalColumn: "id");
                 });
 
             migrationBuilder.CreateTable(
@@ -288,6 +327,16 @@ namespace ProyectAntivirusBackend.Migrations
                 table: "auth_users",
                 column: "user_id",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_favorites_opportunity_id",
+                table: "favorites",
+                column: "opportunity_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_favorites_user_id",
+                table: "favorites",
+                column: "user_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_opportunities_institution_id",
@@ -327,6 +376,16 @@ namespace ProyectAntivirusBackend.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_rating_opportunity_id",
+                table: "rating",
+                column: "opportunity_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_rating_user_id",
+                table: "rating",
+                column: "user_id");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_requests_opportunity_id",
                 table: "requests",
                 column: "opportunity_id");
@@ -355,10 +414,13 @@ namespace ProyectAntivirusBackend.Migrations
                 name: "auth_users");
 
             migrationBuilder.DropTable(
+                name: "favorites");
+
+            migrationBuilder.DropTable(
                 name: "profiles");
 
             migrationBuilder.DropTable(
-                name: "ranking");
+                name: "rating");
 
             migrationBuilder.DropTable(
                 name: "requests");

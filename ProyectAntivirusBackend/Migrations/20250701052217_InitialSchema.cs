@@ -5,24 +5,18 @@
 namespace ProyectAntivirusBackend.Migrations
 {
     /// <inheritdoc />
-    public partial class AddAverageScoreToOpportunity : Migration
+    public partial class InitialSchema : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<double>(
-                name: "average_score",
-                table: "opportunities",
-                type: "double precision",
-                nullable: true);
+
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "average_score",
-                table: "opportunities");
+
         }
     }
 }

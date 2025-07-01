@@ -12,8 +12,8 @@ using ProyectAntivirusBackend.Data;
 namespace ProyectAntivirusBackend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250404043231_AddAverageScoreToOpportunity")]
-    partial class AddAverageScoreToOpportunity
+    [Migration("20250701051212_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -462,8 +462,8 @@ namespace ProyectAntivirusBackend.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("character varying(30)")
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)")
                         .HasColumnName("name");
 
                     b.HasKey("Id");
